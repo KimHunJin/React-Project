@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {TopNavigation} from "app/components/Main/TopNavigation";
+import {TopNavigation} from "app/components/TopNavigation";
 
 export class MainPage extends React.Component {
     render() {
