@@ -17,6 +17,14 @@ export class ItemListUserInfo extends React.Component<ItemUserInfoProps> {
                 </a>
                 <div className={"info"}>
                     <a className={"author"} href={"#@" + this.props.userName}>{this.props.userName}</a>
+                    <span className={"date"}>{this.props.writeDate}</span>
+                </div>
+                <div className={"pull-xs-right"}>
+                    <button className={"btn btn-sm btn-outline-primary"}>
+                        <i className={"ion-heart"}>
+
+                        </i>
+                    </button>
                 </div>
             </div>
         )
