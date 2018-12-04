@@ -1,9 +1,10 @@
+import './style.less'
 import * as React from 'react';
-
+import {MainPage} from "app/containers/Main"
 
 // render react DOM
 export const App = () => (
     <div className={"App"}>
-        <h1>Hello React Init</h1>
+        <MainPage/>
     </div>
 )
