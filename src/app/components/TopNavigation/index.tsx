@@ -1,10 +1,7 @@
 import * as React from 'react'
-import {DomProps} from "../../../lib/props/dom-props";
 import './style.less'
 
-export interface Props extends DomProps {
 
-}
 
 export class TopNavigation extends React.Component {
     render(): React.ReactNode {
