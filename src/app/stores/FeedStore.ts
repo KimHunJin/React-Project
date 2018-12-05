@@ -4,7 +4,7 @@ import {FeedModel} from "app/components/FeedList/ItemView/ItemListFeedContent/mo
 export class FeedStore {
     @observable feedList: Array<FeedModel>
 
-    constructor(models: FeedModel[]) {
+    constructor(models?: FeedModel[]) {
         this.feedList = models
     }
 
