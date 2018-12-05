@@ -4,6 +4,7 @@ import {Banner} from "app/components/Banner"
 import "./style.less"
 
 export class MainPage extends React.Component {
+
     render() {
         return (
             <div>

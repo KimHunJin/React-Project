@@ -23,7 +23,7 @@ export class ItemListUserInfo extends React.Component<ItemUserInfoProps> {
                     <button className={"btn btn-sm btn-outline-primary"}>
                         <i className={"ion-heart"}>
 
-                        </i>
+                        </i>    
                     </button>
                 </div>
             </div>
