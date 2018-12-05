@@ -1,17 +1,15 @@
 import './style.less'
 import * as React from 'react';
 import {MainPage} from "app/containers/Main"
-import {createBrowserHistory} from "history";
 import {Provider} from "mobx-react";
-import {createStore} from "app/stores/createStore";
+import FeedStore from "app/stores/FeedStore";
 
 // render react DOM
-
-const history = createBrowserHistory()
-const rootStore = createStore(history)
+const feedStore = new FeedStore()
 
 export const App = () => (
-    <Provider {...rootStore}>
+
+    <Provider store ={feedStore}>
         <div className={"App"}>
             <MainPage/>
         </div>

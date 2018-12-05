@@ -1,15 +1,21 @@
-import {observable} from "mobx";
+import {action, observable} from "mobx";
 import {FeedModel} from "app/components/Feed/FeedItem/ItemListFeedContent/model";
+import axios from 'axios'
+import {API_URL, GET_ARTICLES} from "app/constants";
 
-export class FeedStore {
+export default class FeedStore {
     @observable feedList: Array<FeedModel>
 
-    constructor(models?: FeedModel[]) {
-        if(models) {
-            this.feedList = models
-        } else {
-            this.feedList = new Array<FeedModel>()
-        }
+    @action getFeeds() {
+        axios.get(API_URL+GET_ARTICLES).then(
+            result => {
+                console.log(result.data.articles)
+                this.setFeeds(result.data.articles)
+            }
+        )
     }
 
+    @action setFeeds(feeds: FeedModel[]) {
+        this.feedList = feeds
+    }
 }

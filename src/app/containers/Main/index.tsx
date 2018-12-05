@@ -3,15 +3,18 @@ import {TopNavigation} from "app/components/TopNavigation";
 import {Banner} from "app/components/Banner"
 import "./style.less"
 import {FeedToogle} from "app/components/Feed/FeedToggle";
-import {inject} from "mobx-react";
-import {STORE_FEED} from "app/constants/stores";
-import {FeedList} from "app/components/Feed/FeedList";
+import {inject, observer} from "mobx-react";
 
-
-@inject(STORE_FEED)
+@inject('store')
+@observer
 export class MainPage extends React.Component {
 
+    componentDidMount(): void {
+        console.log(this.props)
+    }
+
     render() {
+        
         return (
             <div>
                 <TopNavigation/>
@@ -21,7 +24,6 @@ export class MainPage extends React.Component {
                         <div className={"row"}>
                             <div className={"col-md-9"}>
                                 <FeedToogle/>
-                                <FeedList feeds={this.props[STORE_FEED].feedList}/>
                             </div>
                             <div className={"col-md-3"}>
                             </div>
