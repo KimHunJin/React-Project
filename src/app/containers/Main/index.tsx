@@ -4,15 +4,20 @@ import {Banner} from "app/components/Banner"
 import "./style.less"
 import {FeedToogle} from "app/components/Feed/FeedToggle";
 import {inject, observer} from "mobx-react";
+import APIConn from 'lib/http/service_util';
 
 @inject('store')
 @observer
 export class MainPage extends React.Component {
 
+
     componentDidMount(): void {
         console.log(this.props)
+        APIConn.getInstance().getArticle().then(res => {
+            console.log(res.data.articles)
+        })
     }
-
+    
     render() {
         
         return (
