@@ -9,6 +9,13 @@ export interface ItemUserInfoProps extends DomProps{
 }
 
 export class ItemListUserInfo extends React.Component<ItemUserInfoProps> {
+
+
+    constructor(props) {
+        super(props);
+    }
+
+
     render(): React.ReactNode {
         return (
             <div className={"article-meta"}>
@@ -23,7 +30,7 @@ export class ItemListUserInfo extends React.Component<ItemUserInfoProps> {
                     <button className={"btn btn-sm btn-outline-primary"}>
                         <i className={"ion-heart"}>
 
-                        </i>    
+                        </i>
                     </button>
                 </div>
             </div>

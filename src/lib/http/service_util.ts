@@ -1,4 +1,4 @@
-import {HttpService} from "app/utils/axios";
+import {HttpService} from "lib/http/axios";
 import {GET_ARTICLES, GET_TAG} from "app/constants";
 
 export default class APIConn extends HttpService{
