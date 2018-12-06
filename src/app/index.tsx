@@ -1,17 +1,16 @@
 import './style.less'
 import * as React from 'react';
-import {MainPage} from "app/containers/Main"
-import {Provider} from "mobx-react";
-import FeedStore from "app/stores/FeedStore";
+import {Component} from 'react';
+import {inject} from "mobx-react";
 
 // render react DOM
-const feedStore = new FeedStore()
 
-export const App = () => (
+@inject('store')
+export class App extends Component {
 
-    <Provider store ={feedStore}>
-        <div className={"App"}>
-            <MainPage/>
-        </div>
-    </Provider>
-)
+    render(): React.ReactNode {
+        return(
+            <div></div>
+        )
+    }
+}

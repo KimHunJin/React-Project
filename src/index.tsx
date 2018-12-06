@@ -1,9 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {App} from './app/index'
+import apiStore from "./test/apiStore";
+import FeedControl from "./test/FeedControl";
+
 
 // render react DOM
 ReactDOM.render(
-    <App />,
+    <FeedControl apiStore={apiStore}/>,
+
     document.getElementById('root')
 );

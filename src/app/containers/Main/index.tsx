@@ -6,20 +6,25 @@ import {FeedToogle} from "app/components/Feed/FeedToggle";
 import {inject, observer} from "mobx-react";
 import APIConn from 'lib/http/service_util';
 
-@inject('store')
 @observer
-export class MainPage extends React.Component {
-
+@inject('store')
+export default class MainPage extends React.Component {
 
     componentDidMount(): void {
         console.log(this.props)
         APIConn.getInstance().getArticle().then(res => {
-            console.log(res.data.articles)
+            // @ts-ignore
+            this.props.setFeeds(res)
         })
     }
-    
+
+    getList() {
+        // @ts-ignore
+        return this.props.store.feedList.map(feed => <div>{feed.title}</div>)
+    }
+
     render() {
-        
+        // @ts-ignore
         return (
             <div>
                 <TopNavigation/>
@@ -29,6 +34,7 @@ export class MainPage extends React.Component {
                         <div className={"row"}>
                             <div className={"col-md-9"}>
                                 <FeedToogle/>
+                                {this.getList()}
                             </div>
                             <div className={"col-md-3"}>
                             </div>

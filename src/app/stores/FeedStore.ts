@@ -3,13 +3,12 @@ import {FeedModel} from "app/components/Feed/FeedItem/ItemListFeedContent/model"
 import axios from 'axios'
 import {API_URL, GET_ARTICLES} from "app/constants";
 
-export default class FeedStore {
+class FeedStore {
     @observable feedList: Array<FeedModel>
 
     @action getFeeds() {
-        axios.get(API_URL+GET_ARTICLES).then(
+        axios.get(API_URL + GET_ARTICLES).then(
             result => {
-                console.log(result.data.articles)
                 this.setFeeds(result.data.articles)
             }
         )
@@ -19,3 +18,8 @@ export default class FeedStore {
         this.feedList = feeds
     }
 }
+
+const feedStore = new FeedStore()
+
+export default feedStore
+export {FeedStore}
