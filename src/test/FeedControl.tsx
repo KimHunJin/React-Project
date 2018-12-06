@@ -2,7 +2,6 @@ import {observer} from "mobx-react";
 import * as React from "react";
 import apiStore, {ApiStore} from "./apiStore";
 import {getList} from "./api";
-import {FeedModel} from "app/components/Feed/FeedModel/model";
 
 interface Props {
     apiStore: ApiStore
@@ -17,7 +16,7 @@ class FeedControl extends React.Component<Props> {
     componentDidMount(): void {
         getList().then(res => {
             res.data.articles.map((article) => {
-                apiStore.setArticle(new FeedModel(article.title, article.body, article.tagList, article.createAt, article.author))
+                // apiStore.setArticle(new FeedModel(article.title, article.body, article.tagList, article.createAt, article.author))
             })
         })
     }
