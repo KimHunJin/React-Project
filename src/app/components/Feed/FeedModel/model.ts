@@ -1,5 +1,5 @@
-import {Article} from "app/models/article";
-import {Author} from "app/models/author";
+import {Article} from "app/models_interface/article";
+import {Author} from "app/models_interface/author";
 import {observable} from "mobx";
 
 export class FeedModel implements Article {

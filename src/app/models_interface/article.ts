@@ -1,4 +1,4 @@
-import {Author} from "app/models/author";
+import {Author} from "app/models_interface/author";
 
 export interface Article {
     slug?: string
