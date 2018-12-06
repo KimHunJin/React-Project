@@ -1,6 +1,6 @@
 import {toJS} from 'mobx'
-import {Article} from "app/models/article";
-import {Author} from "app/models/author";
+import {Article} from "app/models_interface/article";
+import {Author} from "app/models_interface/author";
 
 export class ArticleModel {
     readonly title: string

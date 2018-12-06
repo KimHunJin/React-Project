@@ -3,7 +3,8 @@ import {FeedItem} from "app/components/Feed/FeedItem";
 import {observer} from "mobx-react";
 import APIConn from "../../../../lib/http/service_util";
 import {FeedStore} from "app/stores/FeedStore";
-import {FeedModel} from "app/components/Feed/FeedModel/model";
+import {FeedModel, UserModel} from "app/components/Feed/FeedModel/model";
+import ChangeDate from "../../../../lib/date/ChangeDate";
 
 interface Props {
     feedStore: FeedStore
@@ -16,7 +17,20 @@ export class FeedList extends React.Component<Props> {
         APIConn.getInstance().getArticle().then(res => {
             const data = res.data.articles
             data.map(article => {
-                this.props.feedStore.setFeeds(new FeedModel(article.title, article.body, article.tagList, article.createAt, article.author))
+                const title: string = article.title
+                const body: string = article.body
+                const tagList: string[] = article.tagList
+                const createdAt: string = article.createdAt
+                const feedDate = new Date(createdAt)
+                const changeDate = ChangeDate.changeDate(feedDate)
+                const description: string = article.description
+                const slug: string = article.slug
+
+                let favorited: boolean = article.favorited
+                let favoritesCount: number = article.favoritesCount
+
+                const author: UserModel = article.author
+                this.props.feedStore.setFeeds(new FeedModel(title, body, tagList, changeDate, author, favoritesCount, favorited, slug, description))
             })
         })
     }

@@ -23,7 +23,7 @@ class ApiStore {
 
     getList() {
         getList().then(res => {
-            res.data.articles.map(v => this.articles.push(new FeedModel(v.title, v.body, v.tagList, v.createAt, v.author)));
+            // res.data.articles.map(v => this.articles.push(new FeedModel(v.title, v.body, v.tagList, v.createAt, v.author)));
         });
     }
 }

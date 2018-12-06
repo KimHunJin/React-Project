@@ -18,9 +18,12 @@ export class ItemListFeedContent extends React.Component<FeedProps> {
         return (
             <a className={"preview-link"}>
                 <h1>{feed.title}</h1>
-                <p>{feed.body}</p>
+                <p>{feed.description}</p>
                 <span>Read more...</span>
                 <ul className={"tag-list"}>
+                    {feed.tagList.map(tag => {
+                        return <li key={tag} className={"tag-default tag-pill tag-outline"}>{tag}</li>
+                    })}
                 </ul>
             </a>
         )
