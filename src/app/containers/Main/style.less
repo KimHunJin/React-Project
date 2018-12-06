@@ -321,6 +321,41 @@ body {
   }
 }
 
+a, area, button, [role="button"], input, label, select, summary, textarea {
+  touch-action: manipulation;
+}
+
+input, button, select, textarea {
+  margin: 0;
+  line-height: inherit;
+  border-radius: 0;
+}
+
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button {
+  overflow: visible;
+}
+
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+input, button, select, textarea {
+  margin: 0;
+  line-height: inherit;
+  border-radius: 0;
+}
+
 .tag-default {
   color: #fff !important;
   font-size: 0.8rem;
@@ -330,8 +365,4 @@ body {
   margin-right: 3px;
   margin-bottom: 0.2rem;
   display: inline-block;
-}
-
-a, area, button, [role="button"], input, label, select, summary, textarea {
-  touch-action: manipulation;
 }
