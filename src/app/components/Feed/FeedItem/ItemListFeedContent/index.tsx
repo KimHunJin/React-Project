@@ -1,7 +1,7 @@
 import * as React from "react";
-import {FeedModel} from "app/components/Feed/FeedItem/ItemListFeedContent/model";
+import {FeedModel} from "app/components/Feed/FeedModel/model";
 import {FeedProps} from "app/components/Feed/FeedItem/ItemListUserInfo";
-
+import './style.less'
 
 export interface FeedProps {
     model: FeedModel

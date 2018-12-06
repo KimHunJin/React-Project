@@ -1,27 +1,15 @@
 import * as React from 'react'
 import './style.less'
-import {FeedModel} from "app/components/Feed/FeedItem/ItemListFeedContent/model";
-import APIConn from "../../../../../lib/http/service_util";
+import {FeedModel} from "app/components/Feed/FeedModel/model";
 
 export interface FeedProps{
     feed: FeedModel
 }
 
 export class ItemListUserInfo extends React.Component<FeedProps> {
-
-    componentDidMount(): void {
-
-        const api = APIConn.getInstance()
-
-        api.getArticle().then(res => {
-            console.log(res)
-        })
-    }
-
     constructor(props?: FeedProps) {
         super(props);
     }
-
 
     render(): React.ReactNode {
         const {feed} = this.props

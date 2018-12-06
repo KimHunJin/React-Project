@@ -3,30 +3,17 @@ import {TopNavigation} from "app/components/TopNavigation";
 import {Banner} from "app/components/Banner"
 import "./style.less"
 import {FeedToogle} from "app/components/Feed/FeedToggle";
-import {inject, observer} from "mobx-react";
-import APIConn from 'lib/http/service_util';
+import {observer} from "mobx-react";
+import {FeedList} from "app/components/Feed/FeedList";
+import feedStore from "app/stores/FeedStore";
 
 @observer
-@inject('store')
-export default class MainPage extends React.Component {
-
-    componentDidMount(): void {
-        console.log(this.props)
-        APIConn.getInstance().getArticle().then(res => {
-            // @ts-ignore
-            this.props.setFeeds(res)
-        })
-    }
-
-    getList() {
-        // @ts-ignore
-        return this.props.store.feedList.map(feed => <div>{feed.title}</div>)
-    }
+export class MainPage extends React.Component {
 
     render() {
         // @ts-ignore
         return (
-            <div>
+            <div data-reactroot>
                 <TopNavigation/>
                 <div className={"home-page"}>
                     <Banner/>
@@ -34,7 +21,7 @@ export default class MainPage extends React.Component {
                         <div className={"row"}>
                             <div className={"col-md-9"}>
                                 <FeedToogle/>
-                                {this.getList()}
+                                <FeedList feedStore={feedStore}/>
                             </div>
                             <div className={"col-md-3"}>
                             </div>

@@ -1,13 +1,13 @@
-import {inject, observer} from "mobx-react";
+import {observer} from "mobx-react";
 import * as React from "react";
 import apiStore, {ApiStore} from "./apiStore";
+import {getList} from "./api";
+import {FeedModel} from "app/components/Feed/FeedModel/model";
 
 interface Props {
     apiStore: ApiStore
 }
 
-
-@inject('apiStore')
 @observer
 class FeedControl extends React.Component<Props> {
     constructor(props) {
@@ -15,17 +15,21 @@ class FeedControl extends React.Component<Props> {
     }
 
     componentDidMount(): void {
-        apiStore.getList();
+        getList().then(res => {
+            res.data.articles.map((article) => {
+                apiStore.setArticle(new FeedModel(article.title, article.body, article.tagList, article.createAt, article.author))
+            })
+        })
     }
 
-    render(): React.ReactNode {
-        const test: ApiStore = this.props.apiStore
 
+    render(): React.ReactNode {
+        const store = apiStore as ApiStore
         return (
             <div className={'aaa'}>
-                {test.articles.map((model, key) => {
+                {store.articles.map((model, key) => {
                     return (
-                        <div key = {key}>{model.body}</div>
+                        <div key={key}>{model.body}</div>
                     )
                 })}
             </div>

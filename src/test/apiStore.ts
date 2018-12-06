@@ -1,5 +1,5 @@
 import {action, computed, observable} from "mobx";
-import {FeedModel} from "app/components/Feed/FeedItem/ItemListFeedContent/model";
+import {FeedModel} from "app/components/Feed/FeedModel/model";
 import {getList} from "./api";
 
 class ApiStore {
@@ -9,8 +9,12 @@ class ApiStore {
         this.articles = articles;
     }
 
-    @action setArticle = (articles) => {
+    @action setArticles = (articles) => {
         this.articles = articles;
+    }
+
+    @action setArticle = (article) => {
+        this.articles.push(article)
     }
 
     @computed get getArticle(): FeedModel[] {

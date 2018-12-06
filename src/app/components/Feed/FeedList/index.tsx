@@ -1,29 +1,32 @@
 import * as React from "react";
+import {FeedItem} from "app/components/Feed/FeedItem";
+import {observer} from "mobx-react";
 import APIConn from "../../../../lib/http/service_util";
+import {FeedStore} from "app/stores/FeedStore";
+import {FeedModel} from "app/components/Feed/FeedModel/model";
 
+interface Props {
+    feedStore: FeedStore
+}
 
-export class FeedList extends React.Component {
+@observer
+export class FeedList extends React.Component<Props> {
 
-    getFeeds(): any {
-        const api = APIConn.getInstance()
-        return api.getArticle().then(res => {
-            return res.data.articles
-        }).then(articles => {
-            articles.map(article => {
-                this.setState(article)
+    componentDidMount(): void {
+        APIConn.getInstance().getArticle().then(res => {
+            const data = res.data.articles
+            data.map(article => {
+                this.props.feedStore.setFeeds(new FeedModel(article.title, article.body, article.tagList, article.createAt, article.author))
             })
         })
     }
 
-    componentDidMount(): void {
-
-    }
-
     render(): React.ReactNode {
+        const store = this.props.feedStore
         return (
-            <div>
-                {/*{isObservableObject(this.props.store.feeds)? <div>{this.props.store.feeds.map(feed => console.log(feed))}</div> : <div>...</div>}*/}
-            </div>
+            store.feedList.map((article) => {
+                return <FeedItem key={article.id} feed={article}/>
+            })
         )
     }
 }

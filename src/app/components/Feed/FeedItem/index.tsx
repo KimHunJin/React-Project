@@ -2,7 +2,7 @@ import * as React from 'react'
 import './style.less'
 import {ItemListUserInfo} from "app/components/Feed/FeedItem/ItemListUserInfo";
 import {ItemListFeedContent} from "app/components/Feed/FeedItem/ItemListFeedContent";
-import {FeedModel} from "app/components/Feed/FeedItem/ItemListFeedContent/model";
+import {FeedModel} from "app/components/Feed/FeedModel/model";
 
 
 export interface FeedProps {
@@ -19,7 +19,7 @@ export class FeedItem extends React.Component<FeedProps> {
     render(): React.ReactNode {
         const {feed} = this.props
         return (
-            <div>
+            <div className={"article-preview"}>
                 <ItemListUserInfo feed={feed}/>
                 <ItemListFeedContent feed={feed}/>
             </div>
