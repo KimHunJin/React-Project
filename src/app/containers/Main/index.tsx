@@ -6,12 +6,13 @@ import {FeedToogle} from "app/components/Feed/FeedToggle";
 import {observer} from "mobx-react";
 import {FeedList} from "app/components/Feed/FeedList";
 import feedStore from "app/stores/FeedStore";
+import {Tags} from "app/components";
+import tagStore from "app/stores/TagStore";
 
 @observer
 export class MainPage extends React.Component {
 
     render() {
-        // @ts-ignore
         return (
             <div data-reactroot>
                 <TopNavigation/>
@@ -24,6 +25,7 @@ export class MainPage extends React.Component {
                                 <FeedList feedStore={feedStore}/>
                             </div>
                             <div className={"col-md-3"}>
+                                <Tags store={tagStore}/>
                             </div>
                         </div>
                     </div>
