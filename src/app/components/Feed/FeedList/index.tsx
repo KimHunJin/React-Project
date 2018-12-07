@@ -16,9 +16,7 @@ export class FeedList extends React.Component<Props> {
     }
 
     render(): React.ReactNode {
-        console.log('render list')
-        const store = this.props.feedStore
-        console.log(store.feedList.length)
+        const store = this.props.feedStore;
         return (
             <div>
                 {store.feedList.map((article) => {

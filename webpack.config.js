@@ -89,7 +89,7 @@ module.exports = {
         contentBase: sourcePath,
         hot: true,
         inline: true,
-        historyApiFallback:true,
+        historyApiFallback: true,
         compress: true
     }
 }

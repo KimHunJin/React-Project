@@ -2,7 +2,7 @@ import {action, computed, observable} from "mobx";
 
 class TagStore {
 
-    id: number
+    id: number;
 
     static nextId = 1;
 
@@ -10,10 +10,10 @@ class TagStore {
         return this.nextId++
     }
 
-    @observable tags: string[]
+    @observable tags: string[];
 
     constructor(tags: string[] = []) {
-        this.tags = tags
+        this.tags = tags;
         this.id = TagStore.generateId()
     }
 
@@ -26,6 +26,6 @@ class TagStore {
     }
 }
 
-const tagStore = new TagStore()
+const tagStore = new TagStore();
 export default tagStore
 export {TagStore}
