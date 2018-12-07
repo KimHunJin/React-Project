@@ -85,12 +85,11 @@ module.exports = {
     mode: 'development',
     devtool: "source-map",
     devServer: {
-        port: 3000,
+        port: 3001,
         contentBase: sourcePath,
         hot: true,
         inline: true,
         historyApiFallback:true,
-        compress: true,
-        host:'0.0.0.0'
+        compress: true
     }
 }
