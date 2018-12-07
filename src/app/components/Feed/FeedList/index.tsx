@@ -5,6 +5,7 @@ import APIConn from "../../../../lib/http/service_util";
 import {FeedStore} from "app/stores/FeedStore";
 import {FeedModel, UserModel} from "app/components/Feed/FeedModel/model";
 import ChangeDate from "../../../../lib/date/ChangeDate";
+import {Footer} from "app/components/Feed/FeedFooter";
 
 interface Props {
     feedStore: FeedStore
@@ -32,15 +33,21 @@ export class FeedList extends React.Component<Props> {
                 const author: UserModel = article.author
                 this.props.feedStore.setFeeds(new FeedModel(title, body, tagList, changeDate, author, favoritesCount, favorited, slug, description))
             })
+            const count: number = res.data.articlesCount
+            this.props.feedStore.feedCount = count
         })
     }
 
     render(): React.ReactNode {
         const store = this.props.feedStore
         return (
-            store.feedList.map((article) => {
-                return <FeedItem key={article.id} feed={article}/>
-            })
+            <div>
+                {store.feedList.map((article) => {
+                    return <FeedItem key={article.id} feed={article}/>
+                })
+                }
+                <Footer store={store}/>
+            </div>
         )
     }
 }

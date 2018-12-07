@@ -3,9 +3,12 @@ import {FeedModel} from "app/components/Feed/FeedModel/model";
 
 class FeedStore {
     @observable feedList: FeedModel[]
+    @observable feedCount: number
+    @observable currentFeed: number = 0
 
     constructor(feedList: FeedModel[] = []) {
         this.feedList = feedList
+        this.feedCount = 0
     }
 
     @computed get getFeeds(): FeedModel[] {
