@@ -20,8 +20,9 @@ class FeedStore {
         return this.feedList
     }
 
-    @action setFeeds(offset?:number, author?:string, tag?:string) {
-        console.log('set feed')
+    @action setFeeds(offset?:number) {
+        const author = this.feedAuthor
+        const tag = this.feedTag
         const feedModels : FeedModel[] = []
         APIConn.getInstance().getArticle(offset, author, tag).then(res => {
             const data = res.data.articles

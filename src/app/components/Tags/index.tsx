@@ -30,12 +30,8 @@ export class Tags extends React.Component<Props> {
         const store = this.props.feedStore
         store.feedTag = tag
         store.feedCurrentToggle = tag
-        this.feedListFilter(tag)
-    }
-
-    feedListFilter(tag) {
-        const store = this.props.feedStore
-        store.setFeeds(0, '', tag)
+        store.feedCurrentPage = 0
+        store.setFeeds(0)
     }
 
     render() {
