@@ -27,7 +27,7 @@ export class Tags extends React.Component<Props>{
                 <p>Popular Tags</p>
                 <div className={"tag-list"}>
                     {this.props.store.getTag.map(tag => {
-                        return(<a key={tag} className={"tag-default tag-pill"}>{tag}</a>)
+                        return(<a href={""} key={tag} className={"tag-default tag-pill"}>{tag}</a>)
                     })}
                 </div>
             </div>

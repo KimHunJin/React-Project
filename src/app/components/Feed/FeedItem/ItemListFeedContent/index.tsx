@@ -16,7 +16,7 @@ export class ItemListFeedContent extends React.Component<FeedProps> {
     render(): React.ReactNode {
         const {feed} = this.props
         return (
-            <a className={"preview-link"}>
+            <a className={"preview-link"} href={"#article/"+feed.slug}>
                 <h1>{feed.title}</h1>
                 <p>{feed.description}</p>
                 <span>Read more...</span>
