@@ -11,9 +11,7 @@ interface Props {
 export class FeedToggle extends React.Component<Props> {
 
     authorFeed(): any {
-        const store = this.props.store
-        console.log('author')
-        console.log(store)
+        const store = this.props.store;
         return (
             <li className={"nav-item"}>
                 {store.feedCurrentToggle && store.feedAuthor && store.feedCurrentToggle === store.feedAuthor ?
@@ -25,7 +23,7 @@ export class FeedToggle extends React.Component<Props> {
     }
 
     tagFeed(): any {
-        const store = this.props.store
+        const store = this.props.store;
         return (
             <li className={"nav-item"}>
                 {store.feedCurrentToggle && store.feedTag && store.feedCurrentToggle === store.feedTag ?
@@ -38,12 +36,13 @@ export class FeedToggle extends React.Component<Props> {
     }
 
     tagGlobalEvent(): any {
-        event.preventDefault()
-        const store = this.props.store
-        store.feedCurrentToggle = ''
-        store.feedTag = ''
+        event.preventDefault();
+        const store = this.props.store;
+        store.feedCurrentToggle = '';
+        store.feedTag = '';
+        store.feedCurrentPage = 0;
         store.setFeeds()
-     }
+    }
 
 
     render() {

@@ -11,9 +11,9 @@ interface Props {
 export class Footer extends React.Component<Props> {
 
     createList(count): any {
-        let list: any = []
-        const store = this.props.store
-        const currentFeed = store.feedCurrentPage
+        let list: any = [];
+        const store = this.props.store;
+        const currentFeed = store.feedCurrentPage;
 
         for (let i = 0; i < count; i++) {
             list.push(
@@ -31,15 +31,15 @@ export class Footer extends React.Component<Props> {
     }
 
     pageEventHandle(number) {
-        event.preventDefault()
-        this.props.store.feedCurrentPage = number
-        number = number * 10
-        this.props.store.setFeeds(number)
+        event.preventDefault();
+        this.props.store.feedCurrentPage = number;
+        number = number * 10;
+        this.props.store.setFeeds(number);
     }
 
     render() {
-        const store = this.props.store
-        const count = store.feedCount / 10
+        const store = this.props.store;
+        const count = store.feedCount / 10;
 
         return (
             <nav>

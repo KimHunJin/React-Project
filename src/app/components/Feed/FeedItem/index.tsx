@@ -19,7 +19,7 @@ export class FeedItem extends React.Component<FeedProps> {
     }
 
     render(): React.ReactNode {
-        const {feed} = this.props
+        const {feed} = this.props;
         return (
             <div className={"article-preview"}>
                 <ItemListUserInfo feed={feed}/>
