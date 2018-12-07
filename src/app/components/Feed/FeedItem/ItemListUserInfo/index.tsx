@@ -14,11 +14,11 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
     }
 
     render(): React.ReactNode {
-        const {feed} = this.props
+        const {feed} = this.props;
         return (
             <div className={"article-meta"}>
                 <a href={"#@" + feed.author.username}>
-                    <img src={feed.author.image}/>
+                    <img src={feed.author.image} alt={"user image"}/>
                 </a>
                 <div className={"info"}>
                     <a className={"author"} href={"#@" + feed.author.username}>{feed.author.username}</a>

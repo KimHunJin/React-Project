@@ -15,7 +15,7 @@ export class Tags extends React.Component<Props> {
 
 
     componentDidMount(): void {
-        const store = this.props.tagStore
+        const store = this.props.tagStore;
 
         APIConn.getInstance().getTags().then(res => {
             res.data.tags.map(tag => {
@@ -25,12 +25,12 @@ export class Tags extends React.Component<Props> {
     }
 
     tagHandleEvent(tag) {
-        event.preventDefault()
-        console.log(tag)
-        const store = this.props.feedStore
-        store.feedTag = tag
-        store.feedCurrentToggle = tag
-        store.feedCurrentPage = 0
+        event.preventDefault();
+        console.log(tag);
+        const store = this.props.feedStore;
+        store.feedTag = tag;
+        store.feedCurrentToggle = tag;
+        store.feedCurrentPage = 0;
         store.setFeeds(0)
     }
 

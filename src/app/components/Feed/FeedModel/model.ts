@@ -1,6 +1,6 @@
-import {Article} from "app/models_interface/article";
 import {Author} from "app/models_interface/author";
 import {observable} from "mobx";
+import {Article} from "app/models_interface/article";
 
 export class FeedModel implements Article {
     readonly id: number;
@@ -16,16 +16,16 @@ export class FeedModel implements Article {
     author?: UserModel;
 
     constructor(title: string, body: string, tagList: string[], createAt: string, author: UserModel, favoritesCount: number, favorited: boolean, slug?: string, description?: string, updateAt? : string) {
-        this.id = FeedModel.generateId()
-        this.title = title
-        this.body = body
-        this.tagList = tagList
-        this.createAt = createAt
-        this.author = author
-        this.slug = slug
-        this.description = description
-        this.favorited = favorited
-        this.favoritesCount = favoritesCount
+        this.id = FeedModel.generateId();
+        this.title = title;
+        this.body = body;
+        this.tagList = tagList;
+        this.createAt = createAt;
+        this.author = author;
+        this.slug = slug;
+        this.description = description;
+        this.favorited = favorited;
+        this.favoritesCount = favoritesCount;
         this.updateAt = updateAt
     }
 
