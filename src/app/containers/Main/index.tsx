@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {TopNavigation} from "app/components/TopNavigation";
 import {Banner} from "app/components/Banner"
 import "./style.less"
 import {FeedToggle} from "app/components/Feed/FeedToggle";
@@ -14,19 +13,16 @@ export class MainPage extends React.Component {
 
     render() {
         return (
-            <div data-reactroot>
-                <TopNavigation/>
-                <div className={"home-page"}>
-                    <Banner/>
-                    <div className={"container page"}>
-                        <div className={"row"}>
-                            <div className={"col-md-9"}>
-                                <FeedToggle store={feedStore}/>
-                                <FeedList feedStore={feedStore}/>
-                            </div>
-                            <div className={"col-md-3"}>
-                                <Tags tagStore={tagStore} feedStore={feedStore}/>
-                            </div>
+            <div className={"home-page"}>
+                <Banner/>
+                <div className={"container page"}>
+                    <div className={"row"}>
+                        <div className={"col-md-9"}>
+                            <FeedToggle store={feedStore}/>
+                            <FeedList feedStore={feedStore}/>
+                        </div>
+                        <div className={"col-md-3"}>
+                            <Tags tagStore={tagStore} feedStore={feedStore}/>
                         </div>
                     </div>
                 </div>
