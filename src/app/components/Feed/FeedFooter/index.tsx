@@ -13,16 +13,16 @@ export class Footer extends React.Component<Props> {
     createList(count): any {
         let list: any = []
         const store = this.props.store
-        const currentFeed = store.currentFeed
+        const currentFeed = store.feedCurrentPage
 
         for (let i = 0; i < count; i++) {
             list.push(
                 i == currentFeed ?
                     <li key={i} className={"page-item active"}>
-                        <a className="page-link" href="">{i + 1}</a>
+                        <a className="page-link" href="#">{i + 1}</a>
                     </li> :
                     <li key={i} className={"page-item "}>
-                        <a className="page-link" href="">{i + 1}</a>
+                        <a className="page-link" href="#">{i + 1}</a>
                     </li>
             )
         }

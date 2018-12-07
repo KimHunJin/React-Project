@@ -1,11 +1,13 @@
 import * as React from 'react'
 import './style.less'
 import {FeedModel} from "app/components/Feed/FeedModel/model";
+import {observer} from "mobx-react";
 
 export interface FeedProps{
     feed: FeedModel
 }
 
+@observer
 export class ItemListUserInfo extends React.Component<FeedProps> {
     constructor(props?: FeedProps) {
         super(props);

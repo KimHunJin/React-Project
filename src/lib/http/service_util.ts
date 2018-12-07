@@ -11,8 +11,13 @@ export default class APIConn extends HttpService {
         return this.instance
     }
 
-    getArticle(offset: number = 0): any {
-        return this.client.get(GET_ARTICLES + "&offset=" + offset).then(result => {
+    getArticle(offset: number = 0, author?: string, tag?: string): any {
+
+        let url = GET_ARTICLES + `&offset=${offset}`
+        author ? url += `&author=${author}` : url
+        tag ? url += `&tag=${tag}` : url
+
+        return this.client.get(url).then(result => {
             return result
         })
     }

@@ -1,12 +1,13 @@
 import * as React from "react";
 import {FeedModel} from "app/components/Feed/FeedModel/model";
-import {FeedProps} from "app/components/Feed/FeedItem/ItemListUserInfo";
 import './style.less'
+import {observer} from "mobx-react";
 
-export interface FeedProps {
+interface FeedProps {
     model: FeedModel
 }
 
+@observer
 export class ItemListFeedContent extends React.Component<FeedProps> {
 
     constructor(props?: FeedProps) {
@@ -14,7 +15,7 @@ export class ItemListFeedContent extends React.Component<FeedProps> {
     }
 
     render(): React.ReactNode {
-        const {feed} = this.props
+        const feed = this.props.model
         return (
             <a className={"preview-link"} href={"#article/"+feed.slug}>
                 <h1>{feed.title}</h1>
