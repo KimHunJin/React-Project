@@ -12,17 +12,19 @@ interface Props {
 export class FeedList extends React.Component<Props> {
 
     componentDidMount(): void {
-        this.props.feedStore.setFeeds()
+        this.props.feedStore.articleContentChange()
     }
 
     render(): React.ReactNode {
+
+        if (this.props.feedStore.feedList.length === 0) return null;
+
         const store = this.props.feedStore;
         return (
             <div>
-                {store.feedList.map((article) => {
-                    return <FeedItem key={article.id} feed={article}/>
-                })
-                }
+                {store.feedList.map(article => (
+                    <FeedItem key={article.id} feed={article}/>
+                ))}
                 <Footer store={store}/>
             </div>
         )

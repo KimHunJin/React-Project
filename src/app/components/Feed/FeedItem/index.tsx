@@ -13,11 +13,6 @@ interface FeedProps {
 @observer
 export class FeedItem extends React.Component<FeedProps> {
 
-    constructor(props?:FeedProps) {
-        super(props);
-
-    }
-
     render(): React.ReactNode {
         const {feed} = this.props;
         return (

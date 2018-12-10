@@ -2,6 +2,7 @@ import * as React from 'react'
 import {FeedStore} from "app/stores/FeedStore";
 import {observer} from "mobx-react";
 import './style.less'
+import {GET_PAGE_COUNT, GET_PAGE_LIMIT} from "app/constants/Feed";
 
 interface Props {
     store: FeedStore
@@ -13,16 +14,16 @@ export class Footer extends React.Component<Props> {
     createList(count): any {
         let list: any = [];
         const store = this.props.store;
-        const currentFeed = store.feedCurrentPage;
+        const currentFeedPage = store.feedCurrentPage;
 
-        for (let i = 0; i < count; i++) {
+        for (let page = 0; page < count; page++) {
             list.push(
-                i == currentFeed ?
-                    <li key={i} className={"page-item active"}>
-                        <a className="page-link" href="#">{i + 1}</a>
+                page == currentFeedPage ?
+                    <li key={page} className={"page-item active"}>
+                        <a className="page-link" href="#">{page + 1}</a>
                     </li> :
-                    <li key={i} className={"page-item "}>
-                        <a onClick={() => this.pageEventHandle(i)} className="page-link" href="#">{i + 1}</a>
+                    <li key={page} className={"page-item "}>
+                        <a onClick={() => this.pageEventHandle(page)} className="page-link" href="#">{page + 1}</a>
                     </li>
             )
         }
@@ -30,22 +31,22 @@ export class Footer extends React.Component<Props> {
         return list
     }
 
-    pageEventHandle(number) {
+    pageEventHandle(pageNumber: number) {
         event.preventDefault();
-        this.props.store.feedCurrentPage = number;
-        number = number * 10;
-        this.props.store.setFeeds(number);
+        this.props.store.feedCurrentPage = pageNumber;
+        const offset = pageNumber * GET_PAGE_COUNT;
+        this.props.store.articleContentChange(offset);
     }
 
     render() {
         const store = this.props.store;
-        const count = store.feedCount / 10;
+        const feedCount = store.feedCount / GET_PAGE_LIMIT;
 
         return (
             <nav>
                 <ul className={"pagination"}>
                     {
-                        this.createList(count)
+                        this.createList(feedCount)
                     }
                 </ul>
             </nav>
