@@ -1,5 +1,5 @@
 import {action, observable} from "mobx";
-import {FeedModel, UserModel} from "app/components/Feed/FeedModel/model";
+import {FeedModel, AuthModel} from "app/components/Feed/FeedModel/model";
 import APIConn from "../../lib/http/service_util";
 import ChangeDate from "../../lib/date/ChangeDate";
 import {TagModel} from "app/components/Tags/TagModel/model";
@@ -17,7 +17,7 @@ class FeedStore {
         this.feedCount = 0
     }
 
-    storeChangeDefault() {
+    storeInitialize() {
         this.feedCurrentToggle = '';
         this.feedTag = '';
         this.feedCurrentPage = 0;
@@ -43,7 +43,7 @@ class FeedStore {
                 const favorited: boolean = article.favorited;
                 const favoritesCount: number = article.favoritesCount;
 
-                const author: UserModel = article.author;
+                const author: AuthModel = article.author;
                 return new FeedModel(title, body, tagList, changeDate, author, favoritesCount, favorited, slug, description)
             });
             this.feedCount = res.data.articlesCount;

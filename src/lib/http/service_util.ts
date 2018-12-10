@@ -1,5 +1,5 @@
 import {HttpService} from "./axios";
-import {GET_ARTICLES, GET_TAG} from "app/constants";
+import {GET_ARTICLES, GET_TAG, LOGIN_URI} from "app/constants";
 
 export default class APIConn extends HttpService {
     static instance: APIConn = null
@@ -28,7 +28,9 @@ export default class APIConn extends HttpService {
         })
     }
 
-    getCommnet(): any {
-
+    postLogin(user: any) {
+        return this.client.post(LOGIN_URI, {user}).then(res => {
+            return res;
+        })
     }
 }

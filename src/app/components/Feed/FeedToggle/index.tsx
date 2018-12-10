@@ -38,7 +38,7 @@ export class FeedToggle extends React.Component<Props> {
     tagGlobalEvent(): any {
         event.preventDefault();
         const store = this.props.store;
-        store.storeChangeDefault()
+        store.storeInitialize()
         store.articleContentChange()
     }
 

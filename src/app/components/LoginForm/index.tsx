@@ -1,7 +1,32 @@
 import * as React from 'react'
 import {Link} from "react-router-dom";
+import {LoginStore} from "app/stores/LoginStore";
 
-export class LoginForm extends React.Component {
+
+interface Props {
+    store: LoginStore;
+}
+
+
+export class LoginForm extends React.Component<Props> {
+
+    constructor(props) {
+        super(props)
+    }
+
+    emailChangeHandler = (e) => {
+        this.props.store.email = e.target.value
+    }
+
+    passwordChangeHandler= (e) => {
+        this.props.store.password = e.target.value
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.store.submit();
+    }
+
     render() {
         return (
             <div className={"row"}>
@@ -9,14 +34,16 @@ export class LoginForm extends React.Component {
                     <h1>Sign In</h1>
                     <Link to={'/register'}><p>Need an account?</p></Link>
 
-                    <form>
+                    <form onSubmit={this.onSubmit}>
                         <fieldset>
                             <fieldset className={"form-group"}>
-                                <input type={"email"} className={"form-control form-control-lg"} placeholder={"Email"}/>
+                                <input type={"email"} className={"form-control form-control-lg"} placeholder={"Email"}
+                                       value={this.props.store.email} onChange={this.emailChangeHandler}/>
                             </fieldset>
                             <fieldset className={"form-group"}>
                                 <input type={"password"} className={"form-control form-control-lg"}
-                                       placeholder={"Password"}/>
+                                       placeholder={"Password"} value={this.props.store.password}
+                                       onChange={this.passwordChangeHandler}/>
                             </fieldset>
                             <button className={"btn btn-lg btn-primary pull-xs-right"} type={"submit"}>
                                 Sign in

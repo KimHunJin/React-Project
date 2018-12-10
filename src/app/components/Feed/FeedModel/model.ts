@@ -13,9 +13,9 @@ export class FeedModel implements Article {
     updateAt: string;
     favorited: boolean;
     favoritesCount: number;
-    author: UserModel;
+    author: AuthModel;
 
-    constructor(title: string, body: string, tagList: TagModel[], createAt: string, author: UserModel, favoritesCount: number, favorited: boolean, slug?: string, description?: string, updateAt? : string) {
+    constructor(title: string, body: string, tagList: TagModel[], createAt: string, author: AuthModel, favoritesCount: number, favorited: boolean, slug?: string, description?: string, updateAt? : string) {
         this.id = FeedModel.generateId();
         this.title = title;
         this.body = body;
@@ -37,24 +37,19 @@ export class FeedModel implements Article {
 }
 
 
-export class UserModel implements Author {
+export class AuthModel implements Author {
     id: number;
     bio: string;
     following: boolean;
     image: string;
     username: string;
 
-    constructor(bio, following, image, username) {
-        this.id = UserModel.generateId();
+    constructor(id, bio, following, image, username) {
+        this.id = id;
         this.bio = bio;
         this.following = following;
         this.image = image;
         this.username = username;
     }
 
-    static nextId = 1;
-
-    static generateId() {
-        return this.nextId++
-    }
 }

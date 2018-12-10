@@ -3,11 +3,9 @@ import {FeedItem} from "app/components/Feed/FeedItem";
 import {observer} from "mobx-react";
 import {FeedStore} from "app/stores/FeedStore";
 import {Footer} from "app/components/Feed/FeedFooter";
-import {CircularProgressBar} from "../../../../lib/progressbar/CircularProgressBar";
 
 interface Props {
     feedStore: FeedStore
-    percentage : number
 }
 
 @observer
@@ -24,12 +22,10 @@ export class FeedList extends React.Component<Props> {
 
     render(): React.ReactNode {
 
-
-        while (this.props.feedStore.feedList.length <= 0) {
-            return <CircularProgressBar sqSize={200} strokeWidth={10} percentage={this.props.percentage}/> ;
-        }
-
         const store = this.props.feedStore;
+
+        if(store.feedList.length === 0) return null;
+
         return (
             <div>
                 {store.feedList.map(article => (
