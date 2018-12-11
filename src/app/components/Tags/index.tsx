@@ -4,7 +4,7 @@ import APIConn from "../../../lib/http/service_util";
 import {observer} from "mobx-react";
 import './style.less'
 import {FeedStore} from "app/stores/FeedStore";
-import {TagModel} from "app/components/Tags/TagModel/model";
+import {TagModel} from "app/model/TagModel/index";
 
 interface Props {
     tagStore: TagStore

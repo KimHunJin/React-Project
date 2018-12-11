@@ -1,5 +1,5 @@
 import {action, observable} from "mobx";
-import {UserModel} from "app/components/LoginForm/model/UserModel";
+import {UserModel} from "app/model/UserModel/index";
 
 class UserStore {
     @observable userModel?: UserModel = null;

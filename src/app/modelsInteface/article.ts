@@ -1,5 +1,5 @@
 import {Author} from "app/modelsInteface/author";
-import {TagModel} from "app/components/Tags/TagModel/model";
+import {TagModel} from "app/model/TagModel/index";
 
 export interface Article {
     slug?: string

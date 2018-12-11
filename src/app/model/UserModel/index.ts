@@ -1,4 +1,4 @@
-import {User} from "app/modelsInteface";
+import {User} from "app/modelsInteface/index";
 
 export class UserModel implements User {
     id: number;

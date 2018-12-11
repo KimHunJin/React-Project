@@ -1,5 +1,5 @@
 import {observable} from "mobx";
-import {TagModel} from "app/components/Tags/TagModel/model";
+import {TagModel} from "app/model/TagModel/index";
 
 class TagStore {
     @observable tagModels : TagModel[] = []
