@@ -66,8 +66,25 @@ export class HttpClient {
         }
     }
 
-    delete<T = any>(url: string, params?): AxiosPromise<T> {
-        return this.makeResponse(this.axios.delete(url, {params}))
+    delete<T = any>(url: string, params?, header?:any): AxiosPromise<T> {
+
+        url = API_URL + url
+
+        console.log(url)
+        if (header) {
+            const options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${userStore.userModel.token}`
+                },
+                data: null,
+                url
+            };
+            return this.axios(options)
+        } else {
+            return this.makeResponse(this.axios.delete(url, {params}))
+        }
     }
 
     put<T = any>(url: string, data?, params?): AxiosPromise<T> {

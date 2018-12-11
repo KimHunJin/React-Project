@@ -43,12 +43,6 @@ class FeedStore {
                 const favorited: boolean = article.favorited;
                 const favoritesCount: number = article.favoritesCount;
 
-                console.log('favorite')
-                console.log(favorited)
-
-                console.log('article')
-                console.log(article)
-
                 const author: AuthModel = article.author;
                 return new FeedModel(title, body, tagList, changeDate, author, favoritesCount, favorited, slug, description)
             });

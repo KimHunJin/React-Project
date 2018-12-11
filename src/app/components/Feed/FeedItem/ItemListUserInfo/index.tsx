@@ -4,6 +4,8 @@ import {FeedModel} from "app/model/FeedModel/index";
 import {observer} from "mobx-react";
 import userStore from "app/stores/UserStore";
 import APIConn from "../../../../../lib/http/service_util";
+import feedStore from "app/stores/FeedStore";
+import {OK} from "app/constants/Code";
 
 export interface FeedProps {
     feed: FeedModel
@@ -13,12 +15,24 @@ export interface FeedProps {
 export class ItemListUserInfo extends React.Component<FeedProps> {
 
     handlerFeedLike(feed: FeedModel) {
-        if(userStore.userModel) {
-            APIConn.getInstance().postFavoriteArticle(true, feed.slug).then(res => {
-                if(res.statue == 200) {
-                    feed.favorited = true;
-                }
-            })
+        if (userStore.userModel) {
+            if (feed.favorited == false) {
+                APIConn.getInstance().postFavoriteArticle(true, feed.slug).then(res => {
+                    console.log(res);
+                    if (res.status == OK) {
+                        feed.favorited = true;
+                        feedStore.fetchArticleData()
+                    }
+                })
+            } else {
+                APIConn.getInstance().deleteUnFavoriteArticle(true, feed.slug).then(res => {
+                    console.log(res);
+                    if (res.status == OK) {
+                        feed.favorited = false;
+                        feedStore.fetchArticleData()
+                    }
+                })
+            }
         } else {
             return
         }
@@ -26,7 +40,6 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
 
     render(): React.ReactNode {
         const {feed} = this.props;
-        console.log(feed.favorited)
         return (
             <div className={"article-meta"}>
                 <a href={"#@" + feed.author.username}>
@@ -40,7 +53,8 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
                     <span className={"date"}>{feed.createAt}</span>
                 </div>
                 <div className={"pull-xs-right"}>
-                    <button className={feed.favorited ?"btn btn-sm btn-primary" : "btn btn-sm btn-outline-primary"} onClick={()=>this.handlerFeedLike(feed)}>
+                    <button className={feed.favorited ? "btn btn-sm btn-primary" : "btn btn-sm btn-outline-primary"}
+                            onClick={() => this.handlerFeedLike(feed)}>
                         <i className={"ion-heart"}>
                             {feed.favoritesCount}
                         </i>

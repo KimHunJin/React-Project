@@ -1,5 +1,5 @@
 import {HttpService} from "./axios";
-import {FAVORITE_ARTICLE, GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI} from "app/constants";
+import {FAVORITE_ARTICLE, GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI, UNFAVORITE_ARTICLE} from "app/constants";
 
 export default class APIConn extends HttpService {
     static instance: APIConn = null
@@ -17,7 +17,7 @@ export default class APIConn extends HttpService {
         if (author) url += `&author=${author}`;
         if (tag) url += `&tag=${tag}`;
 
-        return this.client.get(url,null,header).then(result => {
+        return this.client.get(url, null, header).then(result => {
             return result
         })
     }
@@ -46,9 +46,18 @@ export default class APIConn extends HttpService {
         })
     }
 
-    postFavoriteArticle(auth, feedSlug) :any {
-        const uri = FAVORITE_ARTICLE.replace(':slug', feedSlug)
+    postFavoriteArticle(auth, feedSlug): any {
+        const uri = FAVORITE_ARTICLE.replace(':slug', feedSlug);
 
-        return this.client.post(uri, null,null,auth).then(res => {return res})
+        return this.client.post(uri, null, null, auth).then(res => {
+            return res
+        })
+    }
+
+    deleteUnFavoriteArticle(auth, feedSlug): any {
+        const uri = UNFAVORITE_ARTICLE.replace(':slug', feedSlug);
+        return this.client.delete(uri, null,  auth).then((res => {
+            return res
+        }))
     }
 }
