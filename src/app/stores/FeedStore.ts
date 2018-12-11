@@ -23,7 +23,7 @@ class FeedStore {
         this.feedCurrentPage = 0;
     }
 
-    @action articleContentChange(offset?:number) {
+    @action fetchArticleData(offset?:number) {
         const author = this.feedAuthor;
         const tag = this.feedTag;
         APIConn.getInstance().getArticle(offset, author, tag).then(res => {

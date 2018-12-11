@@ -17,11 +17,11 @@ interface Props {
 export class MainPage extends React.Component<Props> {
 
     render() {
-        console.log('main')
-        console.log(this.props.auth.userModel)
         if(this.props.auth.userModel) {
+            console.log('null')
             return null;
         } else {
+            console.log('notnull')
             return (
                 <div className={"home-page"}>
                     <Banner/>

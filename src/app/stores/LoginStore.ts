@@ -15,8 +15,8 @@ class LoginStore {
         }
 
         APIConn.getInstance().postLogin(user).then(res => {
-            const user = res.data.user;
-                userStore.userModel = new UserModel(user.id, user.bio, user.email, user.image, user.token, user.username)
+                const user = res.data.user;
+                userStore.fetchUser(new UserModel(user.id, user.bio, user.email, user.image, user.token, user.username))
             }
         )
     }

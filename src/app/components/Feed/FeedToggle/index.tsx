@@ -39,7 +39,7 @@ export class FeedToggle extends React.Component<Props> {
         event.preventDefault();
         const store = this.props.store;
         store.storeInitialize()
-        store.articleContentChange()
+        store.fetchArticleData()
     }
 
 

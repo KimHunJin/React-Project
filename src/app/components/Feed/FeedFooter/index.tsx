@@ -35,7 +35,7 @@ export class Footer extends React.Component<Props> {
         event.preventDefault();
         this.props.store.feedCurrentPage = pageNumber;
         const offset = pageNumber * GET_PAGE_COUNT;
-        this.props.store.articleContentChange(offset);
+        this.props.store.fetchArticleData(offset);
     }
 
     render() {

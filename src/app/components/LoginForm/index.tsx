@@ -16,16 +16,17 @@ export class LoginForm extends React.Component<Props> {
 
     emailChangeHandler = (e) => {
         this.props.store.email = e.target.value
-    }
+    };
 
     passwordChangeHandler= (e) => {
         this.props.store.password = e.target.value
-    }
+    };
 
     onSubmit = (e) => {
         e.preventDefault();
         this.props.store.submit();
-    }
+        history.back()
+    };
 
     render() {
         return (

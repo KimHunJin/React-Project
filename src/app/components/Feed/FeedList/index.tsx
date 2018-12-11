@@ -12,7 +12,7 @@ interface Props {
 export class FeedList extends React.Component<Props> {
 
     componentDidMount(): void {
-        this.props.feedStore.articleContentChange()
+        this.props.feedStore.fetchArticleData()
     }
 
     constructor(props) {
