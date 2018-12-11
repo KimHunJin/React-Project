@@ -45,7 +45,6 @@ export const GET_CURRENT_USER = "/user"  // GET
  */
 export const UPDATE_USER = "/user" // PUT
 
-
 export const GET_PROFILE = "/profiles/:username" // GET
 /**
  {

@@ -1,4 +1,4 @@
-import {Author} from "app/models_interface/author";
+import {Author} from "app/modelsInteface/author";
 
 export interface Comment {
     id : number

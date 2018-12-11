@@ -1,9 +1,9 @@
 import * as React from 'react'
 import './style.less'
-import {FeedModel} from "app/components/Feed/FeedModel/model";
+import {FeedModel} from "app/model/FeedModel/index";
 import {observer} from "mobx-react";
 
-export interface FeedProps{
+export interface FeedProps {
     feed: FeedModel
 }
 
@@ -18,7 +18,10 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
         return (
             <div className={"article-meta"}>
                 <a href={"#@" + feed.author.username}>
-                    <img src={feed.author.image} alt={"user image"}/>
+                    {feed.author.image ?
+                        <img src={feed.author.image} alt={""}/> :
+                        <img alt={""}/>
+                    }
                 </a>
                 <div className={"info"}>
                     <a className={"author"} href={"#@" + feed.author.username}>{feed.author.username}</a>

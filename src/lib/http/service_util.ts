@@ -1,5 +1,5 @@
 import {HttpService} from "./axios";
-import {GET_ARTICLES, GET_TAG} from "app/constants";
+import {GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI} from "app/constants";
 
 export default class APIConn extends HttpService {
     static instance: APIConn = null
@@ -14,8 +14,8 @@ export default class APIConn extends HttpService {
     getArticle(offset: number = 0, author?: string, tag?: string): any {
 
         let url = GET_ARTICLES + `&offset=${offset}`;
-        author ? url += `&author=${author}` : url;
-        tag ? url += `&tag=${tag}` : url;
+        if (author) url += `&author=${author}`;
+        if (tag) url += `&tag=${tag}`;
 
         return this.client.get(url).then(result => {
             return result
@@ -28,7 +28,21 @@ export default class APIConn extends HttpService {
         })
     }
 
-    getCommnet(): any {
+    postLogin(user: any) {
+        return this.client.post(LOGIN_URI, {user}).then(res => {
+            return res;
+        })
+    }
 
+    postRegister(user: any) {
+        console.log(user)
+        return this.client.post(REGIST_URI, {user}).then(res => {
+            return res;
+        }).catch(rej => {
+            console.log(rej)
+
+            console.log(rej.errors)
+            return rej;
+        })
     }
 }
