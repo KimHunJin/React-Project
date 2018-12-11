@@ -25,6 +25,7 @@ export class LoginForm extends React.Component<Props> {
     onSubmit = (e) => {
         e.preventDefault();
         this.props.store.submit();
+        history.back();
     }
 
     render() {

@@ -8,11 +8,12 @@ import {observer} from "mobx-react";
 import {Tags} from "app/components";
 import tagStore from "app/stores/TagStore";
 import {UserStore} from "app/stores/UserStore";
+import { withRouter } from 'react-router-dom';
 
 interface Props {
     auth: UserStore
 }
-
+@withRouter
 @observer
 export class MainPage extends React.Component<Props> {
 

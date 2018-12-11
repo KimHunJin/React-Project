@@ -26,7 +26,7 @@ export class App extends Component {
                     <Switch>
                         <Route exact path="/login" component={LoginPage}/>
                         <Route exact path="/register" component={RegisterPage}/>
-                        <Route exact path="/" component={(userStore) => <MainPage auth={userStore}/>}/>
+                        <Route exact path="/" render={() => <MainPage auth={userStore}/>}/>
                     </Switch>
                     <DevTools/>
                 </div>
