@@ -31,7 +31,7 @@ export class Tags extends React.Component<Props> {
         store.feedTag = tag;
         store.feedCurrentToggle = tag;
         store.feedCurrentPage = 0;
-        store.fetchArticleData(0)
+        store.fetchArticleData(null, null, tag);
     }
 
     makeTagList() {

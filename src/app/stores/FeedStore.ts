@@ -23,10 +23,9 @@ class FeedStore {
         this.feedCurrentPage = 0;
     }
 
-    @action fetchArticleData(offset?:number) {
-        const author = this.feedAuthor;
-        const tag = this.feedTag;
-        APIConn.getInstance().getArticle(offset, author, tag).then(res => {
+    @action fetchArticleData(offset?:number, feedAuthor?:string, tag?:string) {
+
+        APIConn.getInstance().getArticle(offset, feedAuthor, tag).then(res => {
             const data = res.data.articles;
             const feedModels = data.map(article => {
                 const title: string = article.title;

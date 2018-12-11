@@ -8,38 +8,31 @@ import {observer} from "mobx-react";
 import {Tags} from "app/components";
 import tagStore from "app/stores/TagStore";
 import {UserStore} from "app/stores/UserStore";
-import { withRouter } from 'react-router-dom';
 
 interface Props {
     auth: UserStore
 }
-@withRouter
+
 @observer
 export class MainPage extends React.Component<Props> {
 
     render() {
-        if(this.props.auth.userModel) {
-            console.log('null')
-            return null;
-        } else {
-            console.log('notnull')
-            return (
-                <div className={"home-page"}>
-                    <Banner/>
-                    <div className={"container page"}>
-                        <div className={"row"}>
-                            <div className={"col-md-9"}>
-                                <FeedToggle store={feedStore}/>
-                                <FeedList feedStore={feedStore}/>
-                            </div>
-                            <div className={"col-md-3"}>
-                                <Tags tagStore={tagStore} feedStore={feedStore}/>
-                            </div>
+        return (
+            <div className={"home-page"}>
+                {this.props.auth.userModel ? null : <Banner/>}
+                <div className={"container page"}>
+                    <div className={"row"}>
+                        <div className={"col-md-9"}>
+                            <FeedToggle store={feedStore} auth={this.props.auth}/>
+                            <FeedList feedStore={feedStore}/>
+                        </div>
+                        <div className={"col-md-3"}>
+                            <Tags tagStore={tagStore} feedStore={feedStore}/>
                         </div>
                     </div>
                 </div>
-            )
-        }
+            </div>
+        )
 
     }
 }
