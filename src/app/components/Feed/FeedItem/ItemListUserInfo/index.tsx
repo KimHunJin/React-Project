@@ -5,6 +5,7 @@ import {observer} from "mobx-react";
 import userStore from "app/stores/UserStore";
 import APIConn from "../../../../../lib/http/service_util";
 import feedStore from "app/stores/FeedStore";
+import {OK} from "app/constants/Code";
 
 export interface FeedProps {
     feed: FeedModel
@@ -17,7 +18,7 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
         if(userStore.userModel) {
             APIConn.getInstance().postFavoriteArticle(true, feed.slug).then(res => {
                 console.log(res);
-                if(res.status == 200) {
+                if(res.status == OK) {
                     feed.favorited = true;
                     console.log('test')
                     feedStore.fetchArticleData()
