@@ -1,8 +1,8 @@
 import {action, observable} from "mobx";
-import {FeedModel, AuthModel} from "app/components/Feed/FeedModel/model";
+import {FeedModel, AuthModel} from "app/model/FeedModel/index";
 import APIConn from "../../lib/http/service_util";
 import ChangeDate from "../../lib/date/ChangeDate";
-import {TagModel} from "app/components/Tags/TagModel/model";
+import {TagModel} from "app/model/TagModel/index";
 
 class FeedStore {
     @observable feedList: FeedModel[];

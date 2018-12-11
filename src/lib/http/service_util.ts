@@ -1,5 +1,5 @@
 import {HttpService} from "./axios";
-import {GET_ARTICLES, GET_TAG, LOGIN_URI} from "app/constants";
+import {GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI} from "app/constants";
 
 export default class APIConn extends HttpService {
     static instance: APIConn = null
@@ -31,6 +31,18 @@ export default class APIConn extends HttpService {
     postLogin(user: any) {
         return this.client.post(LOGIN_URI, {user}).then(res => {
             return res;
+        })
+    }
+
+    postRegister(user: any) {
+        console.log(user)
+        return this.client.post(REGIST_URI, {user}).then(res => {
+            return res;
+        }).catch(rej => {
+            console.log(rej)
+
+            console.log(rej.errors)
+            return rej;
         })
     }
 }

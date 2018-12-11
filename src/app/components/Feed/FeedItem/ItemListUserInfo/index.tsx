@@ -1,6 +1,6 @@
 import * as React from 'react'
 import './style.less'
-import {FeedModel} from "app/components/Feed/FeedModel/model";
+import {FeedModel} from "app/model/FeedModel/index";
 import {observer} from "mobx-react";
 
 export interface FeedProps {

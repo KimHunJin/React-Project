@@ -1,14 +1,14 @@
 import {observable} from "mobx";
 import APIConn from "../../lib/http/service_util";
 import userStore from "app/stores/UserStore";
-import {UserModel} from "app/components/LoginForm/model/UserModel";
+import {UserModel} from "app/model/UserModel/index";
 import feedStore from "app/stores/FeedStore";
 
 class LoginStore {
     @observable email;
     @observable password;
 
-    submit() {
+    submit() :void{
 
         const user = {
             email: this.email,

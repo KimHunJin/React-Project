@@ -15,7 +15,7 @@ export class TopNavigation extends React.Component<Props> {
     caseLogin() {
         return (
             <div className={"container"}>
-                <a className={"navbar-brand"} href="#">React</a>
+                <Link to={'/'} className={"navbar-brand"}>React</Link>
                 <ul className={"nav navbar-nav pull-xs-right"}>
                     <li className={"nav-item"}><Link to={'/'} className={"nav-link"}>Home</Link></li>
                     <li className={"nav-item"}><Link to={'/editor'} className={"nav-link"}>New Post</Link></li>
@@ -30,7 +30,7 @@ export class TopNavigation extends React.Component<Props> {
 
         return (
             <div className={"container"}>
-                <a className={"navbar-brand"} href="#">React</a>
+                <Link to={'/'} className={"navbar-brand"}>React</Link>
                 <ul className={"nav navbar-nav pull-xs-right"}>
                     <li className={"nav-item"}><Link to={'/'} className={"nav-link"}>Home</Link></li>
                     <li className={"nav-item"}><Link to={'/login'} className={"nav-link"}>Sign in</Link></li>

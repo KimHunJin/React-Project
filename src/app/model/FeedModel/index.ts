@@ -1,6 +1,6 @@
 import {Author} from "app/modelsInteface/author";
 import {Article} from "app/modelsInteface/article";
-import {TagModel} from "app/components/Tags/TagModel/model";
+import {TagModel} from "app/model/TagModel/index";
 
 export class FeedModel implements Article {
     readonly id: number;

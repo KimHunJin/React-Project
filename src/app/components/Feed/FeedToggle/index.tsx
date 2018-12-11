@@ -69,6 +69,7 @@ export class FeedToggle extends React.Component<Props> {
                     {this.props.store.feedAuthor && this.authorFeed()}
                     <li className={"nav-item"}>
                         {this.props.store.feedCurrentToggle  ?
+
                             <a href={""} onClick={() => this.eventChangeTagGlobal()} className={"nav-link"}>Global Feed</a> :
                             <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a>
                         }
