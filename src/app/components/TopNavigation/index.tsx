@@ -2,7 +2,7 @@ import * as React from 'react'
 import './style.less'
 import {Link} from 'react-router-dom'
 import {UserStore} from "app/stores/UserStore";
-import {observer} from "mobx-react";
+import {observer} from 'mobx-react';
 
 interface Props {
     auth: UserStore
