@@ -4,6 +4,7 @@ import APIConn from "../../../lib/http/service_util";
 import {observer} from "mobx-react";
 import './style.less'
 import {FeedStore} from "app/stores/FeedStore";
+import {TagModel} from "app/model/TagModel/index";
 
 interface Props {
     tagStore: TagStore
@@ -18,34 +19,39 @@ export class Tags extends React.Component<Props> {
         const store = this.props.tagStore;
 
         APIConn.getInstance().getTags().then(res => {
-            res.data.tags.map(tag => {
-                store.setTag(tag)
+            store.tagModels = res.data.tags.map(tag => {
+                return new TagModel(tag)
             })
         })
     }
 
-    tagHandleEvent(tag) {
+    tagHandleEvent(tag: string) {
         event.preventDefault();
-        console.log(tag);
         const store = this.props.feedStore;
         store.feedTag = tag;
         store.feedCurrentToggle = tag;
         store.feedCurrentPage = 0;
-        store.setFeeds(0)
+        store.fetchArticleData(null, null, tag);
+    }
+
+    makeTagList() {
+        const store = this.props.tagStore;
+        return <div className={"tag-list"}>
+            {store.tagModels.map(tag => (
+                <a href={""} onClick={() => this.tagHandleEvent(tag.tag)} key={tag.id}
+                   className={"tag-default tag-pill"}>
+                    {tag.tag}
+                </a>
+            ))}
+        </div>
     }
 
     render() {
         return (
+
             <div className={"sidebar"}>
                 <p>Popular Tags</p>
-                <div className={"tag-list"}>
-                    {this.props.tagStore.getTag.map(tag => {
-                        return (
-                            <a href={""} onClick={() => this.tagHandleEvent(tag)} key={tag}
-                               className={"tag-default tag-pill"}>{tag}</a>
-                        )
-                    })}
-                </div>
+                {this.makeTagList()}
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import {HttpService} from "./axios";
-import {GET_ARTICLES, GET_TAG} from "app/constants";
+import {FAVORITE_ARTICLE, GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI, UNFAVORITE_ARTICLE} from "app/constants";
 
 export default class APIConn extends HttpService {
     static instance: APIConn = null
@@ -11,13 +11,13 @@ export default class APIConn extends HttpService {
         return this.instance
     }
 
-    getArticle(offset: number = 0, author?: string, tag?: string): any {
+    getArticle(offset: number = 0, author?: string, tag?: string, header?: any): any {
 
         let url = GET_ARTICLES + `&offset=${offset}`;
-        author ? url += `&author=${author}` : url;
-        tag ? url += `&tag=${tag}` : url;
+        if (author) url += `&author=${author}`;
+        if (tag) url += `&tag=${tag}`;
 
-        return this.client.get(url).then(result => {
+        return this.client.get(url, null, header).then(result => {
             return result
         })
     }
@@ -28,7 +28,36 @@ export default class APIConn extends HttpService {
         })
     }
 
-    getCommnet(): any {
+    postLogin(user: any) {
+        return this.client.post(LOGIN_URI, {user}).then(res => {
+            return res;
+        })
+    }
 
+    postRegister(user: any) {
+        console.log(user)
+        return this.client.post(REGIST_URI, {user}).then(res => {
+            return res;
+        }).catch(rej => {
+            console.log(rej)
+
+            console.log(rej.errors)
+            return rej;
+        })
+    }
+
+    postFavoriteArticle(auth, feedSlug): any {
+        const uri = FAVORITE_ARTICLE.replace(':slug', feedSlug);
+
+        return this.client.post(uri, null, null, auth).then(res => {
+            return res
+        })
+    }
+
+    deleteUnFavoriteArticle(auth, feedSlug): any {
+        const uri = UNFAVORITE_ARTICLE.replace(':slug', feedSlug);
+        return this.client.delete(uri, null,  auth).then((res => {
+            return res
+        }))
     }
 }
