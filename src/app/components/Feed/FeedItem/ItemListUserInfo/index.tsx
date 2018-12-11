@@ -2,6 +2,8 @@ import * as React from 'react'
 import './style.less'
 import {FeedModel} from "app/model/FeedModel/index";
 import {observer} from "mobx-react";
+import userStore from "app/stores/UserStore";
+import APIConn from "../../../../../lib/http/service_util";
 
 export interface FeedProps {
     feed: FeedModel
@@ -9,12 +11,22 @@ export interface FeedProps {
 
 @observer
 export class ItemListUserInfo extends React.Component<FeedProps> {
-    constructor(props?: FeedProps) {
-        super(props);
+
+    handlerFeedLike(feed: FeedModel) {
+        if(userStore.userModel) {
+            APIConn.getInstance().postFavoriteArticle(true, feed.slug).then(res => {
+                if(res.statue == 200) {
+                    feed.favorited = true;
+                }
+            })
+        } else {
+            return
+        }
     }
 
     render(): React.ReactNode {
         const {feed} = this.props;
+        console.log(feed.favorited)
         return (
             <div className={"article-meta"}>
                 <a href={"#@" + feed.author.username}>
@@ -28,7 +40,7 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
                     <span className={"date"}>{feed.createAt}</span>
                 </div>
                 <div className={"pull-xs-right"}>
-                    <button className={"btn btn-sm btn-outline-primary"}>
+                    <button className={feed.favorited ?"btn btn-sm btn-primary" : "btn btn-sm btn-outline-primary"} onClick={()=>this.handlerFeedLike(feed)}>
                         <i className={"ion-heart"}>
                             {feed.favoritesCount}
                         </i>

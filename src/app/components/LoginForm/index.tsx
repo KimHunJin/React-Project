@@ -2,12 +2,14 @@ import * as React from 'react'
 import {Link} from "react-router-dom";
 import {LoginStore} from "app/stores/LoginStore";
 import './style.less'
+import {observer} from "mobx-react";
 
 
 interface Props {
     store: LoginStore;
 }
 
+@observer
 export class LoginForm extends React.Component<Props> {
 
     emailChangeHandler = (e) => {

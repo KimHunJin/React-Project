@@ -10,11 +10,6 @@ interface Props {
 
 @observer
 export class FeedList extends React.Component<Props> {
-
-    constructor(props) {
-        super(props)
-    }
-
     render(): React.ReactNode {
 
         console.log('feed list render')
@@ -28,7 +23,7 @@ export class FeedList extends React.Component<Props> {
         return (
             <div>
                 {store.feedList.map(article => (
-                    <FeedItem key={article.id} feed={article}/>
+                    <FeedItem key={article.slug} feed={article}/>
                 ))}
                 <Footer store={store}/>
             </div>

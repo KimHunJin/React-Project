@@ -1,4 +1,4 @@
-import {observable} from "mobx";
+import {action, observable} from "mobx";
 import APIConn from "../../lib/http/service_util";
 import userStore from "app/stores/UserStore";
 import {UserModel} from "app/model/UserModel/index";
@@ -23,6 +23,14 @@ class LoginStore {
                 feedStore.fetchArticleData(null, user.username, null)
             }
         )
+    }
+
+    @action setEmail(email) {
+        this.email = email
+    }
+
+    @action setPassword(password) {
+        this.password = password
     }
 }
 

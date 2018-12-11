@@ -3,6 +3,7 @@ import {FeedModel, AuthModel} from "app/model/FeedModel/index";
 import APIConn from "../../lib/http/service_util";
 import ChangeDate from "../../lib/date/ChangeDate";
 import {TagModel} from "app/model/TagModel/index";
+import userStore from "app/stores/UserStore";
 
 class FeedStore {
     @observable feedList: FeedModel[];
@@ -23,9 +24,9 @@ class FeedStore {
         this.feedCurrentPage = 0;
     }
 
-    @action fetchArticleData(offset?:number, feedAuthor?:string, tag?:string) {
+    @action fetchArticleData(offset?: number, feedAuthor?: string, tag?: string) {
 
-        APIConn.getInstance().getArticle(offset, feedAuthor, tag).then(res => {
+        APIConn.getInstance().getArticle(offset, feedAuthor, tag, userStore.userModel ? true : null).then(res => {
             const data = res.data.articles;
             const feedModels = data.map(article => {
                 const title: string = article.title;
@@ -41,6 +42,12 @@ class FeedStore {
 
                 const favorited: boolean = article.favorited;
                 const favoritesCount: number = article.favoritesCount;
+
+                console.log('favorite')
+                console.log(favorited)
+
+                console.log('article')
+                console.log(article)
 
                 const author: AuthModel = article.author;
                 return new FeedModel(title, body, tagList, changeDate, author, favoritesCount, favorited, slug, description)

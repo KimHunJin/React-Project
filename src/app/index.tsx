@@ -5,10 +5,10 @@ import {MainPage} from "app/containers/Main";
 import {TopNavigation} from "app/components";
 import {createBrowserHistory} from 'history';
 import {Route, Router, Switch} from 'react-router'
-import {LoginPage} from 'app/containers';
-import {RegisterPage} from "app/containers";
+import {RegisterPage} from 'app/containers';
 import DevTools from "mobx-react-devtools";
 import userStore from "app/stores/UserStore";
+import {LoginPage} from "app/containers";
 
 // render react DOM
 

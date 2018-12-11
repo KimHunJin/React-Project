@@ -1,9 +1,8 @@
 import * as React from 'react'
-import {observer} from "mobx-react";
 import {LoginForm} from "app/components/LoginForm";
 import loginStore from "app/stores/LoginStore";
 
-@observer
+
 export class LoginPage extends React.Component{
 
     render(): React.ReactNode {

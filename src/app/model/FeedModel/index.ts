@@ -1,6 +1,7 @@
 import {Author} from "app/modelsInteface/author";
 import {Article} from "app/modelsInteface/article";
 import {TagModel} from "app/model/TagModel/index";
+import {observable} from "mobx";
 
 export class FeedModel implements Article {
     readonly id: number;
@@ -11,8 +12,8 @@ export class FeedModel implements Article {
     tagList: TagModel[];
     createAt: string;
     updateAt: string;
-    favorited: boolean;
-    favoritesCount: number;
+    @observable favorited: boolean;
+    @observable favoritesCount: number;
     author: AuthModel;
 
     constructor(title: string, body: string, tagList: TagModel[], createAt: string, author: AuthModel, favoritesCount: number, favorited: boolean, slug?: string, description?: string, updateAt? : string) {
