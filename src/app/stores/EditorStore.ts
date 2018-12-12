@@ -1,17 +1,23 @@
 import {action, observable} from "mobx";
 import APIConn from "../../lib/http/service_util";
-import {TagModel} from "app/model/TagModel";
 
 class EditorStore {
 
     @observable title: string;
     @observable body: string;
     @observable description: string;
-    @observable tagList: TagModel[] = [];
+    @observable tagSet: Set<string> = new Set();
     @observable tag: string;
+
+    @observable tagList: string[] = [];
 
     @action setTitle(title) {
         this.title = title;
+    }
+
+    @action removeTag(tag) {
+        this.tagSet.delete(tag);
+        this.syncTagList();
     }
 
     @action setDescription(description) {
@@ -26,18 +32,26 @@ class EditorStore {
         this.tag = tag;
     }
 
+    @action syncTagList() {
+        this.tagList= [];
+        this.tagSet.forEach(value => {
+            this.tagList.push(value);
+        })
+    }
+
     @action addTagList(tag) {
-        this.tagList.push(new TagModel(tag));
+        this.tagSet.add(tag);
+        this.syncTagList();
     }
 
     @action submit() {
 
         const article = {
-            article : {
-                title : this.title,
+            article: {
+                title: this.title,
                 description: this.description,
                 body: this.body,
-                tagList: this.tagList.map(v => v.tag)
+                tagList: this.tagList
             }
         };
 

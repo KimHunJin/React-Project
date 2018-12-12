@@ -1,6 +1,6 @@
 import * as React from 'react'
 import editorStore from "app/stores/EditorStore";
-import {EditorForm} from "app/components/Editor";
+import {EditorForm} from "app/components/EditorForm";
 
 
 export class EditorPage extends React.Component{
