@@ -5,5 +5,4 @@ export const FORBIDDEN_PERMISSION : number = 403;
 export const VALIDATE_ERROR : number = 422;
 
 
-
 export const ENTER_KEY : number = 13;

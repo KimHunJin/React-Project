@@ -5,6 +5,7 @@ import {observer} from "mobx-react";
 import './style.less'
 import {FeedStore} from "app/stores/FeedStore";
 import {TagModel} from "app/model/TagModel/index";
+import {FEEDS} from "app/constants/Feed";
 
 interface Props {
     tagStore: TagStore
@@ -31,6 +32,7 @@ export class Tags extends React.Component<Props> {
         store.feedTag = tag;
         store.feedCurrentToggle = tag;
         store.feedCurrentPage = 0;
+        store.currentFeed = FEEDS.TAG;
         store.fetchArticleData(null, null, tag);
     }
 

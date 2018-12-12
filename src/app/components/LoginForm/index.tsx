@@ -24,7 +24,7 @@ export class LoginForm extends React.Component<Props> {
         e.preventDefault();
         this.props.store.submit();
         history.back();
-    }
+    };
 
     render() {
         return (

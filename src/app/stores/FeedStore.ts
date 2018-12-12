@@ -1,9 +1,10 @@
 import {action, observable} from "mobx";
-import {FeedModel, AuthModel} from "app/model/FeedModel/index";
+import {AuthModel, FeedModel} from "app/model/FeedModel/";
 import APIConn from "../../lib/http/service_util";
 import ChangeDate from "../../lib/date/ChangeDate";
-import {TagModel} from "app/model/TagModel/index";
+import {TagModel} from "app/model/TagModel";
 import userStore from "app/stores/UserStore";
+import {FEEDS} from "app/constants/Feed";
 
 class FeedStore {
     @observable feedList: FeedModel[];
@@ -13,20 +14,16 @@ class FeedStore {
     @observable feedAuthor: string;
     @observable feedCurrentToggle: string;
 
+    @observable currentFeed: FEEDS;
+
     constructor(feedList: FeedModel[] = []) {
         this.feedList = feedList;
         this.feedCount = 0
     }
 
-    initializeStore() {
-        this.feedCurrentToggle = '';
-        this.feedTag = '';
-        this.feedCurrentPage = 0;
-    }
+    @action fetchArticleData(offset?: number, name?: string, tag?: string) {
 
-    @action fetchArticleData(offset?: number, feedAuthor?: string, tag?: string) {
-
-        APIConn.getInstance().getArticle(offset, feedAuthor, tag, userStore.userModel ? true : null).then(res => {
+        APIConn.getInstance().getArticle(offset, name, tag, userStore.userModel ? true : null).then(res => {
             const data = res.data.articles;
             const feedModels = data.map(article => {
                 const title: string = article.title;

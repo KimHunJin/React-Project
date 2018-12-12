@@ -62,7 +62,7 @@ export const FALLOW_USER = "/profiles/:username/follow" // POST
 
 export const UNFLOW_USER = "/profiles/:username/follow" // DELETE
 
-export const GET_ARTICLES = "/articles?limit=10" // GET
+export const GET_ARTICLES = "/articles" // GET
 /**
  {
   "articles":[{
