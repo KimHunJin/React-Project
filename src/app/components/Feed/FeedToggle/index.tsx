@@ -3,6 +3,7 @@ import './style.less'
 import {FeedStore} from "app/stores/FeedStore";
 import {observer} from "mobx-react";
 import {UserStore} from "app/stores/UserStore";
+import {FEEDS} from "app/constants/Feed";
 
 interface Props {
     store: FeedStore
@@ -18,9 +19,10 @@ export class FeedToggle extends React.Component<Props> {
 
     authorFeed(): any {
         const store = this.props.store;
+        const auth = this.props.auth;
         return (
             <li className={"nav-item"}>
-                {store.feedCurrentToggle && store.feedAuthor && store.feedCurrentToggle === store.feedAuthor ?
+                {auth.userModel && store.currentFeed == FEEDS.YOUR_FEED ?
                     <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Your Feed</a> :
                     <a href={""} onClick={() => this.eventChangeTagAuth()} className={"nav-link"}>Your Feed</a>
                 }
@@ -32,13 +34,24 @@ export class FeedToggle extends React.Component<Props> {
         const store = this.props.store;
         return (
             <li className={"nav-item"}>
-                {store.feedCurrentToggle && store.feedTag && store.feedCurrentToggle === store.feedTag ?
+                {store.currentFeed == FEEDS.TAG ?
                     <a href={""} className={"nav-link active"}><i className="ion-pound"/> {store.feedTag}</a> :
-                    <a href={""} className={"nav-link"}><i className="ion-pound"/> {store.feedTag}</a>
+                    null
                 }
             </li>
         )
+    }
 
+    globarFeed(): any {
+        const store = this.props.store;
+        return (
+            <li className={"nav-item"}>
+                {store.currentFeed == FEEDS.GLOBAL  ?
+                    <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a> :
+                    <a href={""} onClick={() => this.eventChangeTagGlobal()} className={"nav-link"}>Global Feed</a>
+                }
+            </li>
+        )
     }
 
     nonEvent(event): void {
@@ -49,16 +62,20 @@ export class FeedToggle extends React.Component<Props> {
         event.preventDefault();
         const store = this.props.store;
         const auth = store.feedAuthor;
-        store.storeInitialize();
+        store.currentFeed = FEEDS.YOUR_FEED;
         store.feedCurrentToggle = auth;
+        store.feedCurrentPage = 0;
+        store.feedCount = 0;
         store.fetchArticleData(null,auth,null)
     }
 
     eventChangeTagGlobal(): void {
         event.preventDefault();
         const store = this.props.store;
-        store.storeInitialize()
-        store.fetchArticleData()
+        store.currentFeed = FEEDS.GLOBAL;
+        store.feedCurrentPage = 0;
+        store.feedCount = 0;
+        store.fetchArticleData();
     }
 
 
@@ -66,15 +83,9 @@ export class FeedToggle extends React.Component<Props> {
         return (
             <div className={"feed-toggle"}>
                 <ul className={"nav nav-pills outline-active"}>
-                    {this.props.store.feedAuthor && this.authorFeed()}
-                    <li className={"nav-item"}>
-                        {this.props.store.feedCurrentToggle  ?
-
-                            <a href={""} onClick={() => this.eventChangeTagGlobal()} className={"nav-link"}>Global Feed</a> :
-                            <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a>
-                        }
-                    </li>
-                    {this.props.store.feedTag && this.tagFeed()}
+                    {this.props.auth.userModel && this.authorFeed()}
+                    {this.globarFeed()}
+                    {this.tagFeed()}
                 </ul>
             </div>
         )

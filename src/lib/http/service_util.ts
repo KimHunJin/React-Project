@@ -1,21 +1,58 @@
 import {HttpService} from "./axios";
-import {FAVORITE_ARTICLE, GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI, UNFAVORITE_ARTICLE} from "app/constants";
+import {
+    CREATE_ARTICLE,
+    FAVORITE_ARTICLE,
+    GET_ARTICLES,
+    GET_TAG,
+    LOGIN_URI,
+    REGIST_URI,
+    UNFAVORITE_ARTICLE
+} from "app/constants";
+import feedStore from "app/stores/FeedStore";
+import {FEEDS} from "app/constants/Feed";
 
 export default class APIConn extends HttpService {
-    static instance: APIConn = null
+    static instance: APIConn = null;
 
     static getInstance(): APIConn {
         if (APIConn.instance == null) {
-            APIConn.instance = new APIConn()
+            APIConn.instance = new APIConn();
         }
-        return this.instance
+        return this.instance;
     }
 
-    getArticle(offset: number = 0, author?: string, tag?: string, header?: any): any {
+    getArticle(offset: number = 0, name?: string, tag?: string, header?: any): any {
 
-        let url = GET_ARTICLES + `&offset=${offset}`;
-        if (author) url += `&author=${author}`;
-        if (tag) url += `&tag=${tag}`;
+        let url = GET_ARTICLES;
+        switch (feedStore.currentFeed) {
+            case FEEDS.GLOBAL : {
+                url += `?&offset=${offset}`;
+                url += "&limit=10";
+                break;
+            }
+            case FEEDS.YOUR_FEED : {
+                url += `/feed?&offset=${offset}`;
+                url += "&limit=10";
+                break;
+            }
+            case FEEDS.TAG: {
+                url += `?&offset=${offset}&tag=${tag}`;
+                url += "&limit=10";
+                break;
+            }
+            case FEEDS.FAVORITED: {
+                url += `?$offset=${offset}&favorited=${name}`;
+                url += "&limit=10";
+                break;
+            }
+            case FEEDS.MY_ARTICLE: {
+                url += `?$offset=${offset}&author=${name}`;
+                url += "&limit=10";
+                break;
+            }
+        }
+
+
 
         return this.client.get(url, null, header).then(result => {
             return result
@@ -35,13 +72,9 @@ export default class APIConn extends HttpService {
     }
 
     postRegister(user: any) {
-        console.log(user)
         return this.client.post(REGIST_URI, {user}).then(res => {
             return res;
         }).catch(rej => {
-            console.log(rej)
-
-            console.log(rej.errors)
             return rej;
         })
     }
@@ -54,9 +87,15 @@ export default class APIConn extends HttpService {
         })
     }
 
+    postCreateArticle(auth, data): any {
+        return this.client.post(CREATE_ARTICLE, data, null, auth).then(res => {
+            return res;
+        })
+    }
+
     deleteUnFavoriteArticle(auth, feedSlug): any {
         const uri = UNFAVORITE_ARTICLE.replace(':slug', feedSlug);
-        return this.client.delete(uri, null,  auth).then((res => {
+        return this.client.delete(uri, null, auth).then((res => {
             return res
         }))
     }

@@ -9,6 +9,7 @@ import {RegisterPage} from 'app/containers';
 import DevTools from "mobx-react-devtools";
 import userStore from "app/stores/UserStore";
 import {LoginPage} from "app/containers";
+import {EditorPage} from "app/containers/Editor";
 
 // render react DOM
 
@@ -24,10 +25,11 @@ export class App extends Component {
                     <TopNavigation auth={userStore}/>
 
                     <Switch>
+                        <Route exact path="/editor" component={EditorPage}/>
                         <Route exact path="/login" component={LoginPage}/>
                         <Route exact path="/register" component={RegisterPage}/>
                         <Route exact path="/" render={() => <MainPage auth={userStore}/>}/>
-                    </Switch>
+                     </Switch>
                     <DevTools/>
                 </div>
             </Router>

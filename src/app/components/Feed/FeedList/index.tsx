@@ -12,8 +12,6 @@ interface Props {
 export class FeedList extends React.Component<Props> {
     render(): React.ReactNode {
 
-        console.log('feed list render')
-
         const store = this.props.feedStore;
 
         if(store.feedList.length === 0) return (

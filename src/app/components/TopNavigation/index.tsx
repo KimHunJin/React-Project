@@ -18,8 +18,8 @@ export class TopNavigation extends React.Component<Props> {
                 <Link to={'/'} className={"navbar-brand"}>React</Link>
                 <ul className={"nav navbar-nav pull-xs-right"}>
                     <li className={"nav-item"}><Link to={'/'} className={"nav-link"}>Home</Link></li>
-                    <li className={"nav-item"}><Link to={'/editor'} className={"nav-link"}>New Post</Link></li>
-                    <li className={"nav-item"}><Link to={'/setting'} className={"nav-link"}>Setting</Link></li>
+                    <li className={"nav-item"}><Link to={'/editor'} className={"nav-link"}><i className="ion-compose"/>&nbsp;New Post</Link></li>
+                    <li className={"nav-item"}><Link to={'/setting'} className={"nav-link"}><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
                     <li className={"nav-item"}><Link to={`/@${this.props.auth.userModel.username}`} className={"nav-link"}>{this.props.auth.userModel.username}</Link></li>
                 </ul>
             </div>

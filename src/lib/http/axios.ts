@@ -57,7 +57,7 @@ export class HttpClient {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${userStore.userModel.token}`
                 },
-                data: null,
+                data: data,
                 url
             };
             return this.axios(options)
@@ -70,7 +70,6 @@ export class HttpClient {
 
         url = API_URL + url
 
-        console.log(url)
         if (header) {
             const options = {
                 method: 'DELETE',

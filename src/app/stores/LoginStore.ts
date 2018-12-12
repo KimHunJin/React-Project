@@ -3,12 +3,13 @@ import APIConn from "../../lib/http/service_util";
 import userStore from "app/stores/UserStore";
 import {UserModel} from "app/model/UserModel/index";
 import feedStore from "app/stores/FeedStore";
+import {FEEDS} from "app/constants/Feed";
 
 class LoginStore {
     @observable email;
     @observable password;
 
-    submit() :void{
+    submit(): void {
 
         const user = {
             email: this.email,
@@ -18,6 +19,7 @@ class LoginStore {
         APIConn.getInstance().postLogin(user).then(res => {
                 const user = res.data.user;
                 userStore.fetchUser(new UserModel(user.id, user.bio, user.email, user.image, user.token, user.username));
+                feedStore.currentFeed = FEEDS.YOUR_FEED;
                 feedStore.feedAuthor = user.username;
                 feedStore.feedCurrentToggle = user.username;
                 feedStore.fetchArticleData(null, user.username, null)

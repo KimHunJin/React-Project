@@ -18,8 +18,6 @@ class RegisterStore {
             password: this.password
         };
 
-        // console.log(`user ${user.username} : email ${user.email} : pwd ${user.password}`)
-
         APIConn.getInstance().postRegister(user).then( res => {
             if(res.data) {
                 const user = res.data.user;

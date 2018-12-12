@@ -5,12 +5,11 @@ import './style.less'
 import {GET_PAGE_COUNT, GET_PAGE_LIMIT} from "app/constants/Feed";
 
 interface Props {
-    store: FeedStore
+    store: FeedStore,
 }
 
 @observer
 export class Footer extends React.Component<Props> {
-
     createList(count): any {
         let list: any = [];
         const store = this.props.store;
@@ -35,7 +34,7 @@ export class Footer extends React.Component<Props> {
         event.preventDefault();
         this.props.store.feedCurrentPage = pageNumber;
         const offset = pageNumber * GET_PAGE_COUNT;
-        this.props.store.fetchArticleData(offset,null,null);
+        this.props.store.fetchArticleData(offset, this.props.store.feedAuthor, this.props.store.feedTag);
     }
 
     render() {

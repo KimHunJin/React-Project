@@ -8,6 +8,7 @@ import {observer} from "mobx-react";
 import {Tags} from "app/components";
 import tagStore from "app/stores/TagStore";
 import {UserStore} from "app/stores/UserStore";
+import {FEEDS} from "app/constants/Feed";
 
 interface Props {
     auth: UserStore
@@ -15,6 +16,11 @@ interface Props {
 
 @observer
 export class MainPage extends React.Component<Props> {
+
+    componentDidMount() {
+        console.log('render main');
+        feedStore.currentFeed = this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
+    }
 
     render() {
         return (

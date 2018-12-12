@@ -24,7 +24,7 @@ export class LoginForm extends React.Component<Props> {
         e.preventDefault();
         this.props.store.submit();
         history.back();
-    }
+    };
 
     render() {
         return (
@@ -33,7 +33,7 @@ export class LoginForm extends React.Component<Props> {
                 <div className={"col-md-6 offset-md-3 col-xs-12"}>
                     <h1 className={"text-xs-center"}>Sign In</h1>
                     <p className={"text-xs-center"}>
-                        <Link to={'/register'}><p>Need an account?</p></Link>
+                        <Link to={'/register'}>Need an account?</Link>
                     </p>
                     <form onSubmit={this.onSubmit}>
                         <fieldset>
