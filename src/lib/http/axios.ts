@@ -70,7 +70,6 @@ export class HttpClient {
 
         url = API_URL + url
 
-        console.log(url)
         if (header) {
             const options = {
                 method: 'DELETE',

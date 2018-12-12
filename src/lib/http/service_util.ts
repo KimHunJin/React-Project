@@ -38,13 +38,9 @@ export default class APIConn extends HttpService {
     }
 
     postRegister(user: any) {
-        console.log(user)
         return this.client.post(REGIST_URI, {user}).then(res => {
             return res;
         }).catch(rej => {
-            console.log(rej)
-
-            console.log(rej.errors)
             return rej;
         })
     }

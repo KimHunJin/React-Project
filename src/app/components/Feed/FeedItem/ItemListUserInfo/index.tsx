@@ -18,7 +18,6 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
         if (userStore.userModel) {
             if (feed.favorited == false) {
                 APIConn.getInstance().postFavoriteArticle(true, feed.slug).then(res => {
-                    console.log(res);
                     if (res.status == OK) {
                         feed.favorited = true;
                         feedStore.fetchArticleData()
@@ -26,7 +25,6 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
                 })
             } else {
                 APIConn.getInstance().deleteUnFavoriteArticle(true, feed.slug).then(res => {
-                    console.log(res);
                     if (res.status == OK) {
                         feed.favorited = false;
                         feedStore.fetchArticleData()

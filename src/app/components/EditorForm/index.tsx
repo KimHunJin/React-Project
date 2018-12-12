@@ -54,9 +54,7 @@ export class EditorForm extends React.Component<Props> {
 
     render() {
 
-        console.log('render');
-
-        return (
+         return (
             <form onSubmit={this.preventSubmit}>
                 <fieldset>
                     <fieldset className={"form-group"}>
@@ -86,8 +84,6 @@ export class EditorForm extends React.Component<Props> {
                                 <i className={"ion-close-round"}
                                    onClick={
                                        () => {
-                                           console.log('click');
-                                           console.log(tag);
                                            this.props.store.removeTag(tag)
                                        }
                                    }/>{tag}
