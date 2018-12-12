@@ -57,7 +57,7 @@ export class HttpClient {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${userStore.userModel.token}`
                 },
-                data: null,
+                data: data,
                 url
             };
             return this.axios(options)

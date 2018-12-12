@@ -18,7 +18,7 @@ class FeedStore {
         this.feedCount = 0
     }
 
-    storeInitialize() {
+    initializeStore() {
         this.feedCurrentToggle = '';
         this.feedTag = '';
         this.feedCurrentPage = 0;

@@ -112,7 +112,7 @@ export const GET_ARTICLES = "/articles?limit=10" // GET
   }
 }
  */
-export const CREATE_ARTICLE = "/articles/:slug" // POST
+export const CREATE_ARTICLE = "/articles" // POST
 
 
 /*

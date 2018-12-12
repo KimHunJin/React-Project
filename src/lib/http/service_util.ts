@@ -1,5 +1,8 @@
 import {HttpService} from "./axios";
-import {FAVORITE_ARTICLE, GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI, UNFAVORITE_ARTICLE} from "app/constants";
+import {
+    CREATE_ARTICLE, FAVORITE_ARTICLE, GET_ARTICLES, GET_TAG, LOGIN_URI, REGIST_URI,
+    UNFAVORITE_ARTICLE
+} from "app/constants";
 
 export default class APIConn extends HttpService {
     static instance: APIConn = null
@@ -51,6 +54,12 @@ export default class APIConn extends HttpService {
 
         return this.client.post(uri, null, null, auth).then(res => {
             return res
+        })
+    }
+
+    postCreateArticle(auth, data): any {
+        return this.client.post(CREATE_ARTICLE, data, null, auth).then(res => {
+            return res;
         })
     }
 

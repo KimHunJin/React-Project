@@ -49,7 +49,7 @@ export class FeedToggle extends React.Component<Props> {
         event.preventDefault();
         const store = this.props.store;
         const auth = store.feedAuthor;
-        store.storeInitialize();
+        store.initializeStore();
         store.feedCurrentToggle = auth;
         store.fetchArticleData(null,auth,null)
     }
@@ -57,7 +57,7 @@ export class FeedToggle extends React.Component<Props> {
     eventChangeTagGlobal(): void {
         event.preventDefault();
         const store = this.props.store;
-        store.storeInitialize()
+        store.initializeStore()
         store.fetchArticleData()
     }
 
