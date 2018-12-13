@@ -8,6 +8,7 @@ interface Props {
 export class ArticleBody extends React.Component<Props> {
 
     render() {
+        console.log(this.props.store.body);
         return (
             <div>
                 <p>{this.props.store.body}</p>

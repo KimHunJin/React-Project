@@ -1,16 +1,23 @@
 import * as React from 'react';
-import {FeedModel} from "app/model/FeedModel";
+import {CommentModel} from "app/model/CommentModel";
 
 interface Props {
-    store: FeedModel
+    store: CommentModel
 }
 
 export class ArticleItemUser extends React.Component<Props> {
 
+    handlerDeleteComment = () => {
+
+    };
+
     render() {
         return (
             <div>
-
+                <img src={this.props.store.author.image}/>
+                <p>{this.props.store.author.username}</p>
+                <p>{this.props.store.createdAt}</p>
+                <i onClick={this.handlerDeleteComment}></i>
             </div>
         )
     }

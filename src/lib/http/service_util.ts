@@ -2,7 +2,7 @@ import {HttpService} from "./axios";
 import {
     CREATE_ARTICLE,
     FAVORITE_ARTICLE,
-    GET_ARTICLES,
+    GET_ARTICLES, GET_COMMENT,
     GET_TAG,
     LOGIN_URI,
     REGIST_URI,
@@ -21,7 +21,14 @@ export default class APIConn extends HttpService {
         return this.instance;
     }
 
-    getArticle(offset: number = 0, name?: string, tag?: string, header?: any): any {
+    getArticle(slug: string, header?: any): any {
+        const url = `${GET_ARTICLES}/${slug}`;
+        return this.client.get(url, null, header).then(res => {
+            return res;
+        });
+    }
+
+    getArticles(offset: number = 0, name?: string, tag?: string, header?: any): any {
 
         let url = GET_ARTICLES;
         switch (feedStore.currentFeed) {
@@ -51,9 +58,6 @@ export default class APIConn extends HttpService {
                 break;
             }
         }
-
-
-
         return this.client.get(url, null, header).then(result => {
             return result
         })
@@ -62,6 +66,15 @@ export default class APIConn extends HttpService {
     getTags(): any {
         return this.client.get(GET_TAG).then(result => {
             return result
+        })
+    }
+
+    getComment(slug:string, header?:any): any {
+
+        const url = GET_COMMENT.replace(":slug",slug);
+
+        return this.client.get(url,null, header).then(result => {
+            return result;
         })
     }
 

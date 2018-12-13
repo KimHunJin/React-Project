@@ -1,16 +1,28 @@
 import * as React from 'react';
-import {FeedModel} from "app/model/FeedModel";
+import {CommentStore} from "app/stores/CommentStore";
+import {ArticleCommentItem} from "app/components/Article/ArticleCommentItem";
+import {observer} from "mobx-react";
 
 interface Props {
-    store: FeedModel
+    store: CommentStore
 }
 
+@observer
 export class ArticleCommentList extends React.Component<Props> {
 
-    render() {
+     render() {
+
+        console.log(this.props.store)
+
+        if (!this.props.store.commentList) {
+            return null;
+        }
+
         return (
             <div>
-
+                {this.props.store.commentList.map(comment => (
+                    <ArticleCommentItem store={comment}/>
+                ))}
             </div>
         )
     }

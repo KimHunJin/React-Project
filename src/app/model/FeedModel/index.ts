@@ -1,7 +1,7 @@
-import {Author} from "app/modelsInteface/author";
 import {Article} from "app/modelsInteface/article";
 import {TagModel} from "app/model/TagModel/index";
 import {observable} from "mobx";
+import {AuthModel} from "app/model/AuthorModel";
 
 export class FeedModel implements Article {
     readonly id: number;
@@ -38,19 +38,3 @@ export class FeedModel implements Article {
 }
 
 
-export class AuthModel implements Author {
-    id: number;
-    bio: string;
-    following: boolean;
-    image: string;
-    username: string;
-
-    constructor(id, bio, following, image, username) {
-        this.id = id;
-        this.bio = bio;
-        this.following = following;
-        this.image = image;
-        this.username = username;
-    }
-
-}

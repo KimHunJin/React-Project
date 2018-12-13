@@ -1,17 +1,21 @@
 import * as React from 'react';
-import {FeedModel} from "app/model/FeedModel";
 
-interface Props {
-    store: FeedModel
-}
+export class ArticleEditor extends React.Component {
 
-export class ArticleEditor extends React.Component<Props> {
+    handlerCommentSubmit = () => {
+
+    }
 
     render() {
         return (
-            <div>
+            <form>
+                <textarea rows={4}>
 
-            </div>
+                </textarea>
+                <span>
+                    <button onClick={this.handlerCommentSubmit}/>
+                </span>
+            </form>
         )
     }
 }
