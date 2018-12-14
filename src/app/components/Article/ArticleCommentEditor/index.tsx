@@ -16,13 +16,14 @@ export class ArticleEditor extends React.Component<Props> {
         const store = this.props.store;
 
         editorStore.submit(store.slug);
+        editorStore.comment = '';
     };
 
     handlerTextChange= (e) => {
         e.preventDefault();
         const editorStore = commentEditorStore;
         editorStore.comment = e.target.value;
-    }
+    };
 
     render() {
         if(userStore.userModel) {

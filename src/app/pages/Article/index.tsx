@@ -20,6 +20,8 @@ export class ArticleDetailPage extends React.Component {
 
         const {match}: any = this.props;
 
+        commentStore.slug = match.params.slug;
+
         APIConn.getInstance().getArticle(match.params.slug, userStore.userModel ? true : null).then(
             res => {
                 const data = res.data.article;

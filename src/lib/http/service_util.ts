@@ -1,7 +1,7 @@
 import {HttpService} from "./axios";
 import {
     ADD_COMMENT,
-    CREATE_ARTICLE, DELETE_ARTICLE,
+    CREATE_ARTICLE, DELETE_ARTICLE, DELETE_COMMENT,
     FAVORITE_ARTICLE,
     GET_ARTICLES, GET_COMMENT,
     GET_TAG,
@@ -130,6 +130,14 @@ export default class APIConn extends HttpService {
     deleteArticle(auth, feedSlug): any {
         const uri = DELETE_ARTICLE.replace(':slug', feedSlug);
         return this.client.delete(uri, null, auth).then(res => {
+            return res;
+        })
+    }
+
+    deleteComment(auth, feedSlug, commentId) {
+        let uri = DELETE_COMMENT.replace(':slug', feedSlug);
+        uri = uri.replace(':id',commentId);
+        return this.client.delete(uri,null,auth).then(res => {
             return res;
         })
     }

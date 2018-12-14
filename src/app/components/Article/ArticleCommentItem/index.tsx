@@ -8,7 +8,7 @@ interface Props {
 }
 
 export class ArticleCommentItem extends React.Component<Props> {
-
+    
     render() {
         return (
             <div className={"card"}>

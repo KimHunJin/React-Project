@@ -5,6 +5,7 @@ import userStore from "app/stores/UserStore";
 
 class CommentStore {
     @observable commentList: CommentModel[];
+    @observable slug: any;
 
     @action getComment(slug) {
         APIConn.getInstance().getComment(slug, userStore.userModel ? true : null).then(
@@ -16,6 +17,12 @@ class CommentStore {
                 });
             }
         );
+    }
+
+    @action deleteComment(id) {
+        APIConn.getInstance().deleteComment(userStore.userModel ? true : null, this.slug, id).then(res => {
+            this.getComment(this.slug);
+        })
     }
 }
 

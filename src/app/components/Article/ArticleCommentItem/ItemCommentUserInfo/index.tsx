@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import './style.less';
 import DateUtil from "../../../../../lib/date/ChangeDate";
 import userStore from "app/stores/UserStore";
+import commentStore from "app/stores/CommentStore";
 
 interface Props {
     store: CommentModel
@@ -11,8 +12,8 @@ interface Props {
 
 export class ArticleItemUser extends React.Component<Props> {
 
-    handlerDeleteComment = () => {
-
+    handlerDeleteComment(id) {
+        commentStore.deleteComment(id);
     };
 
     render() {
@@ -29,7 +30,7 @@ export class ArticleItemUser extends React.Component<Props> {
                 </Link>
                 <span className={"date-posted"}>{date}</span>
                 <span className={"mod-options"}>
-                    {userStore.userModel ? <i className={"ion-trash-a"} onClick={this.handlerDeleteComment}/> : null}
+                    {userStore.userModel ? <i className={"ion-trash-a"} onClick={() => this.handlerDeleteComment(this.props.store.id)}/> : null}
                 </span>
             </div>
         )
