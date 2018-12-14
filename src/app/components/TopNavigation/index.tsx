@@ -20,7 +20,7 @@ export class TopNavigation extends React.Component<Props> {
                     <li className={"nav-item"}><Link to={'/'} className={"nav-link"}>Home</Link></li>
                     <li className={"nav-item"}><Link to={'/editor'} className={"nav-link"}><i className="ion-compose"/>&nbsp;New Post</Link></li>
                     <li className={"nav-item"}><Link to={'/setting'} className={"nav-link"}><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
-                    <li className={"nav-item"}><Link to={`/@${this.props.auth.userModel.username}`} className={"nav-link"}>{this.props.auth.userModel.username}</Link></li>
+                    <li className={"nav-item"}><Link to={`/${this.props.auth.userModel.username}`} className={"nav-link"}>{this.props.auth.userModel.username}</Link></li>
                 </ul>
             </div>
         )
