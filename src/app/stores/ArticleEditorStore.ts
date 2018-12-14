@@ -3,6 +3,7 @@ import APIConn from "../../lib/http/service_util";
 
 class EditorStore {
 
+    @observable slug: any;
     @observable title: string;
     @observable body: string;
     @observable description: string;
@@ -57,6 +58,21 @@ class EditorStore {
 
         APIConn.getInstance().postCreateArticle(true, article).then(res => {
             
+        })
+    }
+
+    @action update(slug:string) {
+        const article = {
+            article: {
+                title: this.title,
+                description: this.description,
+                body: this.body,
+                tagList: this.tagList
+            }
+        };
+
+        APIConn.getInstance().putUpdateArticle(slug, article).then(res => {
+            console.log(res);
         })
     }
 }

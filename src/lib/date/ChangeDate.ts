@@ -6,7 +6,7 @@ export default class DateUtil {
         return n < 10 ? '0' + n : n;
     }
 
-    static changeDate(originalDate): string {
+    static changeDate(originalDate: Date): string {
         const date = originalDate.getDate();
         const month = originalDate.getMonth();
         const year = originalDate.getFullYear();
