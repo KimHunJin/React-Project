@@ -4,12 +4,11 @@ import {ArticleBody} from "app/components/Article/ArticleBody";
 import {ArticleCommentList} from "app/components/Article/ArticleCommentList";
 import {default as commentStore} from "app/stores/CommentStore";
 import {observer} from "mobx-react";
-import {ArticleEditor} from "app/components/Article/ArticleEditor";
+import {ArticleEditor} from "app/components/Article/ArticleCommentEditor";
 import {FeedModel} from "app/model/FeedModel";
 import APIConn from "../../../lib/http/service_util";
 import userStore from "app/stores/UserStore";
 import {observable} from "mobx";
-import {CommentModel} from "app/model/CommentModel";
 import './style.less';
 
 @observer
@@ -38,15 +37,7 @@ export class ArticleDetailPage extends React.Component {
             }
         );
 
-        APIConn.getInstance().getComment(match.params.slug, userStore.userModel ? true : null).then(
-            res => {
-                const comments = res.data.comments;
-
-                commentStore.commentList = comments.map(data => {
-                    return new CommentModel(data.id, data.createdAt, data.updatedAt, data.body, data.author);
-                });
-            }
-        );
+        commentStore.getComment(match.params.slug);
     }
 
     render() {
@@ -64,7 +55,7 @@ export class ArticleDetailPage extends React.Component {
                     <div className={"article-actions"}/>
                     <div className={"row"}>
                         <div className={"col-xs-12 col-md-8 offset-md-2"}>
-                            <ArticleEditor/>
+                            <ArticleEditor store={this.feed}/>
                             <ArticleCommentList store={commentStore}/>
                         </div>
                     </div>

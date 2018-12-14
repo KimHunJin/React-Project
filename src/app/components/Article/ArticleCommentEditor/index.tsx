@@ -1,11 +1,27 @@
 import * as React from 'react';
 import userStore from "app/stores/UserStore";
 import {Link} from "react-router-dom";
+import commentEditorStore from "app/stores/CommentEditorStore";
+import {FeedModel} from "app/model/FeedModel";
 
-export class ArticleEditor extends React.Component {
+interface Props {
+    store: FeedModel;
+}
 
-    handlerCommentSubmit = () => {
+export class ArticleEditor extends React.Component<Props> {
 
+    handlerCommentSubmit = (e) => {
+        e.preventDefault();
+        const editorStore = commentEditorStore;
+        const store = this.props.store;
+
+        editorStore.submit(store.slug);
+    };
+
+    handlerTextChange= (e) => {
+        e.preventDefault();
+        const editorStore = commentEditorStore;
+        editorStore.comment = e.target.value;
     }
 
     render() {
@@ -13,8 +29,8 @@ export class ArticleEditor extends React.Component {
             return (
                 <form className={"card comment-form"}>
                     <div className={"card-block"}>
-                    <textarea className={"form-control"} placeholder={"Write a comment..."} rows={3}>
-
+                    <textarea className={"form-control"} placeholder={"Write a comment..."} rows={3} onChange={this.handlerTextChange}>
+                        {commentEditorStore.comment}
                     </textarea>
                     </div>
                     <div className={"card-footer"}>

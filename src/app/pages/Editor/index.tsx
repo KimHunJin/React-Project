@@ -1,5 +1,5 @@
 import * as React from 'react'
-import editorStore from "app/stores/EditorStore";
+import editorStore from "app/stores/ArticleEditorStore";
 import {EditorForm} from "app/components/EditorForm";
 import APIConn from "../../../lib/http/service_util";
 import userStore from "app/stores/UserStore";
