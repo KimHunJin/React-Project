@@ -11,7 +11,7 @@ export class ArticleCommentItem extends React.Component<Props> {
 
     render() {
         return (
-            <div>
+            <div className={"card"}>
                 <ArticleItemContent store={this.props.store}/>
                 <ArticleItemUser store={this.props.store} />
             </div>

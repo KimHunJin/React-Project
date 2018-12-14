@@ -18,7 +18,6 @@ interface Props {
 export class MainPage extends React.Component<Props> {
 
     componentDidMount() {
-        console.log('render main');
         feedStore.currentFeed = this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
     }
 

@@ -10,7 +10,7 @@ import APIConn from "../../../lib/http/service_util";
 import userStore from "app/stores/UserStore";
 import {observable} from "mobx";
 import {CommentModel} from "app/model/CommentModel";
-
+import './style.less';
 
 @observer
 export class ArticleDetailPage extends React.Component {
@@ -40,11 +40,11 @@ export class ArticleDetailPage extends React.Component {
 
         APIConn.getInstance().getComment(match.params.slug, userStore.userModel ? true : null).then(
             res => {
-                const comments =res.data.comments;
+                const comments = res.data.comments;
 
                 commentStore.commentList = comments.map(data => {
-                    new CommentModel(data.id, data.createdAt, data.updatedAt, data.body, data.author);
-                })
+                    return new CommentModel(data.id, data.createdAt, data.updatedAt, data.body, data.author);
+                });
             }
         );
     }
@@ -56,11 +56,20 @@ export class ArticleDetailPage extends React.Component {
         }
 
         return (
-            <div>
+            <div className={"article-page"}>
                 <ArticleBanner store={this.feed}/>
-                <ArticleBody store={this.feed}/>
-                <ArticleEditor/>
-                <ArticleCommentList store={commentStore}/>
+                <div className={"container page"}>
+                    <ArticleBody store={this.feed}/>
+                    <hr />
+                    <div className={"article-actions"}/>
+                    <div className={"row"}>
+                        <div className={"col-xs-12 col-md-8 offset-md-2"}>
+                            <ArticleEditor/>
+                            <ArticleCommentList store={commentStore}/>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         )
     }

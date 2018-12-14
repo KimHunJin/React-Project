@@ -8,9 +8,10 @@ interface Props {
 export class ArticleItemContent extends React.Component<Props> {
 
     render(): React.ReactNode {
+
         return (
-            <div>
-                {this.props.store.body}
+            <div className={"card-block"}>
+                <p className={"card-text"}>{this.props.store.body}</p>
             </div>
         )
     }

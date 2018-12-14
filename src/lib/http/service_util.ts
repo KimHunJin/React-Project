@@ -1,12 +1,12 @@
 import {HttpService} from "./axios";
 import {
-    CREATE_ARTICLE,
+    CREATE_ARTICLE, DELETE_ARTICLE,
     FAVORITE_ARTICLE,
     GET_ARTICLES, GET_COMMENT,
     GET_TAG,
     LOGIN_URI,
     REGIST_URI,
-    UNFAVORITE_ARTICLE
+    UNFAVORITE_ARTICLE, UPDATE_ARTICLE
 } from "app/constants";
 import feedStore from "app/stores/FeedStore";
 import {FEEDS} from "app/constants/Feed";
@@ -106,10 +106,23 @@ export default class APIConn extends HttpService {
         })
     }
 
+    putUpdateArticle(slug, data) :any {
+        const url = UPDATE_ARTICLE.replace(':slug', slug);
+        return this.client.put(url, data, null, true);
+    }
+
+
     deleteUnFavoriteArticle(auth, feedSlug): any {
         const uri = UNFAVORITE_ARTICLE.replace(':slug', feedSlug);
         return this.client.delete(uri, null, auth).then((res => {
             return res
         }))
+    }
+
+    deleteArticle(auth, feedSlug): any {
+        const uri = DELETE_ARTICLE.replace(':slug',feedSlug);
+        return this.client.delete(uri,null,auth).then(res => {
+            return res;
+        })
     }
 }

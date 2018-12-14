@@ -66,7 +66,7 @@ export class HttpClient {
         }
     }
 
-    delete<T = any>(url: string, params?, header?:any): AxiosPromise<T> {
+    delete<T = any>(url: string, params?, header?: any): AxiosPromise<T> {
 
         url = API_URL + url
 
@@ -86,8 +86,22 @@ export class HttpClient {
         }
     }
 
-    put<T = any>(url: string, data?, params?): AxiosPromise<T> {
-        return this.makeResponse(this.axios.put<T>(url, data, {params}))
+    put<T = any>(url: string, data?, params?, auth?: any): AxiosPromise<T> {
+        url = API_URL + url;
+        if (auth) {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${userStore.userModel.token}`
+                },
+                data: data,
+                url
+            };
+            return this.axios(options);
+        } else {
+            return this.makeResponse(this.axios.put<T>(url, data, {params}))
+        }
     }
 
     pacth<T=any>(url: string, data?, params?): AxiosPromise<T> {

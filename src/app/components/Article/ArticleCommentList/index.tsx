@@ -10,9 +10,7 @@ interface Props {
 @observer
 export class ArticleCommentList extends React.Component<Props> {
 
-     render() {
-
-        console.log(this.props.store)
+    render() {
 
         if (!this.props.store.commentList) {
             return null;
@@ -21,7 +19,7 @@ export class ArticleCommentList extends React.Component<Props> {
         return (
             <div>
                 {this.props.store.commentList.map(comment => (
-                    <ArticleCommentItem store={comment}/>
+                    <ArticleCommentItem key={comment.id} store={comment}/>
                 ))}
             </div>
         )
