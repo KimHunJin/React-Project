@@ -9,6 +9,7 @@ import {ArticleDetailPage, LoginPage, RegisterPage} from 'app/pages';
 import DevTools from "mobx-react-devtools";
 import userStore from "app/stores/UserStore";
 import {EditorPage} from "app/pages/Editor";
+import {MyPage} from "app/pages/MyPage";
 
 // render react DOM
 
@@ -30,6 +31,7 @@ export class App extends Component {
                         <Route exact path="/register" component={RegisterPage}/>
                         <Route exact path="/article/:slug" component={ArticleDetailPage}/>
                         <Route exact path="/" render={() => <MainPage auth={userStore}/>}/>
+                        <Route exact path="/:username" component={MyPage}/>
                     </Switch>
                     <DevTools/>
                 </div>

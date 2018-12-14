@@ -6,6 +6,7 @@ import userStore from "app/stores/UserStore";
 import APIConn from "../../../../../lib/http/service_util";
 import feedStore from "app/stores/FeedStore";
 import {OK} from "app/constants/Code";
+import {Link} from "react-router-dom";
 
 export interface FeedProps {
     feed: FeedModel
@@ -40,14 +41,14 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
         const {feed} = this.props;
         return (
             <div className={"article-meta"}>
-                <a href={"#@" + feed.author.username}>
+                <Link to={`/${feed.author.username}`}>
                     {feed.author.image ?
                         <img src={feed.author.image} alt={""}/> :
                         <img alt={""}/>
                     }
-                </a>
+                </Link>
                 <div className={"info"}>
-                    <a className={"author"} href={"#@" + feed.author.username}>{feed.author.username}</a>
+                    <Link className={"author"} to={`/${feed.author.username}`}>{feed.author.username}</Link>
                     <span className={"date"}>{feed.createAt}</span>
                 </div>
                 <div className={"pull-xs-right"}>

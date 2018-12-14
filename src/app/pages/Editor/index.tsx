@@ -15,7 +15,6 @@ export class EditorPage extends React.Component{
             APIConn.getInstance().getArticle(match.params.slug, userStore.userModel ? true : null).then(
                 res => {
                     const data = res.data.article;
-                    console.log(data);
                     store.setTitle(data.title);
                     store.setBody(data.body);
                     store.setDescription(data.description);

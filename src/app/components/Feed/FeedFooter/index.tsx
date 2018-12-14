@@ -11,7 +11,7 @@ interface Props {
 @observer
 export class Footer extends React.Component<Props> {
     createList(count): any {
-        let list: any = [];
+        const list: any = [];
         const store = this.props.store;
         const currentFeedPage = store.feedCurrentPage;
 

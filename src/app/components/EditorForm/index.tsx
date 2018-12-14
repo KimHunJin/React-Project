@@ -40,8 +40,7 @@ export class EditorForm extends React.Component<Props> {
     handlerSubmit = (e) => {
         const store = this.props.store;
         const slug = this.props.store.slug;
-        console.log(slug);
-        if(slug) {
+        if (slug) {
             store.update(slug);
         } else {
             store.submit();
