@@ -9,7 +9,7 @@ class LoginStore {
     @observable email;
     @observable password;
 
-    submit(): void {
+    loginSubmit(): void {
 
         const user = {
             email: this.email,

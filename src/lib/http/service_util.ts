@@ -41,31 +41,27 @@ export default class APIConn extends HttpService {
         let url = GET_ARTICLES;
         switch (feedStore.currentFeed) {
             case FEEDS.GLOBAL : {
-                url += `?&offset=${offset}`;
-                url += "&limit=10";
+                url = `${url}?&offset=${offset}&limit=10`;
                 break;
             }
             case FEEDS.YOUR_FEED : {
-                url += `/feed?&offset=${offset}`;
-                url += "&limit=10";
+                url = `${url}/feed?&offset=${offset}&limit=10`;
                 break;
             }
             case FEEDS.TAG: {
-                url += `?&offset=${offset}&tag=${tag}`;
-                url += "&limit=10";
+                url = `${url}?&offset=${offset}&tag=${tag}&limit=10`;
                 break;
             }
             case FEEDS.FAVORITED: {
-                url += `?$offset=${offset}&favorited=${name}`;
-                url += "&limit=10";
+                url = `${url}?$offset=${offset}&favorited=${name}&limit=10`;
                 break;
             }
             case FEEDS.MY_ARTICLE: {
-                url += `?$offset=${offset}&author=${name}`;
-                url += "&limit=10";
+                url = `${url}?$offset=${offset}&author=${name}&limit=10`;
                 break;
             }
         }
+        console.log(url);
         return this.client.get(url, null, header).then(res => {
             return res;
         })

@@ -22,13 +22,14 @@ export class MainPage extends React.Component<Props> {
     }
 
     render() {
+
         return (
             <div className={"home-page"}>
                 {this.props.auth.userModel ? null : <Banner/>}
                 <div className={"container page"}>
                     <div className={"row"}>
                         <div className={"col-md-9"}>
-                            <FeedToggle store={feedStore} auth={this.props.auth}/>
+                            <FeedToggle param={null} store={feedStore} auth={this.props.auth}/>
                             <FeedList feedStore={feedStore}/>
                         </div>
                         <div className={"col-md-3"}>

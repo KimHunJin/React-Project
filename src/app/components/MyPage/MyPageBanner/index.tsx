@@ -38,7 +38,6 @@ export class MyPageBanner extends React.Component<Props> {
 
     render() {
         return (
-            <div className={"profile-page"}>
                 <div className={"user-info"}>
                     <div className={"container"}>
                         <div className={"row"}>
@@ -51,7 +50,7 @@ export class MyPageBanner extends React.Component<Props> {
                         </div>
                     </div>
                 </div>
-            </div>
+
         )
     }
 }
