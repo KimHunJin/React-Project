@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {observer} from "mobx-react";
 import {ENTER_KEY} from "app/constants/Code";
-import {EditorStore} from "app/stores/EditorStore";
+import {EditorStore} from "app/stores/ArticleEditorStore";
 import './style.less';
 
 interface Props {
