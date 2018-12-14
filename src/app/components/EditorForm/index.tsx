@@ -39,7 +39,14 @@ export class EditorForm extends React.Component<Props> {
 
     handlerSubmit = (e) => {
         const store = this.props.store;
-        store.submit();
+        const slug = this.props.store.slug;
+        console.log(slug);
+        if(slug) {
+            store.update(slug);
+        } else {
+            store.submit();
+        }
+
         store.title = '';
         store.description = '';
         store.body = '';
@@ -53,8 +60,7 @@ export class EditorForm extends React.Component<Props> {
     };
 
     render() {
-
-         return (
+        return (
             <form onSubmit={this.preventSubmit}>
                 <fieldset>
                     <fieldset className={"form-group"}>

@@ -1,16 +1,17 @@
 import * as React from 'react';
-import {FeedModel} from "app/model/FeedModel";
+import {CommentModel} from "app/model/CommentModel";
 
 interface Props {
-    store: FeedModel
+    store: CommentModel;
 }
 
 export class ArticleItemContent extends React.Component<Props> {
 
-    render() {
-        return (
-            <div>
+    render(): React.ReactNode {
 
+        return (
+            <div className={"card-block"}>
+                <p className={"card-text"}>{this.props.store.body}</p>
             </div>
         )
     }
