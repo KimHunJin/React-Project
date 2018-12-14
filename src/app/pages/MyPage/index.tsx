@@ -18,19 +18,19 @@ export class MyPage extends React.Component {
 
         feedStore.currentFeed = FEEDS.MY_ARTICLE;
         feedStore.feedCount = 0;
-        feedStore.fetchArticleData(0,username, null);
+        feedStore.param = username;
+        feedStore.username = username;
+        feedStore.fetchArticleData();
     }
 
     render() {
-        const {match}: any = this.props;
-        const username = match.params.username;
         return (
             <div className={"profile-page"}>
                 <MyPageBanner store={profileStore}/>
                 <div className={"container"}>
                     <div className={"row"}>
                         <div className={"col-xs-12 col-md-10 offset-md-1"}>
-                            <FeedToggle param={username} store={feedStore} auth={userStore}/>
+                            <FeedToggle store={feedStore} auth={userStore}/>
                             <FeedList feedStore={feedStore}/>
                         </div>
                     </div>

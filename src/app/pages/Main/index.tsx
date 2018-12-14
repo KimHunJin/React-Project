@@ -19,6 +19,7 @@ export class MainPage extends React.Component<Props> {
 
     componentDidMount() {
         feedStore.currentFeed = this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
+        feedStore.param = null;
     }
 
     render() {
@@ -29,7 +30,7 @@ export class MainPage extends React.Component<Props> {
                 <div className={"container page"}>
                     <div className={"row"}>
                         <div className={"col-md-9"}>
-                            <FeedToggle param={null} store={feedStore} auth={this.props.auth}/>
+                            <FeedToggle store={feedStore} auth={this.props.auth}/>
                             <FeedList feedStore={feedStore}/>
                         </div>
                         <div className={"col-md-3"}>

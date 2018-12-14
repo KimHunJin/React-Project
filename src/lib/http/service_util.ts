@@ -53,11 +53,11 @@ export default class APIConn extends HttpService {
                 break;
             }
             case FEEDS.FAVORITED: {
-                url = `${url}?$offset=${offset}&favorited=${name}&limit=10`;
+                url = `${url}?$offset=${offset}&favorited=${name}&limit=5`;
                 break;
             }
             case FEEDS.MY_ARTICLE: {
-                url = `${url}?$offset=${offset}&author=${name}&limit=10`;
+                url = `${url}?$offset=${offset}&author=${name}&limit=5`;
                 break;
             }
         }

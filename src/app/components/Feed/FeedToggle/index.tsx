@@ -8,15 +8,16 @@ import {FEEDS} from "app/constants/Feed";
 interface Props {
     store: FeedStore
     auth: UserStore
-    param: any;
 }
 
 @observer
 export class FeedToggle extends React.Component<Props> {
 
     componentDidMount(): void {
+        this.props.store.currentFeed = this.props.store.param? FEEDS.MY_ARTICLE : this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
         this.props.store.fetchArticleData();
     }
+
     authorFeed(): any {
         const store = this.props.store;
         const auth = this.props.auth;
@@ -95,7 +96,8 @@ export class FeedToggle extends React.Component<Props> {
         store.feedCurrentToggle = auth;
         store.feedCurrentPage = 0;
         store.feedCount = 0;
-        store.fetchArticleData(null,auth,null)
+        store.username = auth;
+        store.fetchArticleData()
     }
 
     eventChangeTagGlobal(): void {
@@ -113,7 +115,8 @@ export class FeedToggle extends React.Component<Props> {
         store.currentFeed = FEEDS.MY_ARTICLE;
         store.feedCurrentPage = 0;
         store.feedCount = 0;
-        store.fetchArticleData(0,this.props.param,null);
+        store.username = this.props.store.param;
+        store.fetchArticleData();
     }
 
     eventChangeTagFavoritedArticle(): void {
@@ -122,19 +125,20 @@ export class FeedToggle extends React.Component<Props> {
         store.currentFeed = FEEDS.FAVORITED;
         store.feedCurrentPage = 0;
         store.feedCount = 0;
-        store.fetchArticleData(0, this.props.param, null);
+        store.username = this.props.store.param;
+        store.fetchArticleData();
     }
 
 
     render() {
         return (
-            <div className={this.props.param ? "feed-toggle" : "article-toggle"}>
+            <div className={this.props.store.param ? "feed-toggle" : "article-toggle"}>
                 <ul className={"nav nav-pills outline-active"}>
-                    {!this.props.param && this.props.auth.userModel && this.authorFeed()}
-                    {!this.props.param && this.globalFeed()}
-                    {!this.props.param && this.tagFeed()}
-                    {this.props.param && this.myArticlesFeed()}
-                    {this.props.param && this.favoritedArticlesFeed()}
+                    {!this.props.store.param && this.props.auth.userModel && this.authorFeed()}
+                    {!this.props.store.param && this.globalFeed()}
+                    {!this.props.store.param && this.tagFeed()}
+                    {this.props.store.param && this.myArticlesFeed()}
+                    {this.props.store.param && this.favoritedArticlesFeed()}
                 </ul>
             </div>
         )

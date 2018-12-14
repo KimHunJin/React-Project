@@ -24,7 +24,8 @@ class RegisterStore {
                 userStore.fetchUser(new UserModel(user.id, user.bio, user.email, user.image, user.token, user.username));
                 feedStore.feedAuthor = user.username;
                 feedStore.feedCurrentToggle = user.username;
-                feedStore.fetchArticleData(null, user.username, null)
+                feedStore.username = user.username;
+                feedStore.fetchArticleData();
                 history.back();
             } else {
 

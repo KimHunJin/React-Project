@@ -30,8 +30,8 @@ export class App extends Component {
                         <Route exact path="/login" component={LoginPage}/>
                         <Route exact path="/register" component={RegisterPage}/>
                         <Route exact path="/article/:slug" component={ArticleDetailPage}/>
-                        <Route exact path="/" render={() => <MainPage auth={userStore}/>}/>
                         <Route exact path="/:username" component={MyPage}/>
+                        <Route exact path="/" render={() => <MainPage auth={userStore}/>}/>
                     </Switch>
                     <DevTools/>
                 </div>
