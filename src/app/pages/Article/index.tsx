@@ -17,7 +17,7 @@ export class ArticleDetailPage extends React.Component {
     @observable feed: FeedModel;
 
     componentDidMount() {
-
+        console.log('article detail page component did mount')
         const {match}: any = this.props;
 
         commentStore.slug = match.params.slug;
@@ -43,6 +43,7 @@ export class ArticleDetailPage extends React.Component {
     }
 
     render() {
+        console.log('article detail page render')
 
         if (!this.feed) {
             return null;

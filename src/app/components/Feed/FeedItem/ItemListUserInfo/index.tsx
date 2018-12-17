@@ -38,6 +38,7 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
     }
 
     render(): React.ReactNode {
+        console.log('feed item user render');
         const {feed} = this.props;
         return (
             <div className={"article-meta"}>

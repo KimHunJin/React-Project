@@ -10,6 +10,7 @@ interface Props {
 export class ArticleCommentItem extends React.Component<Props> {
     
     render() {
+        console.log('article comment item render');
         return (
             <div className={"card"}>
                 <ArticleItemContent store={this.props.store}/>

@@ -22,21 +22,22 @@ export class MyPageBanner extends React.Component<Props> {
         if (this.props.store.username == userStore.userModel.username) {
             return (
                 <Link className={"btn btn-sm btn-outline-secondary action-btn"} to={"/settings"}>
-                    <i className={"ion-gear-a"}/>&nbps;Edit Profile Settings
+                    <i className={"ion-gear-a"}/>&nbsp;Edit Profile Settings
                 </Link>
             )
         } else {
             return (
                 <button className={"btn btn-sm action-btn btn-outline-secondary"}
                         onClick={this.handlerFollowing}>
-                    <i className={"ion-plus-round"}/>&nbsp;
-                    {this.props.store.following ? `Unfollow` : `Follow`}&nbsp; {this.props.store.username}
+                    <i className={"ion-plus-round"}/> &nbsp;
+                    {this.props.store.following ? `Unfollow` : `Follow`} &nbsp; {this.props.store.username}
                 </button>
             )
         }
     }
 
     render() {
+        console.log('my page banner render')
         return (
                 <div className={"user-info"}>
                     <div className={"container"}>

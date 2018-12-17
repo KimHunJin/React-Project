@@ -11,12 +11,12 @@ import {FEEDS} from "app/constants/Feed";
 export class MyPage extends React.Component {
 
     componentDidMount() {
+        console.log('my page component did mount')
         const {match}: any = this.props;
         const username = match.params.username;
-
-        profileStore.getProfile(username)
-
         feedStore.currentFeed = FEEDS.MY_ARTICLE;
+        profileStore.getProfile(username);
+
         feedStore.feedCount = 0;
         feedStore.param = username;
         feedStore.username = username;
@@ -24,6 +24,7 @@ export class MyPage extends React.Component {
     }
 
     render() {
+        console.log('my page render')
         return (
             <div className={"profile-page"}>
                 <MyPageBanner store={profileStore}/>

@@ -27,6 +27,7 @@ export class LoginForm extends React.Component<Props> {
     };
 
     render() {
+        console.log('login form render')
         return (
 
             <div className={"row"}>

@@ -6,6 +6,7 @@ import loginStore from "app/stores/LoginStore";
 export class LoginPage extends React.Component{
 
     render(): React.ReactNode {
+        console.log('login page render')
 
         const store = loginStore
 

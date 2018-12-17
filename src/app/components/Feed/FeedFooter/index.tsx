@@ -38,6 +38,7 @@ export class Footer extends React.Component<Props> {
     }
 
     render() {
+        console.log('feed footer render');
         const store = this.props.store;
         const feedCount = store.feedCount / GET_PAGE_LIMIT;
 

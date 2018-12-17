@@ -59,6 +59,7 @@ export class EditorForm extends React.Component<Props> {
     };
 
     render() {
+        console.log('edit form render')
         return (
             <form onSubmit={this.preventSubmit}>
                 <fieldset>

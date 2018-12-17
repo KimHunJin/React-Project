@@ -12,6 +12,7 @@ export class ArticleCommentList extends React.Component<Props> {
 
     render() {
 
+        console.log('article cmment list render')
         if (!this.props.store.commentList) {
             return null;
         }

@@ -17,13 +17,15 @@ interface Props {
 @observer
 export class MainPage extends React.Component<Props> {
 
-    componentDidMount() {
+    componentWillMount() {
+        console.log('main page component did mount')
         feedStore.currentFeed = this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
         feedStore.param = null;
+        // feedStore.fetchArticleData();
     }
 
     render() {
-
+        console.log('main page render')
         return (
             <div className={"home-page"}>
                 {this.props.auth.userModel ? null : <Banner/>}

@@ -8,13 +8,13 @@ import {
     DELETE_FOLLOW,
     FAVORITE_ARTICLE,
     GET_ARTICLES,
-    GET_COMMENT,
+    GET_COMMENT, GET_CURRENT_USER,
     GET_PROFILE,
     GET_TAG,
     LOGIN_URI,
     REGIST_URI,
     UNFAVORITE_ARTICLE,
-    UPDATE_ARTICLE
+    UPDATE_ARTICLE, UPDATE_USER
 } from "app/constants";
 import feedStore from "app/stores/FeedStore";
 import {FEEDS} from "app/constants/Feed";
@@ -36,9 +36,17 @@ export default class APIConn extends HttpService {
         });
     }
 
+    getCurrentUser(header?: any): any {
+        return this.client.get(GET_CURRENT_USER, null, header).then(res => {
+            return res;
+        });
+    }
+
     getArticles(offset: number = 0, name?: string, tag?: string, header?: any): any {
 
         let url = GET_ARTICLES;
+        console.log('get article');
+        console.log(feedStore.currentFeed);
         switch (feedStore.currentFeed) {
             case FEEDS.GLOBAL : {
                 url = `${url}?&offset=${offset}&limit=10`;
@@ -61,7 +69,6 @@ export default class APIConn extends HttpService {
                 break;
             }
         }
-        console.log(url);
         return this.client.get(url, null, header).then(res => {
             return res;
         })
@@ -134,6 +141,10 @@ export default class APIConn extends HttpService {
     putUpdateArticle(slug, data): any {
         const url = UPDATE_ARTICLE.replace(':slug', slug);
         return this.client.put(url, data, null, true);
+    }
+
+    putUpdateUser(data) : any {
+        return this.client.put(UPDATE_USER, data, null, true);
     }
 
 

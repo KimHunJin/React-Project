@@ -14,6 +14,7 @@ interface Props {
 export class FeedToggle extends React.Component<Props> {
 
     componentDidMount(): void {
+        console.log('feed toggle component did mount');
         this.props.store.currentFeed = this.props.store.param? FEEDS.MY_ARTICLE : this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
         this.props.store.fetchArticleData();
     }
@@ -21,7 +22,6 @@ export class FeedToggle extends React.Component<Props> {
     authorFeed(): any {
         const store = this.props.store;
         const auth = this.props.auth;
-        console.log('auth toggle');
         return (
             <li className={"nav-item"}>
                 {auth.userModel && store.currentFeed == FEEDS.YOUR_FEED ?
@@ -34,7 +34,6 @@ export class FeedToggle extends React.Component<Props> {
 
     tagFeed(): any {
         const store = this.props.store;
-        console.log('tag toggle');
         return (
             <li className={"nav-item"}>
                 {store.currentFeed == FEEDS.TAG ?
@@ -47,7 +46,6 @@ export class FeedToggle extends React.Component<Props> {
 
     globalFeed(): any {
         const store = this.props.store;
-        console.log('global toggle');
         return (
             <li className={"nav-item"}>
                 {store.currentFeed == FEEDS.GLOBAL  ?
@@ -60,7 +58,6 @@ export class FeedToggle extends React.Component<Props> {
 
     myArticlesFeed(): any {
         const store = this.props.store;
-        console.log('my toggle');
         return (
             <li className={"nav-item"}>
                 {store.currentFeed == FEEDS.GLOBAL  ?
@@ -73,7 +70,6 @@ export class FeedToggle extends React.Component<Props> {
 
     favoritedArticlesFeed(): any {
         const store = this.props.store;
-        console.log('favorite toggle');
         return (
             <li className={"nav-item"}>
                 {store.currentFeed == FEEDS.GLOBAL  ?
@@ -131,6 +127,7 @@ export class FeedToggle extends React.Component<Props> {
 
 
     render() {
+        console.log('feed toggle render');
         return (
             <div className={this.props.store.param ? "feed-toggle" : "article-toggle"}>
                 <ul className={"nav nav-pills outline-active"}>

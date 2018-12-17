@@ -8,6 +8,7 @@ interface Props {
 export class ArticleBody extends React.Component<Props> {
 
     render() {
+        console.log('article body render');
 
         return (
             <div className={"row article-content"}>
