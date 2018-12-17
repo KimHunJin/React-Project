@@ -12,13 +12,19 @@ interface Props {
 @observer
 export class MyPageBanner extends React.Component<Props> {
 
-    handlerFollowing() {
+    constructor(props) {
+        super(props);
+    }
+
+    handlerFollowing = () => {
+        console.log(this.props.store.following);
+        console.log(this.props.store.username);
         this.props.store.following ?
             this.props.store.unFollow(this.props.store.username) :
             this.props.store.follow(this.props.store.username);
-    }
+    };
 
-    followButton() {
+    followButton = () => {
         if (this.props.store.username == userStore.userModel.username) {
             return (
                 <Link className={"btn btn-sm btn-outline-secondary action-btn"} to={"/settings"}>
@@ -34,10 +40,10 @@ export class MyPageBanner extends React.Component<Props> {
                 </button>
             )
         }
-    }
+    };
 
     render() {
-        console.log('my page banner render')
+        console.log('my page banner render');
         return (
                 <div className={"user-info"}>
                     <div className={"container"}>

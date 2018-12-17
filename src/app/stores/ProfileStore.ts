@@ -17,7 +17,7 @@ class ProfileStore {
 
     @action follow(username) {
         if(userStore.userModel){
-            APIConn.getInstance().addFollow(true, username).then(res => {
+            APIConn.getInstance().postAddFollow(true, username).then(res => {
                 this.profileSetting(res.data);
             })
         }
@@ -36,6 +36,8 @@ class ProfileStore {
         this.image = data.image;
         this.bio = data.bio;
         this.following = data.following;
+
+        console.log('user ',this.username, ' image ', this.image, ' bio ', this.bio , ' following ' , this.following);
     }
 }
 

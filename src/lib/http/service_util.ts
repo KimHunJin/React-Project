@@ -8,13 +8,15 @@ import {
     DELETE_FOLLOW,
     FAVORITE_ARTICLE,
     GET_ARTICLES,
-    GET_COMMENT, GET_CURRENT_USER,
+    GET_COMMENT,
+    GET_CURRENT_USER,
     GET_PROFILE,
     GET_TAG,
     LOGIN_URI,
     REGIST_URI,
     UNFAVORITE_ARTICLE,
-    UPDATE_ARTICLE, UPDATE_USER
+    UPDATE_ARTICLE,
+    UPDATE_USER
 } from "app/constants";
 import feedStore from "app/stores/FeedStore";
 import {FEEDS} from "app/constants/Feed";
@@ -131,9 +133,10 @@ export default class APIConn extends HttpService {
         })
     }
 
-    addFollow(auth, username): any {
+    postAddFollow(auth, username): any {
         const uri = ADD_FOLLOW.replace(':username', username);
-        return this.client.post(uri, null, auth).then(res => {
+        console.log(uri);
+        return this.client.post(uri, null, null, auth).then(res => {
             return res;
         })
     }
@@ -143,7 +146,7 @@ export default class APIConn extends HttpService {
         return this.client.put(url, data, null, true);
     }
 
-    putUpdateUser(data) : any {
+    putUpdateUser(data): any {
         return this.client.put(UPDATE_USER, data, null, true);
     }
 
