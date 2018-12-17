@@ -14,7 +14,9 @@ interface Props {
 export class FeedToggle extends React.Component<Props> {
 
     componentDidMount(): void {
-        this.props.store.fetchArticleData()
+        console.log('feed toggle component did mount');
+        this.props.store.currentFeed = this.props.store.param? FEEDS.MY_ARTICLE : this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
+        this.props.store.fetchArticleData();
     }
 
     authorFeed(): any {
@@ -42,13 +44,37 @@ export class FeedToggle extends React.Component<Props> {
         )
     }
 
-    globarFeed(): any {
+    globalFeed(): any {
         const store = this.props.store;
         return (
             <li className={"nav-item"}>
                 {store.currentFeed == FEEDS.GLOBAL  ?
                     <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a> :
                     <a href={""} onClick={() => this.eventChangeTagGlobal()} className={"nav-link"}>Global Feed</a>
+                }
+            </li>
+        )
+    }
+
+    myArticlesFeed(): any {
+        const store = this.props.store;
+        return (
+            <li className={"nav-item"}>
+                {store.currentFeed == FEEDS.GLOBAL  ?
+                    <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a> :
+                    <a href={""} onClick={() => this.eventChangeTagMyArticle()} className={"nav-link"}>My Articles</a>
+                }
+            </li>
+        )
+    }
+
+    favoritedArticlesFeed(): any {
+        const store = this.props.store;
+        return (
+            <li className={"nav-item"}>
+                {store.currentFeed == FEEDS.GLOBAL  ?
+                    <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a> :
+                    <a href={""} onClick={() => this.eventChangeTagFavoritedArticle()} className={"nav-link"}>Favorited Articles</a>
                 }
             </li>
         )
@@ -66,7 +92,8 @@ export class FeedToggle extends React.Component<Props> {
         store.feedCurrentToggle = auth;
         store.feedCurrentPage = 0;
         store.feedCount = 0;
-        store.fetchArticleData(null,auth,null)
+        store.username = auth;
+        store.fetchArticleData()
     }
 
     eventChangeTagGlobal(): void {
@@ -78,14 +105,37 @@ export class FeedToggle extends React.Component<Props> {
         store.fetchArticleData();
     }
 
+    eventChangeTagMyArticle(): void {
+        event.preventDefault();
+        const store = this.props.store;
+        store.currentFeed = FEEDS.MY_ARTICLE;
+        store.feedCurrentPage = 0;
+        store.feedCount = 0;
+        store.username = this.props.store.param;
+        store.fetchArticleData();
+    }
+
+    eventChangeTagFavoritedArticle(): void {
+        event.preventDefault();
+        const store = this.props.store;
+        store.currentFeed = FEEDS.FAVORITED;
+        store.feedCurrentPage = 0;
+        store.feedCount = 0;
+        store.username = this.props.store.param;
+        store.fetchArticleData();
+    }
+
 
     render() {
+        console.log('feed toggle render');
         return (
-            <div className={"feed-toggle"}>
+            <div className={this.props.store.param ? "feed-toggle" : "article-toggle"}>
                 <ul className={"nav nav-pills outline-active"}>
-                    {this.props.auth.userModel && this.authorFeed()}
-                    {this.globarFeed()}
-                    {this.tagFeed()}
+                    {!this.props.store.param && this.props.auth.userModel && this.authorFeed()}
+                    {!this.props.store.param && this.globalFeed()}
+                    {!this.props.store.param && this.tagFeed()}
+                    {this.props.store.param && this.myArticlesFeed()}
+                    {this.props.store.param && this.favoritedArticlesFeed()}
                 </ul>
             </div>
         )

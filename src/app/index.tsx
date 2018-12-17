@@ -9,6 +9,8 @@ import {ArticleDetailPage, LoginPage, RegisterPage} from 'app/pages';
 import DevTools from "mobx-react-devtools";
 import userStore from "app/stores/UserStore";
 import {EditorPage} from "app/pages/Editor";
+import {MyPage} from "app/pages/MyPage";
+import {SettingPage} from "app/pages/Setting";
 
 // render react DOM
 
@@ -24,11 +26,13 @@ export class App extends Component {
                     <TopNavigation auth={userStore}/>
 
                     <Switch>
+                        <Route exact path="/settings" component={SettingPage}/>
                         <Route exact path="/editor" component={EditorPage}/>
                         <Route exact path="/editor/:slug" component={EditorPage}/>
                         <Route exact path="/login" component={LoginPage}/>
                         <Route exact path="/register" component={RegisterPage}/>
                         <Route exact path="/article/:slug" component={ArticleDetailPage}/>
+                        <Route exact path="/:username" component={MyPage}/>
                         <Route exact path="/" render={() => <MainPage auth={userStore}/>}/>
                     </Switch>
                     <DevTools/>

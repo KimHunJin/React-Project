@@ -12,8 +12,8 @@ interface FeedProps {
 
 @observer
 export class FeedItem extends React.Component<FeedProps> {
-
     render(): React.ReactNode {
+        console.log('feed item render');
         const {feed} = this.props;
         return (
             <div className={"article-preview"}>

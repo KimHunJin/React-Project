@@ -72,7 +72,7 @@ class EditorStore {
         };
 
         APIConn.getInstance().putUpdateArticle(slug, article).then(res => {
-            console.log(res);
+
         })
     }
 }

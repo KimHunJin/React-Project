@@ -8,9 +8,8 @@ interface Props {
 export class ArticleBody extends React.Component<Props> {
 
     render() {
-        console.log(this.props.store.tagList.forEach(v => {
-            console.log(v);
-        }));
+        console.log('article body render');
+
         return (
             <div className={"row article-content"}>
                 <div className={"col-xs-12"}>

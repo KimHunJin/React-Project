@@ -17,6 +17,7 @@ export class Tags extends React.Component<Props> {
 
 
     componentDidMount(): void {
+        console.log('tags component did mount')
         const store = this.props.tagStore;
 
         APIConn.getInstance().getTags().then(res => {
@@ -33,7 +34,8 @@ export class Tags extends React.Component<Props> {
         store.feedCurrentToggle = tag;
         store.feedCurrentPage = 0;
         store.currentFeed = FEEDS.TAG;
-        store.fetchArticleData(null, null, tag);
+        store.tag = tag;
+        store.fetchArticleData();
     }
 
     makeTagList() {
@@ -49,6 +51,7 @@ export class Tags extends React.Component<Props> {
     }
 
     render() {
+        console.log('tag render')
         return (
 
             <div className={"sidebar"}>

@@ -58,9 +58,9 @@ export const GET_PROFILE = "/profiles/:username" // GET
  */
 
 
-export const FALLOW_USER = "/profiles/:username/follow" // POST
+export const ADD_FOLLOW = "/profiles/:username/follow" // POST
 
-export const UNFLOW_USER = "/profiles/:username/follow" // DELETE
+export const DELETE_FOLLOW = "/profiles/:username/follow" // DELETE
 
 export const GET_ARTICLES = "/articles" // GET
 /**

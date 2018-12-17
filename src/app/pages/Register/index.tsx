@@ -5,6 +5,7 @@ import registerStore from "app/stores/RegistStore";
 export class RegisterPage extends React.Component{
 
     render() {
+        console.log('register page render')
         return (
             <div className={"auth-page"}>
                 <div className={"container page"}>

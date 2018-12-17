@@ -1,13 +1,20 @@
 import {HttpService} from "./axios";
 import {
     ADD_COMMENT,
-    CREATE_ARTICLE, DELETE_ARTICLE, DELETE_COMMENT,
+    ADD_FOLLOW,
+    CREATE_ARTICLE,
+    DELETE_ARTICLE,
+    DELETE_COMMENT,
+    DELETE_FOLLOW,
     FAVORITE_ARTICLE,
-    GET_ARTICLES, GET_COMMENT,
+    GET_ARTICLES,
+    GET_COMMENT, GET_CURRENT_USER,
+    GET_PROFILE,
     GET_TAG,
     LOGIN_URI,
     REGIST_URI,
-    UNFAVORITE_ARTICLE, UPDATE_ARTICLE
+    UNFAVORITE_ARTICLE,
+    UPDATE_ARTICLE, UPDATE_USER
 } from "app/constants";
 import feedStore from "app/stores/FeedStore";
 import {FEEDS} from "app/constants/Feed";
@@ -29,44 +36,47 @@ export default class APIConn extends HttpService {
         });
     }
 
+    getCurrentUser(header?: any): any {
+        return this.client.get(GET_CURRENT_USER, null, header).then(res => {
+            return res;
+        });
+    }
+
     getArticles(offset: number = 0, name?: string, tag?: string, header?: any): any {
 
         let url = GET_ARTICLES;
+        console.log('get article');
+        console.log(feedStore.currentFeed);
         switch (feedStore.currentFeed) {
             case FEEDS.GLOBAL : {
-                url += `?&offset=${offset}`;
-                url += "&limit=10";
+                url = `${url}?&offset=${offset}&limit=10`;
                 break;
             }
             case FEEDS.YOUR_FEED : {
-                url += `/feed?&offset=${offset}`;
-                url += "&limit=10";
+                url = `${url}/feed?&offset=${offset}&limit=10`;
                 break;
             }
             case FEEDS.TAG: {
-                url += `?&offset=${offset}&tag=${tag}`;
-                url += "&limit=10";
+                url = `${url}?&offset=${offset}&tag=${tag}&limit=10`;
                 break;
             }
             case FEEDS.FAVORITED: {
-                url += `?$offset=${offset}&favorited=${name}`;
-                url += "&limit=10";
+                url = `${url}?$offset=${offset}&favorited=${name}&limit=5`;
                 break;
             }
             case FEEDS.MY_ARTICLE: {
-                url += `?$offset=${offset}&author=${name}`;
-                url += "&limit=10";
+                url = `${url}?$offset=${offset}&author=${name}&limit=5`;
                 break;
             }
         }
-        return this.client.get(url, null, header).then(result => {
-            return result
+        return this.client.get(url, null, header).then(res => {
+            return res;
         })
     }
 
     getTags(): any {
-        return this.client.get(GET_TAG).then(result => {
-            return result
+        return this.client.get(GET_TAG).then(res => {
+            return res;
         })
     }
 
@@ -74,9 +84,16 @@ export default class APIConn extends HttpService {
 
         const url = GET_COMMENT.replace(":slug", slug);
 
-        return this.client.get(url, null, header).then(result => {
-            return result;
+        return this.client.get(url, null, header).then(res => {
+            return res;
         })
+    }
+
+    getProfile(username: string, header?: any): any {
+        const url = GET_PROFILE.replace(":username", username);
+        return this.client.get(url, null, header).then(res => {
+            return res;
+        });
     }
 
     postLogin(user: any) {
@@ -114,9 +131,20 @@ export default class APIConn extends HttpService {
         })
     }
 
+    addFollow(auth, username): any {
+        const uri = ADD_FOLLOW.replace(':username', username);
+        return this.client.post(uri, null, auth).then(res => {
+            return res;
+        })
+    }
+
     putUpdateArticle(slug, data): any {
         const url = UPDATE_ARTICLE.replace(':slug', slug);
         return this.client.put(url, data, null, true);
+    }
+
+    putUpdateUser(data) : any {
+        return this.client.put(UPDATE_USER, data, null, true);
     }
 
 
@@ -136,8 +164,15 @@ export default class APIConn extends HttpService {
 
     deleteComment(auth, feedSlug, commentId) {
         let uri = DELETE_COMMENT.replace(':slug', feedSlug);
-        uri = uri.replace(':id',commentId);
-        return this.client.delete(uri,null,auth).then(res => {
+        uri = uri.replace(':id', commentId);
+        return this.client.delete(uri, null, auth).then(res => {
+            return res;
+        })
+    }
+
+    deleteFollow(auth, username) {
+        const uri = DELETE_FOLLOW.replace(':username', username);
+        return this.client.delete(uri, null, auth).then(res => {
             return res;
         })
     }

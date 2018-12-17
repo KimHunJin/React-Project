@@ -25,6 +25,7 @@ export class ArticleBanner extends React.Component<Props> {
 
 
     render() {
+        console.log('article banner render');
         return (
             <div className={"banner"}>
                 <div className={"container"}>

@@ -8,6 +8,7 @@ import userStore from "app/stores/UserStore";
 export class EditorPage extends React.Component{
 
     componentDidMount() {
+        console.log('editor page component did mount')
         const store = editorStore;
         const {match}: any = this.props;
         store.slug = match.params.slug;
@@ -15,7 +16,6 @@ export class EditorPage extends React.Component{
             APIConn.getInstance().getArticle(match.params.slug, userStore.userModel ? true : null).then(
                 res => {
                     const data = res.data.article;
-                    console.log(data);
                     store.setTitle(data.title);
                     store.setBody(data.body);
                     store.setDescription(data.description);
@@ -28,6 +28,7 @@ export class EditorPage extends React.Component{
     }
 
     render(): React.ReactNode {
+        console.log('editor page render')
 
         const store = editorStore;
         return (

@@ -19,8 +19,8 @@ export class TopNavigation extends React.Component<Props> {
                 <ul className={"nav navbar-nav pull-xs-right"}>
                     <li className={"nav-item"}><Link to={'/'} className={"nav-link"}>Home</Link></li>
                     <li className={"nav-item"}><Link to={'/editor'} className={"nav-link"}><i className="ion-compose"/>&nbsp;New Post</Link></li>
-                    <li className={"nav-item"}><Link to={'/setting'} className={"nav-link"}><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
-                    <li className={"nav-item"}><Link to={`/@${this.props.auth.userModel.username}`} className={"nav-link"}>{this.props.auth.userModel.username}</Link></li>
+                    <li className={"nav-item"}><Link to={'/settings'} className={"nav-link"}><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
+                    <li className={"nav-item"}><Link to={`/${this.props.auth.userModel.username}`} className={"nav-link"}>{this.props.auth.userModel.username}</Link></li>
                 </ul>
             </div>
         )
@@ -42,6 +42,7 @@ export class TopNavigation extends React.Component<Props> {
 
 
     render(): React.ReactNode {
+        console.log('top navigation render')
         return (
             <nav className={"navbar navbar-light"}>
                 {this.props.auth.userModel ? this.caseLogin() : this.caseDefault()}
