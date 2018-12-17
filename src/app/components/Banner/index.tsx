@@ -5,6 +5,7 @@ import './style.less'
 
 export class Banner extends React.Component {
     render(): React.ReactNode {
+        console.log('banner render');
         return (
             <div className={"banner"}>
                 <div className={"container"}>

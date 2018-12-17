@@ -17,6 +17,7 @@ export class ArticleItemUser extends React.Component<Props> {
     };
 
     render() {
+        console.log('comment item user render')
         const originDate = new Date(this.props.store.createdAt);
         const date = DateUtil.changeDate(originDate);
         return (

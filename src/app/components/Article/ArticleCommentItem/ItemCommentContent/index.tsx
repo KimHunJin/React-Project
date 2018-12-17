@@ -8,6 +8,7 @@ interface Props {
 export class ArticleItemContent extends React.Component<Props> {
 
     render(): React.ReactNode {
+        console.log('comment item content render')
 
         return (
             <div className={"card-block"}>

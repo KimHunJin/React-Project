@@ -11,7 +11,7 @@ interface Props {
 @observer
 export class Footer extends React.Component<Props> {
     createList(count): any {
-        let list: any = [];
+        const list: any = [];
         const store = this.props.store;
         const currentFeedPage = store.feedCurrentPage;
 
@@ -34,10 +34,11 @@ export class Footer extends React.Component<Props> {
         event.preventDefault();
         this.props.store.feedCurrentPage = pageNumber;
         const offset = pageNumber * GET_PAGE_COUNT;
-        this.props.store.fetchArticleData(offset, this.props.store.feedAuthor, this.props.store.feedTag);
+        this.props.store.fetchArticleData(offset);
     }
 
     render() {
+        console.log('feed footer render');
         const store = this.props.store;
         const feedCount = store.feedCount / GET_PAGE_LIMIT;
 

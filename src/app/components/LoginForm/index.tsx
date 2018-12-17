@@ -22,11 +22,12 @@ export class LoginForm extends React.Component<Props> {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.store.submit();
+        this.props.store.loginSubmit();
         history.back();
     };
 
     render() {
+        console.log('login form render')
         return (
 
             <div className={"row"}>

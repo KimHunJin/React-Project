@@ -26,6 +26,7 @@ export class ArticleEditor extends React.Component<Props> {
     };
 
     render() {
+        console.log('article comment editor render');
         if(userStore.userModel) {
             return (
                 <form className={"card comment-form"}>

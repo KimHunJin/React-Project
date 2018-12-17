@@ -28,6 +28,7 @@ export class RegisterForm extends React.Component<Props> {
     };
 
     render() {
+        console.log('register form render')
         return (
             <div className={"row"}>
                 <div className={"col-md-6 offset-md-3 col-xs-12"}>

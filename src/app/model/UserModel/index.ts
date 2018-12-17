@@ -9,6 +9,7 @@ export class UserModel implements User {
     username: string;
 
     constructor(id, bio, email, image, token, username) {
+        this.id = id;
         this.bio = bio;
         this.email = email;
         this.image = image;

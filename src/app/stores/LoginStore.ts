@@ -9,7 +9,7 @@ class LoginStore {
     @observable email;
     @observable password;
 
-    submit(): void {
+    loginSubmit(): void {
 
         const user = {
             email: this.email,
@@ -22,7 +22,8 @@ class LoginStore {
                 feedStore.currentFeed = FEEDS.YOUR_FEED;
                 feedStore.feedAuthor = user.username;
                 feedStore.feedCurrentToggle = user.username;
-                feedStore.fetchArticleData(null, user.username, null)
+                feedStore.username = user.username;
+                feedStore.fetchArticleData();
             }
         )
     }

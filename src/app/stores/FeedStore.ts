@@ -18,14 +18,18 @@ class FeedStore {
 
     @observable currentFeed: FEEDS;
 
+    @observable param;
+    @observable username;
+    @observable tag;
+
     constructor(feedList: FeedModel[] = []) {
         this.feedList = feedList;
         this.feedCount = 0
     }
 
-    @action fetchArticleData(offset?: number, name?: string, tag?: string) {
+    @action fetchArticleData(offset?: number) {
 
-        APIConn.getInstance().getArticles(offset, name, tag, userStore.userModel ? true : null).then(res => {
+        APIConn.getInstance().getArticles(offset, this.username, this.tag, userStore.userModel ? true : null).then(res => {
             const data = res.data.articles;
             const feedModels = data.map(article => {
                 const title: string = article.title;

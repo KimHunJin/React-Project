@@ -7,6 +7,10 @@ class UserStore {
     @action fetchUser(userModel: UserModel) {
         this.userModel = userModel
     }
+
+    @action logout() {
+        this.userModel = null;
+    }
 }
 
 const userStore = new UserStore()
