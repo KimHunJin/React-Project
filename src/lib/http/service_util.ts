@@ -101,6 +101,9 @@ export default class APIConn extends HttpService {
     postLogin(user: any) {
         return this.client.post(LOGIN_URI, {user}).then(res => {
             return res;
+        }).catch(reason => {
+            console.log('post login');
+            console.log(reason.errors);
         })
     }
 
