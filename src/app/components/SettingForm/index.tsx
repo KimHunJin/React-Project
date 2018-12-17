@@ -1,70 +1,73 @@
 import * as React from 'react';
 import {observer} from "mobx-react";
-import settingStore, {SettingStore} from "app/stores/SettingStore";
+import {SettingStore} from "app/stores/SettingStore";
 import './style.less';
 
-@observer
-export class SettingForm extends React.Component {
+interface Props {
+    store: SettingStore;
+}
 
-    store: SettingStore = settingStore;
+@observer
+export class SettingForm extends React.Component<Props> {
 
     componentDidMount() {
-        this.store.fetchUser();
+        this.props.store.fetchUser();
     }
 
     handlerImageChange = (e) => {
-        e.preventDefault();
-        this.store.setImages(e.target.value);
+        this.props.store.image = e.target.value;
     };
 
     handlerNameChange = (e) => {
-        e.preventDefault();
-        this.store.setName(e.target.value);
+        this.props.store.username = e.target.value;
     };
 
     handlerBioChange = (e) => {
-        e.preventDefault();
-        this.store.setBio(e.target.value);
+        this.props.store.bio = e.target.value;
     };
 
     handlerEmailChange = (e) => {
-        e.preventDefault();
-        this.store.setEmail(e.target.value);
+        this.props.store.email = e.target.value;
     };
 
     handlerPasswordChange = (e) => {
-        e.preventDefault();
-        this.store.setPassword(e.target.value);
+        this.props.store.password = e.target.value;
     };
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.store.updateUser();
+        this.props.store.updateUser();
         history.back();
     };
 
 
     render() {
-        if(!this.store.userModel) {
+        if (!this.props.store.username) {
             return null;
         }
         return (
             <form onSubmit={this.onSubmit}>
                 <fieldset>
                     <fieldset className={'form-group'}>
-                        <input type={'text'} className={'form-control'} placeholder={'URL of profile picture'} value={this.store.getImage()} onChange={this.handlerImageChange}/>
+                        <input type={'text'} className={'form-control'} placeholder={'URL of profile picture'}
+                               value={this.props.store.image} onChange={this.handlerImageChange}/>
                     </fieldset>
                     <fieldset className={'form-group'}>
-                        <input type={'text'} className={'form-control form-control-lg'} placeholder={'Username'} value={this.store.getName()} onChange={this.handlerNameChange}/>
+                        <input type={'text'} className={'form-control form-control-lg'} placeholder={'Username'}
+                               value={this.props.store.username} onChange={this.handlerNameChange}/>
                     </fieldset>
                     <fieldset className={'form-group'}>
-                        <textarea rows={4} className={'form-control form-control-lg'} placeholder={'Short bio about you'} value={this.store.getBio()} onChange={this.handlerBioChange}/>
+                        <textarea rows={8} className={'form-control form-control-lg'}
+                                  placeholder={'Short bio about you'} value={this.props.store.bio}
+                                  onChange={this.handlerBioChange}/>
                     </fieldset>
                     <fieldset className={'form-group'}>
-                        <input type={'email'} className={'form-control form-control-lg'} placeholder={'Email'} value={this.store.getEmail()} onChange={this.handlerEmailChange}/>
+                        <input type={'email'} className={'form-control form-control-lg'} placeholder={'Email'}
+                               value={this.props.store.email} onChange={this.handlerEmailChange}/>
                     </fieldset>
                     <fieldset className={'form-group'}>
-                        <input type={'password'} className={'form-control form-control-lg'} placeholder={'New password'} value={this.store.getPassword()} onChange={this.handlerPasswordChange}/>
+                        <input type={'password'} className={'form-control form-control-lg'} placeholder={'New password'}
+                               value={this.props.store.password} onChange={this.handlerPasswordChange}/>
                     </fieldset>
                     <button className={'btn btn-lg btn-primary pull-xs-right'} type={'submit'}>Update Settings</button>
                 </fieldset>
