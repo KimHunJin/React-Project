@@ -18,7 +18,7 @@ class ProfileStore {
     @action follow(username) {
         if(userStore.userModel){
             APIConn.getInstance().postAddFollow(true, username).then(res => {
-                this.profileSetting(res.data);
+                this.profileSetting(res.data.profile);
             })
         }
     }
@@ -26,7 +26,7 @@ class ProfileStore {
     @action unFollow(username) {
         if(userStore.userModel) {
             APIConn.getInstance().deleteFollow(true, username).then(res => {
-                this.profileSetting(res.data);
+                this.profileSetting(res.data.profile);
             })
         }
     }
