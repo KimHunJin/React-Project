@@ -51,6 +51,7 @@ class FeedStore {
             });
             this.feedCount = res.data.articlesCount;
             this.feedList = feedModels;
+            console.log('feed count is : ',this.feedCount);
         })
     }
 

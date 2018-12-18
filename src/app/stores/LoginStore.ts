@@ -17,7 +17,7 @@ class LoginStore {
         };
 
         APIConn.getInstance().postLogin(user).then(res => {
-                console.log('login',res);
+                console.log('login', res);
                 const user = res.data.user;
                 userStore.fetchUser(new UserModel(user.id, user.bio, user.email, user.image, user.token, user.username));
                 feedStore.currentFeed = FEEDS.YOUR_FEED;

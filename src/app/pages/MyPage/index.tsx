@@ -15,10 +15,10 @@ export class MyPage extends React.Component {
         const {match}: any = this.props;
         profileStore.username = match.params.username;
         feedStore.currentFeed = FEEDS.MY_ARTICLE;
-        profileStore.getProfile(profileStore);
+        profileStore.getProfile(profileStore.username);
 
         feedStore.feedCount = 0;
-        feedStore.param = match.params;
+        feedStore.param = match.params.username;
         feedStore.username = profileStore.username;
         feedStore.fetchArticleData();
     }
