@@ -3,7 +3,7 @@ import {FeedModel} from "app/model/FeedModel";
 import userStore from "app/stores/UserStore";
 import {Link} from "react-router-dom";
 import './style.less';
-import DateUtil from "../../../../lib/date/ChangeDate";
+import DateUtil from "../../../../lib/date/DateUtils";
 import {observer} from "mobx-react";
 import APIConn from "../../../../lib/http/service_util";
 import {OK} from "app/constants/Code";

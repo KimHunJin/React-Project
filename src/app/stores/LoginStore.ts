@@ -26,7 +26,9 @@ class LoginStore {
                 feedStore.username = user.username;
                 feedStore.fetchArticleData();
             }
-        )
+        ).catch(err => {
+            console.log(err.response.data.errors);
+        })
     }
 
     @action setEmail(email) {

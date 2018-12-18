@@ -1,7 +1,7 @@
 import {action, observable} from "mobx";
 import {FeedModel} from "app/model/FeedModel/";
 import APIConn from "../../lib/http/service_util";
-import ChangeDate from "../../lib/date/ChangeDate";
+import ChangeDate from "../../lib/date/DateUtils";
 import {TagModel} from "app/model/TagModel";
 import {FEEDS} from "app/constants/Feed";
 import {AuthModel} from "app/model/AuthorModel";
