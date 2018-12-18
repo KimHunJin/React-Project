@@ -10,14 +10,14 @@ class ProfileStore {
     @observable following;
 
     @action getProfile(username) {
-        APIConn.getInstance().getProfile(username, userStore.userModel ? true : null).then(res => {
+        APIConn.getInstance().getProfile(username).then(res => {
             this.profileSetting(res.data.profile);
         });
     }
 
     @action follow(username) {
         if(userStore.userModel){
-            APIConn.getInstance().postAddFollow(true, username).then(res => {
+            APIConn.getInstance().postAddFollow(username).then(res => {
                 this.profileSetting(res.data.profile);
             })
         }
@@ -25,7 +25,7 @@ class ProfileStore {
 
     @action unFollow(username) {
         if(userStore.userModel) {
-            APIConn.getInstance().deleteFollow(true, username).then(res => {
+            APIConn.getInstance().deleteFollow(username).then(res => {
                 this.profileSetting(res.data.profile);
             })
         }

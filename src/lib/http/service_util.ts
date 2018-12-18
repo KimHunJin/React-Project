@@ -20,6 +20,10 @@ import {
 } from "app/constants";
 import feedStore from "app/stores/FeedStore";
 import {FEEDS} from "app/constants/Feed";
+import {AxiosPromise} from "axios";
+import {FeedModel} from "app/model/FeedModel";
+import {UserModel} from "app/model/UserModel";
+import {CommentModel} from "app/model/CommentModel";
 
 export default class APIConn extends HttpService {
     static instance: APIConn = null;
@@ -31,20 +35,16 @@ export default class APIConn extends HttpService {
         return this.instance;
     }
 
-    getArticle(slug: string, header?: any): any {
+    getArticle(slug: string): AxiosPromise<{ article: FeedModel }> {
         const url = `${GET_ARTICLES}/${slug}`;
-        return this.client.get(url, null, header).then(res => {
-            return res;
-        });
+        return this.client.get(url, null);
     }
 
-    getCurrentUser(header?: any): any {
-        return this.client.get(GET_CURRENT_USER, null, header).then(res => {
-            return res;
-        });
+    getCurrentUser(): AxiosPromise<{ user: UserModel }> {
+        return this.client.get(GET_CURRENT_USER, null);
     }
 
-    getArticles(offset: number = 0, name?: string, tag?: string, header?: any): any {
+    getArticles(offset: number = 0, name?: string, tag?: string): AxiosPromise {
 
         let url = GET_ARTICLES;
         console.log('get article');
@@ -71,110 +71,81 @@ export default class APIConn extends HttpService {
                 break;
             }
         }
-        return this.client.get(url, null, header).then(res => {
-            return res;
-        })
+        return this.client.get(url, null);
     }
 
-    getTags(): any {
-        return this.client.get(GET_TAG).then(res => {
-            return res;
-        })
+    getTags(): AxiosPromise<{ tags: string[] }> {
+        return this.client.get(GET_TAG);
     }
 
-    getComment(slug: string, header?: any): any {
+    getComment(slug: string): AxiosPromise<{ comments: CommentModel[] }> {
 
         const url = GET_COMMENT.replace(":slug", slug);
 
-        return this.client.get(url, null, header).then(res => {
-            return res;
-        })
+        return this.client.get(url, null);
     }
 
-    getProfile(username: string, header?: any): any {
+    getProfile(username: string): AxiosPromise {
         const url = GET_PROFILE.replace(":username", username);
-        return this.client.get(url, null, header).then(res => {
-            return res;
-        });
+        return this.client.get(url, null);
     }
 
-    postLogin(user: any) {
-        return this.client.post(LOGIN_URI, {user}).then(res => {
-            return res;
-        })
+    postLogin(user: any): AxiosPromise {
+        return this.client.post(LOGIN_URI, {user});
     }
 
-    postRegister(user: any) {
-        return this.client.post(REGIST_URI, {user}).then(res => {
-            return res;
-        })
+    postRegister(user: any): AxiosPromise {
+        return this.client.post(REGIST_URI, {user});
     }
 
-    postFavoriteArticle(auth, feedSlug): any {
+    postFavoriteArticle(feedSlug): AxiosPromise {
         const uri = FAVORITE_ARTICLE.replace(':slug', feedSlug);
-
-        return this.client.post(uri, null, null, auth).then(res => {
-            return res
-        })
+        return this.client.post(uri, null, null);
     }
 
-    postCreateArticle(auth, data): any {
-        return this.client.post(CREATE_ARTICLE, data, null, auth).then(res => {
-            return res;
-        })
+    postCreateArticle(data): AxiosPromise {
+        return this.client.post(CREATE_ARTICLE, data, null);
     }
 
-    postAddComment(auth, slug, data): any {
+    postAddComment(slug, data): AxiosPromise {
         const uri = ADD_COMMENT.replace(':slug', slug);
-        return this.client.post(uri, data, null, auth).then(res => {
-            return res;
-        })
+        return this.client.post(uri, data, null);
     }
 
-    postAddFollow(auth, username): any {
+    postAddFollow(username): AxiosPromise {
         const uri = ADD_FOLLOW.replace(':username', username);
         console.log(uri);
-        return this.client.post(uri, null, null, auth).then(res => {
-            return res;
-        })
+        return this.client.post(uri, null, null);
     }
 
-    putUpdateArticle(slug, data): any {
+    putUpdateArticle(slug, data): AxiosPromise {
         const url = UPDATE_ARTICLE.replace(':slug', slug);
-        return this.client.put(url, data, null, true);
+        return this.client.put(url, data, null);
     }
 
-    putUpdateUser(data): any {
-        return this.client.put(UPDATE_USER, data, null, true);
+    putUpdateUser(data): AxiosPromise {
+        return this.client.put(UPDATE_USER, data, null);
     }
 
 
-    deleteUnFavoriteArticle(auth, feedSlug): any {
+    deleteUnFavoriteArticle(feedSlug): AxiosPromise {
         const uri = UNFAVORITE_ARTICLE.replace(':slug', feedSlug);
-        return this.client.delete(uri, null, auth).then((res => {
-            return res
-        }))
+        return this.client.delete(uri, null);
     }
 
-    deleteArticle(auth, feedSlug): any {
+    deleteArticle(feedSlug): AxiosPromise {
         const uri = DELETE_ARTICLE.replace(':slug', feedSlug);
-        return this.client.delete(uri, null, auth).then(res => {
-            return res;
-        })
+        return this.client.delete(uri, null);
     }
 
-    deleteComment(auth, feedSlug, commentId) {
+    deleteComment(feedSlug, commentId): AxiosPromise {
         let uri = DELETE_COMMENT.replace(':slug', feedSlug);
         uri = uri.replace(':id', commentId);
-        return this.client.delete(uri, null, auth).then(res => {
-            return res;
-        })
+        return this.client.delete(uri, null);
     }
 
-    deleteFollow(auth, username) {
+    deleteFollow(username) {
         const uri = DELETE_FOLLOW.replace(':username', username);
-        return this.client.delete(uri, null, auth).then(res => {
-            return res;
-        })
+        return this.client.delete(uri, null);
     }
 }

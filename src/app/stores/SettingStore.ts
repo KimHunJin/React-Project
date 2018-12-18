@@ -12,7 +12,7 @@ class SettingStore {
 
     @action fetchUser() {
         if (userStore.userModel) {
-            APIConn.getInstance().getCurrentUser(true).then(res => {
+            APIConn.getInstance().getCurrentUser().then(res => {
                 const data = res.data.user;
                 console.log(data);
                 this.bio = data.bio;

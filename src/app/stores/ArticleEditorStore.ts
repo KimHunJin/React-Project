@@ -56,7 +56,7 @@ class EditorStore {
             }
         };
 
-        APIConn.getInstance().postCreateArticle(true, article).then(res => {
+        APIConn.getInstance().postCreateArticle(article).then(res => {
             
         })
     }
