@@ -2,10 +2,9 @@ import * as React from 'react'
 import editorStore from "app/stores/ArticleEditorStore";
 import {EditorForm} from "app/components/EditorForm";
 import APIConn from "../../../lib/http/service_util";
-import userStore from "app/stores/UserStore";
 
 
-export class EditorPage extends React.Component{
+export class EditorPage extends React.Component {
 
     componentDidMount() {
         console.log('editor page component did mount')
@@ -13,7 +12,7 @@ export class EditorPage extends React.Component{
         const {match}: any = this.props;
         store.slug = match.params.slug;
         if (match.params.slug) {
-            APIConn.getInstance().getArticle(match.params.slug, userStore.userModel ? true : null).then(
+            APIConn.getInstance().getArticle(match.params.slug).then(
                 res => {
                     const data = res.data.article;
                     store.setTitle(data.title);

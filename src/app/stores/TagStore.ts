@@ -2,7 +2,7 @@ import {observable} from "mobx";
 import {TagModel} from "app/model/TagModel/index";
 
 class TagStore {
-    @observable tagModels : TagModel[] = []
+    @observable tagModels: TagModel[] = []
 }
 
 const tagStore = new TagStore();

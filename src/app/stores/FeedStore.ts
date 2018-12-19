@@ -1,9 +1,8 @@
 import {action, observable} from "mobx";
 import {FeedModel} from "app/model/FeedModel/";
 import APIConn from "../../lib/http/service_util";
-import ChangeDate from "../../lib/date/ChangeDate";
+import ChangeDate from "../../lib/date/DateUtils";
 import {TagModel} from "app/model/TagModel";
-import userStore from "app/stores/UserStore";
 import {FEEDS} from "app/constants/Feed";
 import {AuthModel} from "app/model/AuthorModel";
 
@@ -29,13 +28,13 @@ class FeedStore {
 
     @action fetchArticleData(offset?: number) {
 
-        APIConn.getInstance().getArticles(offset, this.username, this.tag, userStore.userModel ? true : null).then(res => {
+        APIConn.getInstance().getArticles(offset, this.username, this.tag).then(res => {
             const data = res.data.articles;
             const feedModels = data.map(article => {
                 const title: string = article.title;
                 const body: string = article.body;
                 const tagList = article.tagList.map(tag => {
-                    return new TagModel(tag)
+                    return new TagModel(tag.tag)
                 });
                 const createdAt: string = article.createdAt;
                 const feedDate = new Date(createdAt);
@@ -51,6 +50,7 @@ class FeedStore {
             });
             this.feedCount = res.data.articlesCount;
             this.feedList = feedModels;
+            console.log('feed count is : ',this.feedCount);
         })
     }
 

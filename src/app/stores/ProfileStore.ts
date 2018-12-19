@@ -10,23 +10,23 @@ class ProfileStore {
     @observable following;
 
     @action getProfile(username) {
-        APIConn.getInstance().getProfile(username, userStore.userModel ? true : null).then(res => {
+        APIConn.getInstance().getProfile(username).then(res => {
             this.profileSetting(res.data.profile);
         });
     }
 
     @action follow(username) {
         if(userStore.userModel){
-            APIConn.getInstance().addFollow(true, username).then(res => {
-                this.profileSetting(res.data);
+            APIConn.getInstance().postAddFollow(username).then(res => {
+                this.profileSetting(res.data.profile);
             })
         }
     }
 
     @action unFollow(username) {
         if(userStore.userModel) {
-            APIConn.getInstance().deleteFollow(true, username).then(res => {
-                this.profileSetting(res.data);
+            APIConn.getInstance().deleteFollow(username).then(res => {
+                this.profileSetting(res.data.profile);
             })
         }
     }
@@ -36,6 +36,8 @@ class ProfileStore {
         this.image = data.image;
         this.bio = data.bio;
         this.following = data.following;
+
+        console.log('user ',this.username, ' image ', this.image, ' bio ', this.bio , ' following ' , this.following);
     }
 }
 

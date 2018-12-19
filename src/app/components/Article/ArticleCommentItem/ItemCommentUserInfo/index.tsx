@@ -2,7 +2,7 @@ import * as React from 'react';
 import {CommentModel} from "app/model/CommentModel";
 import {Link} from "react-router-dom";
 import './style.less';
-import DateUtil from "../../../../../lib/date/ChangeDate";
+import DateUtil from "../../../../../lib/date/DateUtils";
 import userStore from "app/stores/UserStore";
 import commentStore from "app/stores/CommentStore";
 

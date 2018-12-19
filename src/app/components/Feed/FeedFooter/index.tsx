@@ -2,7 +2,7 @@ import * as React from 'react'
 import {FeedStore} from "app/stores/FeedStore";
 import {observer} from "mobx-react";
 import './style.less'
-import {GET_PAGE_COUNT, GET_PAGE_LIMIT} from "app/constants/Feed";
+import {FEEDS, GET_PAGE_COUNT, GET_PAGE_LIMIT} from "app/constants/Feed";
 
 interface Props {
     store: FeedStore,
@@ -10,6 +10,11 @@ interface Props {
 
 @observer
 export class Footer extends React.Component<Props> {
+
+    componentDidMount() {
+
+    }
+
     createList(count): any {
         const list: any = [];
         const store = this.props.store;
@@ -33,14 +38,26 @@ export class Footer extends React.Component<Props> {
     pageEventHandle(pageNumber: number) {
         event.preventDefault();
         this.props.store.feedCurrentPage = pageNumber;
-        const offset = pageNumber * GET_PAGE_COUNT;
+        const offset = (
+            this.props.store.currentFeed == FEEDS.GLOBAL ||
+            this.props.store.currentFeed == FEEDS.TAG ||
+            this.props.store.currentFeed == FEEDS.YOUR_FEED) ?
+            pageNumber * GET_PAGE_COUNT :
+            pageNumber * 5;
+
         this.props.store.fetchArticleData(offset);
     }
 
     render() {
         console.log('feed footer render');
         const store = this.props.store;
-        const feedCount = store.feedCount / GET_PAGE_LIMIT;
+
+        const feedCount = (
+            this.props.store.currentFeed == FEEDS.GLOBAL ||
+            this.props.store.currentFeed == FEEDS.TAG ||
+            this.props.store.currentFeed == FEEDS.YOUR_FEED) ?
+            store.feedCount / GET_PAGE_LIMIT :
+            store.feedCount / 5;
 
         return (
             <nav>

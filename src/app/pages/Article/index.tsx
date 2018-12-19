@@ -7,7 +7,6 @@ import {observer} from "mobx-react";
 import {ArticleEditor} from "app/components/Article/ArticleCommentEditor";
 import {FeedModel} from "app/model/FeedModel";
 import APIConn from "../../../lib/http/service_util";
-import userStore from "app/stores/UserStore";
 import {observable} from "mobx";
 import './style.less';
 
@@ -22,7 +21,7 @@ export class ArticleDetailPage extends React.Component {
 
         commentStore.slug = match.params.slug;
 
-        APIConn.getInstance().getArticle(match.params.slug, userStore.userModel ? true : null).then(
+        APIConn.getInstance().getArticle(match.params.slug).then(
             res => {
                 const data = res.data.article;
                 this.feed = new FeedModel(
@@ -54,7 +53,7 @@ export class ArticleDetailPage extends React.Component {
                 <ArticleBanner store={this.feed}/>
                 <div className={"container page"}>
                     <ArticleBody store={this.feed}/>
-                    <hr />
+                    <hr/>
                     <div className={"article-actions"}/>
                     <div className={"row"}>
                         <div className={"col-xs-12 col-md-8 offset-md-2"}>
