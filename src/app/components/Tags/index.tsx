@@ -21,10 +21,8 @@ export class Tags extends React.Component<Props> {
         const store = this.props.tagStore;
 
         APIConn.getInstance().getTags().then(res => {
-            store.tagModels = res.data.tags.map(tag => {
-                return new TagModel(tag)
-            })
-        })
+            store.tagModels = res.data.tags.map(tag => new TagModel(tag));
+        });
     }
 
     tagHandleEvent(tag: string) {

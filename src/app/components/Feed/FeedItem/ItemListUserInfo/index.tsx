@@ -17,15 +17,15 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
 
     handlerFeedLike(feed: FeedModel) {
         if (userStore.userModel) {
-            if (feed.favorited == false) {
-                APIConn.getInstance().postFavoriteArticle(true, feed.slug).then(res => {
+            if (!feed.favorited) {
+                APIConn.getInstance().postFavoriteArticle(feed.slug).then(res => {
                     if (res.status == OK) {
                         feed.favorited = true;
                         feedStore.fetchArticleData()
                     }
                 })
             } else {
-                APIConn.getInstance().deleteUnFavoriteArticle(true, feed.slug).then(res => {
+                APIConn.getInstance().deleteUnFavoriteArticle(feed.slug).then(res => {
                     if (res.status == OK) {
                         feed.favorited = false;
                         feedStore.fetchArticleData()
@@ -50,7 +50,7 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
                 </Link>
                 <div className={"info"}>
                     <Link className={"author"} to={`/${feed.author.username}`}>{feed.author.username}</Link>
-                    <span className={"date"}>{feed.createAt}</span>
+                    <span className={"date"}>{feed.createdAt}</span>
                 </div>
                 <div className={"pull-xs-right"}>
                     <button className={feed.favorited ? "btn btn-sm btn-primary" : "btn btn-sm btn-outline-primary"}

@@ -21,7 +21,7 @@ export class MainPage extends React.Component<Props> {
         console.log('main page component did mount')
         feedStore.currentFeed = this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
         feedStore.param = null;
-        // feedStore.fetchArticleData();
+        feedStore.fetchArticleData();
     }
 
     render() {

@@ -2,6 +2,7 @@ import * as React from 'react'
 import {Link} from "react-router-dom";
 import {RegisterStore} from 'app/stores/RegistStore'
 import {observer} from "mobx-react";
+import {OK} from "app/constants/Code";
 
 interface Props {
     store: RegisterStore;
@@ -24,7 +25,12 @@ export class RegisterForm extends React.Component<Props> {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.store.submit();
+        this.props.store.submit().then(res=>{
+            if(res === OK) {
+                history.back();
+                return;
+            }
+        });
     };
 
     render() {

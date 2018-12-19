@@ -16,7 +16,7 @@ class CommentEditorStore {
             }
         };
 
-        APIConn.getInstance().postAddComment(true, slug, comment).then(res => {
+        APIConn.getInstance().postAddComment(slug, comment).then(res => {
             commentStore.getComment(slug);
         })
     }

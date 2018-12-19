@@ -16,7 +16,7 @@ export class FeedToggle extends React.Component<Props> {
     componentDidMount(): void {
         console.log('feed toggle component did mount');
         this.props.store.currentFeed = this.props.store.param? FEEDS.MY_ARTICLE : this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
-        this.props.store.fetchArticleData();
+        // this.props.store.fetchArticleData(); // 얘를 하지 않으면 실행이 초기 화면에서 피드 리스트가 나오지 않음.
     }
 
     authorFeed(): any {
@@ -60,8 +60,8 @@ export class FeedToggle extends React.Component<Props> {
         const store = this.props.store;
         return (
             <li className={"nav-item"}>
-                {store.currentFeed == FEEDS.GLOBAL  ?
-                    <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a> :
+                {store.currentFeed == FEEDS.MY_ARTICLE  ?
+                    <a href={""} onClick={this.nonEvent} className={"nav-link active"}>My Articles</a> :
                     <a href={""} onClick={() => this.eventChangeTagMyArticle()} className={"nav-link"}>My Articles</a>
                 }
             </li>
@@ -72,9 +72,10 @@ export class FeedToggle extends React.Component<Props> {
         const store = this.props.store;
         return (
             <li className={"nav-item"}>
-                {store.currentFeed == FEEDS.GLOBAL  ?
-                    <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Global Feed</a> :
-                    <a href={""} onClick={() => this.eventChangeTagFavoritedArticle()} className={"nav-link"}>Favorited Articles</a>
+                {store.currentFeed == FEEDS.FAVORITED  ?
+                    <a href={""} onClick={this.nonEvent} className={"nav-link active"}>Favorited Articles</a> :
+                    <a href={""} onClick={() => this.eventChangeTagFavoritedArticle()} className={"nav-link"}>Favorited
+                        Articles</a>
                 }
             </li>
         )

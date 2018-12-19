@@ -13,13 +13,13 @@ export class MyPage extends React.Component {
     componentDidMount() {
         console.log('my page component did mount')
         const {match}: any = this.props;
-        const username = match.params.username;
+        profileStore.username = match.params.username;
         feedStore.currentFeed = FEEDS.MY_ARTICLE;
-        profileStore.getProfile(username);
+        profileStore.getProfile(profileStore.username);
 
         feedStore.feedCount = 0;
-        feedStore.param = username;
-        feedStore.username = username;
+        feedStore.param = match.params.username;
+        feedStore.username = profileStore.username;
         feedStore.fetchArticleData();
     }
 
