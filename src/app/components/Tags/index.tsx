@@ -2,7 +2,6 @@ import * as React from 'react'
 import {TagStore} from "app/stores/TagStore";
 import APIConn from "../../../lib/http/service_util";
 import {observer} from "mobx-react";
-import './style.less'
 import {FeedStore} from "app/stores/FeedStore";
 import {TagModel} from "app/model/TagModel/index";
 import {FEEDS} from "app/constants/Feed";
@@ -38,10 +37,10 @@ export class Tags extends React.Component<Props> {
 
     makeTagList() {
         const store = this.props.tagStore;
-        return <div className={"tag-list"}>
+        return <div>
             {store.tagModels.map(tag => (
                 <a href={""} onClick={() => this.tagHandleEvent(tag.tag)} key={tag.id}
-                   className={"tag-default tag-pill"}>
+                  >
                     {tag.tag}
                 </a>
             ))}
@@ -52,7 +51,7 @@ export class Tags extends React.Component<Props> {
         console.log('tag render')
         return (
 
-            <div className={"sidebar"}>
+            <div >
                 <p>Popular Tags</p>
                 {this.makeTagList()}
             </div>

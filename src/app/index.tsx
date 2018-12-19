@@ -1,4 +1,3 @@
-import './style.less'
 import * as React from 'react';
 import {Component} from 'react';
 import {MainPage} from "app/pages/Main";
@@ -22,7 +21,7 @@ export class App extends Component {
 
         return (
             <Router history={history}>
-                <div data-reactroot>
+                <div>
                     <TopNavigation auth={userStore}/>
 
                     <Switch>

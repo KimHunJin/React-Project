@@ -1,5 +1,4 @@
 import * as React from 'react'
-import './style.less'
 import {Link} from 'react-router-dom'
 import {UserStore} from "app/stores/UserStore";
 import {observer} from 'mobx-react';
@@ -14,13 +13,13 @@ export class TopNavigation extends React.Component<Props> {
 
     caseLogin() {
         return (
-            <div className={"container"}>
-                <Link to={'/'} className={"navbar-brand"}>React</Link>
-                <ul className={"nav navbar-nav pull-xs-right"}>
-                    <li className={"nav-item"}><Link to={'/'} className={"nav-link"}>Home</Link></li>
-                    <li className={"nav-item"}><Link to={'/editor'} className={"nav-link"}><i className="ion-compose"/>&nbsp;New Post</Link></li>
-                    <li className={"nav-item"}><Link to={'/settings'} className={"nav-link"}><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
-                    <li className={"nav-item"}><Link to={`/${this.props.auth.userModel.username}`} className={"nav-link"}>{this.props.auth.userModel.username}</Link></li>
+            <div >
+                <Link to={'/'} >React</Link>
+                <ul >
+                    <li ><Link to={'/'} >Home</Link></li>
+                    <li ><Link to={'/editor'} ><i className="ion-compose"/>&nbsp;New Post</Link></li>
+                    <li ><Link to={'/settings'} ><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
+                    <li ><Link to={`/${this.props.auth.userModel.username}`}>{this.props.auth.userModel.username}</Link></li>
                 </ul>
             </div>
         )
@@ -29,12 +28,12 @@ export class TopNavigation extends React.Component<Props> {
     caseDefault() {
 
         return (
-            <div className={"container"}>
-                <Link to={'/'} className={"navbar-brand"}>React</Link>
-                <ul className={"nav navbar-nav pull-xs-right"}>
-                    <li className={"nav-item"}><Link to={'/'} className={"nav-link"}>Home</Link></li>
-                    <li className={"nav-item"}><Link to={'/login'} className={"nav-link"}>Sign in</Link></li>
-                    <li className={"nav-item"}><Link to={'/register'} className={"nav-link"}>Sign up</Link></li>
+            <div >
+                <Link to={'/'}>React</Link>
+                <ul >
+                    <li ><Link to={'/'} >Home</Link></li>
+                    <li ><Link to={'/login'} >Sign in</Link></li>
+                    <li><Link to={'/register'}>Sign up</Link></li>
                 </ul>
             </div>
         )
@@ -44,7 +43,7 @@ export class TopNavigation extends React.Component<Props> {
     render(): React.ReactNode {
         console.log('top navigation render')
         return (
-            <nav className={"navbar navbar-light"}>
+            <nav >
                 {this.props.auth.userModel ? this.caseLogin() : this.caseDefault()}
             </nav>
         )

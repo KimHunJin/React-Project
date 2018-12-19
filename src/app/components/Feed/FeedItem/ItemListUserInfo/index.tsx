@@ -1,5 +1,4 @@
 import * as React from 'react'
-import './style.less'
 import {FeedModel} from "app/model/FeedModel/index";
 import {observer} from "mobx-react";
 import userStore from "app/stores/UserStore";
@@ -41,19 +40,19 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
         console.log('feed item user render');
         const {feed} = this.props;
         return (
-            <div className={"article-meta"}>
+            <div >
                 <Link to={`/${feed.author.username}`}>
                     {feed.author.image ?
                         <img src={feed.author.image} alt={""}/> :
                         <img alt={""}/>
                     }
                 </Link>
-                <div className={"info"}>
-                    <Link className={"author"} to={`/${feed.author.username}`}>{feed.author.username}</Link>
-                    <span className={"date"}>{feed.createdAt}</span>
+                <div >
+                    <Link to={`/${feed.author.username}`}>{feed.author.username}</Link>
+                    <span>{feed.createdAt}</span>
                 </div>
-                <div className={"pull-xs-right"}>
-                    <button className={feed.favorited ? "btn btn-sm btn-primary" : "btn btn-sm btn-outline-primary"}
+                <div>
+                    <button
                             onClick={() => this.handlerFeedLike(feed)}>
                         <i className={"ion-heart"}>
                             {feed.favoritesCount}

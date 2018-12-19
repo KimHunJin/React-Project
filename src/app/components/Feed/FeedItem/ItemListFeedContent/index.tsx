@@ -1,6 +1,5 @@
 import * as React from "react";
 import {FeedModel} from "app/model/FeedModel/index";
-import './style.less'
 import {observer} from "mobx-react";
 import {Link} from "react-router-dom";
 
@@ -19,13 +18,13 @@ export class ItemListFeedContent extends React.Component<FeedProps> {
         console.log('feed item content render')
         const feed = this.props.model;
         return (
-            <Link to={`/article/${feed.slug}`} className={"preview-link"}>
+            <Link to={`/article/${feed.slug}`}>
                 <h1>{feed.title}</h1>
                 <p>{feed.description}</p>
                 <span>Read more...</span>
-                <ul className={"tag-list"}>
+                <ul>
                     {feed.tagList.map(tag => (
-                        <li key={tag.id} className={"tag-default tag-pill tag-outline"}>{tag.tag}</li>
+                        <li key={tag.id} >{tag.tag}</li>
                     ))}
                 </ul>
             </Link>
