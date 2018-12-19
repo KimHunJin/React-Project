@@ -10,6 +10,7 @@ import userStore from "app/stores/UserStore";
 import {EditorPage} from "app/pages/Editor";
 import {MyPage} from "app/pages/MyPage";
 import {SettingPage} from "app/pages/Setting";
+import './practice.less';
 
 // render react DOM
 
@@ -21,7 +22,7 @@ export class App extends Component {
 
         return (
             <Router history={history}>
-                <div>
+                <div className={'root-container'}>
                     <TopNavigation auth={userStore}/>
 
                     <Switch>

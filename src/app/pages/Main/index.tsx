@@ -8,6 +8,7 @@ import {Tags} from "app/components";
 import tagStore from "app/stores/TagStore";
 import {UserStore} from "app/stores/UserStore";
 import {FEEDS} from "app/constants/Feed";
+import './practice.less';
 
 interface Props {
     auth: UserStore
@@ -29,12 +30,12 @@ export class MainPage extends React.Component<Props> {
             <div >
                 {this.props.auth.userModel ? null : <Banner/>}
                 <div>
-                    <div >
-                        <div >
+                    <div className={'block'}>
+                        <div className={'feed'}>
                             <FeedToggle store={feedStore} auth={this.props.auth}/>
                             <FeedList feedStore={feedStore}/>
                         </div>
-                        <div >
+                        <div className={'tags'}>
                             <Tags tagStore={tagStore} feedStore={feedStore}/>
                         </div>
                     </div>

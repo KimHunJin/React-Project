@@ -1,0 +1,39 @@
+.module-top-navigation {
+  position: relative;
+  height: 56px;
+
+  .logo {
+    position: absolute;
+    top: 50%;
+    font-size: 24px;
+    color: #5FB563;
+    font-weight: bold;
+    transform: translate(-50%, -50%);
+    margin-left: 10%;
+  }
+
+  .link {
+    color: rgba(0, 0, 0, 0.3);
+    &:hover {
+      color: #818a91;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul {
+    position: absolute;
+    list-style: none;
+    right: 1%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  li {
+    float: left;
+    margin-left: 10px;
+    font-size: 15px;
+  }
+}

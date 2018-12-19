@@ -129,7 +129,7 @@ export class FeedToggle extends React.Component<Props> {
     render() {
         console.log('feed toggle render');
         return (
-            <div>
+            <div >
                 <ul >
                     {!this.props.store.param && this.props.auth.userModel && this.authorFeed()}
                     {!this.props.store.param && this.globalFeed()}
