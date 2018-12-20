@@ -1,14 +1,19 @@
 @import (reference) '~@app-style/color';
 
 .module-footer-paging {
+
   ul {
     list-style-type: none;
+
+    li:first-child {
+      border-radius: 4px;
+    }
 
     li {
       float: left;
       border: 1px solid @color-gray-bright;
-      border-radius: 4px;
       padding: 8px;
+
 
       &.active {
         background-color: @color-theme;
@@ -36,4 +41,6 @@
       }
     }
   }
+
+
 }
