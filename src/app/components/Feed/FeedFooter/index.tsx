@@ -2,6 +2,7 @@ import * as React from 'react'
 import {FeedStore} from "app/stores/FeedStore";
 import {observer} from "mobx-react";
 import {FEEDS, GET_PAGE_COUNT, GET_PAGE_LIMIT} from "app/constants/Feed";
+import './practice.less';
 
 interface Props {
     store: FeedStore,
@@ -22,10 +23,10 @@ export class Footer extends React.Component<Props> {
         for (let page = 0; page < count; page++) {
             list.push(
                 page == currentFeedPage ?
-                    <li key={page}>
-                        <a  href="#">{page + 1}</a>
+                    <li key={page} className={'active'}>
+                        <a className={'active'} href="#">{page + 1}</a>
                     </li> :
-                    <li key={page} className={"page-item "}>
+                    <li key={page}>
                         <a onClick={() => this.pageEventHandle(page)} href="#">{page + 1}</a>
                     </li>
             )
@@ -59,7 +60,7 @@ export class Footer extends React.Component<Props> {
             store.feedCount / 5;
 
         return (
-            <nav>
+            <nav className={'module-footer-paging'}>
                 <ul>
                     {
                         this.createList(feedCount)

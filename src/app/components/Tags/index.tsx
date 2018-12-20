@@ -5,6 +5,7 @@ import {observer} from "mobx-react";
 import {FeedStore} from "app/stores/FeedStore";
 import {TagModel} from "app/model/TagModel/index";
 import {FEEDS} from "app/constants/Feed";
+import './practice.less';
 
 interface Props {
     tagStore: TagStore
@@ -37,21 +38,22 @@ export class Tags extends React.Component<Props> {
 
     makeTagList() {
         const store = this.props.tagStore;
-        return <div>
-            {store.tagModels.map(tag => (
-                <a href={""} onClick={() => this.tagHandleEvent(tag.tag)} key={tag.id}
-                  >
-                    {tag.tag}
-                </a>
-            ))}
-        </div>
+        return (
+            <div>
+                {store.tagModels.map(tag => (
+                    <a className={"tag"} href={""} onClick={() => this.tagHandleEvent(tag.tag)} key={tag.id}>
+                        {tag.tag}
+                    </a>
+                ))}
+            </div>
+        )
     }
 
     render() {
         console.log('tag render')
         return (
 
-            <div >
+            <div className={'module-tag'}>
                 <p>Popular Tags</p>
                 {this.makeTagList()}
             </div>

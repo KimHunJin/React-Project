@@ -1,0 +1,25 @@
+@import (reference) '~@app-style/color';
+
+.module-tag {
+  margin-top: 40px;
+  margin-left: 18px;
+  padding: 4px;
+  background-color: @color-gray-middle;
+  display: block;
+
+  .tag {
+    border: 1px solid @color-gray;
+    background: @color-gray;
+    color: @color-white;
+    border-radius: 12px;
+    padding: 2px 8px 2px 8px;
+    margin: 2px;
+    font-size: 12px;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+      background-color: @color-gray-middle-bright;
+    }
+  }
+}
