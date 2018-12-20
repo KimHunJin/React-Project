@@ -6,6 +6,7 @@ import APIConn from "../../../../../lib/http/service_util";
 import feedStore from "app/stores/FeedStore";
 import {OK} from "app/constants/Code";
 import {Link} from "react-router-dom";
+import './practice.less';
 
 export interface FeedProps {
     feed: FeedModel
@@ -40,23 +41,22 @@ export class ItemListUserInfo extends React.Component<FeedProps> {
         console.log('feed item user render');
         const {feed} = this.props;
         return (
-            <div >
-                <Link to={`/${feed.author.username}`}>
+            <div className={"module-feed-user-info"}>
+                <Link  to={`/${feed.author.username}`}>
                     {feed.author.image ?
                         <img src={feed.author.image} alt={""}/> :
                         <img alt={""}/>
                     }
                 </Link>
-                <div >
-                    <Link to={`/${feed.author.username}`}>{feed.author.username}</Link>
-                    <span>{feed.createdAt}</span>
+                <div className={"info"}>
+                    <Link className={"author"} to={`/${feed.author.username}`}>{feed.author.username}</Link>
+                    <span className={"date"}>{feed.createdAt}</span>
                 </div>
-                <div>
+                <div className={"favorite"}>
                     <button
                             onClick={() => this.handlerFeedLike(feed)}>
-                        <i className={"ion-heart"}>
+                        <i className={"ion-heart"}/>
                             {feed.favoritesCount}
-                        </i>
                     </button>
                 </div>
             </div>

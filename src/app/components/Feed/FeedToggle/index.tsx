@@ -3,6 +3,7 @@ import {FeedStore} from "app/stores/FeedStore";
 import {observer} from "mobx-react";
 import {UserStore} from "app/stores/UserStore";
 import {FEEDS} from "app/constants/Feed";
+import './practice.less';
 
 interface Props {
     store: FeedStore
@@ -14,7 +15,7 @@ export class FeedToggle extends React.Component<Props> {
 
     componentDidMount(): void {
         console.log('feed toggle component did mount');
-        this.props.store.currentFeed = this.props.store.param? FEEDS.MY_ARTICLE : this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
+        this.props.store.currentFeed = this.props.store.param ? FEEDS.MY_ARTICLE : this.props.auth.userModel ? FEEDS.YOUR_FEED : FEEDS.GLOBAL;
         // this.props.store.fetchArticleData(); // 얘를 하지 않으면 실행이 초기 화면에서 피드 리스트가 나오지 않음.
     }
 
@@ -46,10 +47,10 @@ export class FeedToggle extends React.Component<Props> {
     globalFeed(): any {
         const store = this.props.store;
         return (
-            <li>
-                {store.currentFeed == FEEDS.GLOBAL  ?
-                    <a href={""} onClick={this.nonEvent}>Global Feed</a> :
-                    <a href={""} onClick={() => this.eventChangeTagGlobal()}>Global Feed</a>
+            <li  className= {store.currentFeed == FEEDS.GLOBAL ? "toggle action" : "toggle"}>
+                {store.currentFeed == FEEDS.GLOBAL ?
+                    <a href={""} className={"action"} onClick={this.nonEvent}>Global Feed</a> :
+                    <a href={""} className={""} onClick={() => this.eventChangeTagGlobal()}>Global Feed</a>
                 }
             </li>
         )
@@ -58,10 +59,10 @@ export class FeedToggle extends React.Component<Props> {
     myArticlesFeed(): any {
         const store = this.props.store;
         return (
-            <li >
-                {store.currentFeed == FEEDS.MY_ARTICLE  ?
-                    <a href={""} onClick={this.nonEvent} >My Articles</a> :
-                    <a href={""} onClick={() => this.eventChangeTagMyArticle()} >My Articles</a>
+            <li>
+                {store.currentFeed == FEEDS.MY_ARTICLE ?
+                    <a href={""} onClick={this.nonEvent}>My Articles</a> :
+                    <a href={""} onClick={() => this.eventChangeTagMyArticle()}>My Articles</a>
                 }
             </li>
         )
@@ -70,10 +71,10 @@ export class FeedToggle extends React.Component<Props> {
     favoritedArticlesFeed(): any {
         const store = this.props.store;
         return (
-            <li >
-                {store.currentFeed == FEEDS.FAVORITED  ?
-                    <a href={""} onClick={this.nonEvent} >Favorited Articles</a> :
-                    <a href={""} onClick={() => this.eventChangeTagFavoritedArticle()} >Favorited
+            <li>
+                {store.currentFeed == FEEDS.FAVORITED ?
+                    <a href={""} onClick={this.nonEvent}>Favorited Articles</a> :
+                    <a href={""} onClick={() => this.eventChangeTagFavoritedArticle()}>Favorited
                         Articles</a>
                 }
             </li>
@@ -84,7 +85,7 @@ export class FeedToggle extends React.Component<Props> {
         event.preventDefault();
     }
 
-    eventChangeTagAuth():void {
+    eventChangeTagAuth(): void {
         event.preventDefault();
         const store = this.props.store;
         const auth = store.feedAuthor;
@@ -129,8 +130,8 @@ export class FeedToggle extends React.Component<Props> {
     render() {
         console.log('feed toggle render');
         return (
-            <div >
-                <ul >
+            <div className={'module-feed-toggle'}>
+                <ul>
                     {!this.props.store.param && this.props.auth.userModel && this.authorFeed()}
                     {!this.props.store.param && this.globalFeed()}
                     {!this.props.store.param && this.tagFeed()}

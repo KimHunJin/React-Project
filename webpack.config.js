@@ -26,7 +26,8 @@ module.exports = {
     resolve: {
         extensions: ['.js', 'jsx', '.ts', '.tsx'],
         alias: {
-            'app': path.resolve(__dirname, 'src/app/')
+            'app': path.resolve(__dirname, 'src/app/'),
+            '@app-style': path.resolve(__dirname, 'src/lib/style')
         },
         modules: [
             path.resolve(__dirname, './node_modules')

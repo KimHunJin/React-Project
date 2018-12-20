@@ -1,0 +1,49 @@
+@import (reference) '~@app-style/color';
+
+.module-feed-toggle {
+  position: relative;
+  margin-top: 42px;
+  line-height: 1.5;
+
+  a {
+    text-decoration: none;
+    padding: 0.5em 1em;
+    color: @color-black-bright;
+
+    &.action {
+      color: @color-theme;
+    }
+  }
+
+  li {
+    list-style: none;
+    font-size: 14px;
+    color: @color-black;
+    float: left;
+    box-sizing: inherit;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 8px;
+
+    &.action {
+      border-bottom: 2px solid @color-theme;
+    }
+  }
+
+  ul {
+    color: @color-theme;
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+      box-sizing: inherit;
+    }
+  }
+
+  .toggle {
+    color: @color-black-bright;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+
+  }
+
+}
