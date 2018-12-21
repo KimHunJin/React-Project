@@ -6,6 +6,8 @@ import {FeedList, FeedToggle} from "app/components";
 import feedStore from "app/stores/FeedStore";
 import userStore from "app/stores/UserStore";
 import {FEEDS} from "app/constants/Feed";
+import './practice.less';
+
 
 @observer
 export class MyPage extends React.Component {
@@ -26,11 +28,11 @@ export class MyPage extends React.Component {
     render() {
         console.log('my page render')
         return (
-            <div className={"profile-page"}>
+            <div>
                 <MyPageBanner store={profileStore}/>
-                <div className={"container"}>
-                    <div className={"row"}>
-                        <div className={"col-xs-12 col-md-10 offset-md-1"}>
+                <div className="module-my-page-content">
+                    <div >
+                        <div className="module-my-page-article">
                             <FeedToggle store={feedStore} auth={userStore}/>
                             <FeedList feedStore={feedStore}/>
                         </div>
