@@ -23,9 +23,9 @@ export class FeedToggle extends React.Component<Props> {
         const store = this.props.store;
         const auth = this.props.auth;
         return (
-            <li>
+            <li className= {store.currentFeed == FEEDS.YOUR_FEED ? "toggle action" : "toggle"}>
                 {auth.userModel && store.currentFeed == FEEDS.YOUR_FEED ?
-                    <a href={""} onClick={this.nonEvent}>Your Feed</a> :
+                    <a href={""} className={"action"} onClick={this.nonEvent}>Your Feed</a> :
                     <a href={""} onClick={() => this.eventChangeTagAuth()}>Your Feed</a>
                 }
             </li>
@@ -59,9 +59,9 @@ export class FeedToggle extends React.Component<Props> {
     myArticlesFeed(): any {
         const store = this.props.store;
         return (
-            <li>
+            <li className= {store.currentFeed == FEEDS.MY_ARTICLE ? "toggle action" : "toggle"}>
                 {store.currentFeed == FEEDS.MY_ARTICLE ?
-                    <a href={""} onClick={this.nonEvent}>My Articles</a> :
+                    <a href={""} className={"action"} onClick={this.nonEvent}>My Articles</a> :
                     <a href={""} onClick={() => this.eventChangeTagMyArticle()}>My Articles</a>
                 }
             </li>
@@ -71,9 +71,9 @@ export class FeedToggle extends React.Component<Props> {
     favoritedArticlesFeed(): any {
         const store = this.props.store;
         return (
-            <li>
+            <li className= {store.currentFeed == FEEDS.FAVORITED ? "toggle action" : "toggle"}>
                 {store.currentFeed == FEEDS.FAVORITED ?
-                    <a href={""} onClick={this.nonEvent}>Favorited Articles</a> :
+                    <a href={""} className={"action"} onClick={this.nonEvent}>Favorited Articles</a> :
                     <a href={""} onClick={() => this.eventChangeTagFavoritedArticle()}>Favorited
                         Articles</a>
                 }

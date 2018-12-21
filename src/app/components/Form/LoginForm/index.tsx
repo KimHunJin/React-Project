@@ -1,8 +1,8 @@
 import * as React from 'react'
 import {Link} from "react-router-dom";
 import {LoginStore} from "app/stores/LoginStore";
-import './style.less'
 import {observer} from "mobx-react";
+import '../practice.less';
 
 
 interface Props {
@@ -30,24 +30,24 @@ export class LoginForm extends React.Component<Props> {
         console.log('login form render')
         return (
 
-            <div className={"row"}>
-                <div className={"col-md-6 offset-md-3 col-xs-12"}>
-                    <h1 className={"text-xs-center"}>Sign In</h1>
-                    <p className={"text-xs-center"}>
-                        <Link to={'/register'}>Need an account?</Link>
+            <div className={'module-form'}>
+                <div>
+                    <h1 className={'form-title'}>Sign In</h1>
+                    <p className="form-link">
+                        <Link  to={'/register'}>Need an account?</Link>
                     </p>
                     <form onSubmit={this.onSubmit}>
                         <fieldset>
-                            <fieldset className={"form-group"}>
-                                <input type={"email"} className={"form-control form-control-lg"} placeholder={"Email"}
-                                onChange={this.emailChangeHandler}/>
+                            <fieldset className="form-field-set">
+                                <input className="form-input" type={"email"} placeholder={"Email"}
+                                 onChange={this.emailChangeHandler}/>
                             </fieldset>
-                            <fieldset className={"form-group"}>
-                                <input type={"password"} className={"form-control form-control-lg"}
+                            <fieldset className="form-field-set">
+                                <input className="form-input" type={"password"}
                                        placeholder={"Password"}
                                 onChange={this.passwordChangeHandler}/>
                             </fieldset>
-                            <button className={"btn btn-lg btn-primary pull-xs-right"} type={"submit"}>
+                            <button className="form-submit" type={"submit"}>
                                 Sign in
                             </button>
                         </fieldset>

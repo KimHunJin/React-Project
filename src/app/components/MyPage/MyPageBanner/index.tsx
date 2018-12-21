@@ -3,7 +3,6 @@ import {ProfileStore} from "app/stores/ProfileStore";
 import userStore from "app/stores/UserStore";
 import {observer} from "mobx-react";
 import {Link} from "react-router-dom";
-import './style.less';
 
 interface Props {
     store: ProfileStore;

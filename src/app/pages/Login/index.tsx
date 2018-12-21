@@ -1,7 +1,7 @@
 import * as React from 'react'
-import {LoginForm} from "app/components/LoginForm";
+import {LoginForm} from "app/components/Form/LoginForm";
 import loginStore from "app/stores/LoginStore";
-
+import './practice.less';
 
 export class LoginPage extends React.Component{
 
@@ -11,8 +11,8 @@ export class LoginPage extends React.Component{
         const store = loginStore
 
         return (
-            <div className={"auth-page"}>
-                <div className={"container page"}>
+            <div className={"module-login"}>
+                <div >
                     <LoginForm store={store}/>
                 </div>
             </div>

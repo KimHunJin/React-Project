@@ -1,0 +1,38 @@
+@import (reference) '~@app-style/color';
+
+.module-comment-user-info {
+  border-top: 1px solid @color-white-dark;
+  background-color: @color-gray-middle;
+
+  padding: 8px;
+
+  .user-img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+  }
+
+  .username {
+    color: @color-theme;
+    font-size: 12px;
+    &:hover {
+      color: @color-theme-hover;
+    }
+  }
+
+  .date {
+    margin-left: 8px;
+    color: @color-black-bright;
+    font-size: 12px;
+  }
+
+  .delete {
+    width: 20px;
+    height: 20px;
+    float: right;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

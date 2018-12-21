@@ -1,0 +1,64 @@
+@import (reference) '~@app-style/color';
+
+.module-form {
+
+  margin-top: 5%;
+
+  .form-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+
+  .form-link {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 16px;
+    a {
+      color: @color-theme;
+    }
+  }
+
+  .form-field-set {
+    height: 30px;
+    margin-bottom: 30px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid @color-gray-bright;
+    border-radius: 5px;
+    padding: 8px;
+
+
+    &::placeholder {
+      color: @color-gray;
+    }
+  }
+
+  .form-submit {
+    color: @color-white;
+    font-size: 16px;
+    padding: 10px;
+    background-color: @color-theme;
+    border: 1px solid @color-theme;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    float: right;
+
+    &:hover {
+      cursor: pointer;
+      background-color: @color-theme-hover;
+    }
+  }
+
+  fieldset {
+    border-style: none;
+  }
+}
+
+

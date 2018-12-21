@@ -8,7 +8,7 @@ import {ArticleEditor} from "app/components/Article/ArticleCommentEditor";
 import {FeedModel} from "app/model/FeedModel";
 import APIConn from "../../../lib/http/service_util";
 import {observable} from "mobx";
-import './style.less';
+import './practice.less';
 
 @observer
 export class ArticleDetailPage extends React.Component {
@@ -49,14 +49,14 @@ export class ArticleDetailPage extends React.Component {
         }
 
         return (
-            <div className={"article-page"}>
+            <div>
                 <ArticleBanner store={this.feed}/>
-                <div className={"container page"}>
+                <div className="module-article-size">
                     <ArticleBody store={this.feed}/>
                     <hr/>
-                    <div className={"article-actions"}/>
-                    <div className={"row"}>
-                        <div className={"col-xs-12 col-md-8 offset-md-2"}>
+                    <div />
+                    <div>
+                        <div className="module-comment-size">
                             <ArticleEditor store={this.feed}/>
                             <ArticleCommentList store={commentStore}/>
                         </div>

@@ -1,0 +1,45 @@
+@import (reference) '~@app-style/color';
+
+.module-article-banner {
+  background-color: @color-black-banner;
+
+  .module-article-size {
+    margin-left: 10%;
+
+    .module-article-title {
+      font-size: 40px;
+      color: @color-white;
+    }
+
+    .article-user-info {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      display: block;
+      .link-user-profile {
+        &:hover {
+          cursor: pointer;
+        }
+        .img-user-profile {
+          width: 32px;
+          height: 32px;
+          border-radius: 16px;
+        }
+      }
+
+      .user-info {
+        display: inline-block;
+        margin-left: 8px;
+        .user-name {
+          font-size: 14px;
+          color: @color-white;
+          display: block;
+        }
+        .date {
+          font-size: 12px;
+          color: @color-gray-middle-bright;
+        }
+      }
+    }
+
+  }
+}

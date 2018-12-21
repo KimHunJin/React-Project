@@ -3,6 +3,7 @@ import userStore from "app/stores/UserStore";
 import {Link} from "react-router-dom";
 import commentEditorStore from "app/stores/CommentEditorStore";
 import {FeedModel} from "app/model/FeedModel";
+import './practice.less';
 
 interface Props {
     store: FeedModel;
@@ -19,7 +20,7 @@ export class ArticleEditor extends React.Component<Props> {
         editorStore.comment = '';
     };
 
-    handlerTextChange= (e) => {
+    handlerTextChange = (e) => {
         e.preventDefault();
         const editorStore = commentEditorStore;
         editorStore.comment = e.target.value;
@@ -27,27 +28,30 @@ export class ArticleEditor extends React.Component<Props> {
 
     render() {
         console.log('article comment editor render');
-        if(userStore.userModel) {
+        if (userStore.userModel) {
             return (
-                <form className={"card comment-form"}>
-                    <div className={"card-block"}>
-                    <textarea className={"form-control"} placeholder={"Write a comment..."} rows={3} onChange={this.handlerTextChange}>
+                <form className="module-login-comment-form">
+                    <div className="comment-area-size">
+                        <textarea className="comment-area"
+                                  placeholder={"Write a comment..."} rows={3} onChange={this.handlerTextChange}>
                         {commentEditorStore.comment}
-                    </textarea>
+                        </textarea>
                     </div>
-                    <div className={"card-footer"}>
-                        <img className={"comment-author-img"}/>
-                        <button className={"btn btn-sm btn-primary"} onClick={this.handlerCommentSubmit}>Post Comment
+                    <div className="comment-user-size">
+                        <img className="user-img"/>
+                        <button className="comment-post"
+                                onClick={this.handlerCommentSubmit}>
+                            Post Comment
                         </button>
                     </div>
                 </form>
             )
         } else {
-            return(
-                <p>
-                    <Link to={"/login"}>Sign in</Link>
+            return (
+                <p className="module-non-login-text">
+                    <Link className="link" to={"/login"}>Sign in</Link>
                     &nbsp;or&nbsp;
-                    <Link to={"/register"}>Sign up</Link>
+                    <Link className="link" to={"/register"}>Sign up</Link>
                     &nbsp;to add comments on this article.
                 </p>
             )

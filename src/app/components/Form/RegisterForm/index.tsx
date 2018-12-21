@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {RegisterStore} from 'app/stores/RegistStore'
 import {observer} from "mobx-react";
 import {OK} from "app/constants/Code";
+import '../practice.less';
 
 interface Props {
     store: RegisterStore;
@@ -36,28 +37,28 @@ export class RegisterForm extends React.Component<Props> {
     render() {
         console.log('register form render')
         return (
-            <div className={"row"}>
-                <div className={"col-md-6 offset-md-3 col-xs-12"}>
-                    <h1 className={"text-xs-center"}>Sign Up</h1>
-                    <p className={"text-xs-center"}>
+            <div className="module-form">
+                <div >
+                    <h1 className="form-title">Sign Up</h1>
+                    <p className="form-link">
                     <Link to={'/login'}><p>Have an account?</p></Link>
                     </p>
                     <form onSubmit={this.onSubmit}>
                         <fieldset>
-                            <fieldset className={"form-group"}>
-                                <input type={"text"} className={"form-control form-control-lg"} placeholder={"Username"}
+                            <fieldset className="form-field-set">
+                                <input className="form-input" type={"text"} placeholder={"Username"}
                                        onChange={this.handlerChangeName}/>
                             </fieldset>
-                            <fieldset className={"form-group"}>
-                                <input type={"email"} className={"form-control form-control-lg"} placeholder={"Email"}
+                            <fieldset className="form-field-set">
+                                <input className="form-input" type={"email"}  placeholder={"Email"}
                                        onChange={this.handlerChangeEmail}/>
                             </fieldset>
-                            <fieldset className={"form-group"}>
-                                <input type={"password"} className={"form-control form-control-lg"}
+                            <fieldset className="form-field-set">
+                                <input className="form-input" type={"password"}
                                        placeholder={"Password"}
                                        onChange={this.handlerChangePassword}/>
                             </fieldset>
-                            <button className={"btn btn-lg btn-primary pull-xs-right"} type={"submit"}>
+                            <button className="form-submit" type={"submit"}>
                                 Sign in
                             </button>
                         </fieldset>

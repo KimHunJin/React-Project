@@ -17,10 +17,10 @@ export class TopNavigation extends React.Component<Props> {
             <div >
                 <Link className={'logo'} to={'/'} >React</Link>
                 <ul >
-                    <li ><Link to={'/'} >Home</Link></li>
-                    <li ><Link to={'/editor'} ><i className="ion-compose"/>&nbsp;New Post</Link></li>
-                    <li ><Link to={'/settings'} ><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
-                    <li ><Link to={`/${this.props.auth.userModel.username}`}>{this.props.auth.userModel.username}</Link></li>
+                    <li ><Link className="link" to={'/'} >Home</Link></li>
+                    <li ><Link className="link" to={'/editor'} ><i className="ion-compose"/>&nbsp;New Post</Link></li>
+                    <li ><Link className="link" to={'/settings'} ><i className="ion-gear-a"/>&nbsp;Settings</Link></li>
+                    <li ><Link className="link" to={`/${this.props.auth.userModel.username}`}>{this.props.auth.userModel.username}</Link></li>
                 </ul>
             </div>
         )
