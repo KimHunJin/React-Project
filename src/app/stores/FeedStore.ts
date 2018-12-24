@@ -34,7 +34,7 @@ class FeedStore {
                 const title: string = article.title;
                 const body: string = article.body;
                 const tagList = article.tagList.map(tag => {
-                    return new TagModel(tag.tag)
+                    return new TagModel(tag)
                 });
                 const createdAt: string = article.createdAt;
                 const feedDate = new Date(createdAt);
