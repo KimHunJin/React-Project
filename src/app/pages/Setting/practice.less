@@ -1,0 +1,45 @@
+@import (reference) '~@app-style/color';
+
+.module-setting {
+  display: block;
+
+  .module-setting-size {
+    display: block;
+    margin-left: 35%;
+    margin-right: 35%;
+  }
+
+  .setting-title {
+    font-weight: normal;;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .submit-button {
+    float:right;
+    color: @color-white;
+    background: @color-theme;
+    border: 1px solid @color-theme;
+    border-radius: 4px;
+    padding: 8px 8px 8px 8px;
+    margin-bottom: 8px;
+    font-size: 20px;
+    &:hover {
+      background-color: @color-theme-hover;
+    }
+  }
+
+  hr {
+    border: 1px solid @color-gray-middle;
+  }
+
+  .logout-button {
+    margin-top: 8px;
+    background: none;
+    border-radius: 4px;
+    font-size: 16px;
+    border: 1px solid @color-red-dark;
+    color: @color-red-dark;
+    padding: 8px;
+  }
+}

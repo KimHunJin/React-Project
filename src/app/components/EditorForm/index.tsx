@@ -2,7 +2,7 @@ import * as React from 'react'
 import {observer} from "mobx-react";
 import {ENTER_KEY} from "app/constants/Code";
 import {EditorStore} from "app/stores/ArticleEditorStore";
-import './style.less';
+import './practice.less';
 
 interface Props {
     store: EditorStore
@@ -61,32 +61,39 @@ export class EditorForm extends React.Component<Props> {
     render() {
         console.log('edit form render')
         return (
-            <form onSubmit={this.preventSubmit}>
+            <form className="module-editor" onSubmit={this.preventSubmit}>
                 <fieldset>
-                    <fieldset className={"form-group"}>
-                        <input className={"form-control form-control-lg"} type={'text'} placeholder={"Article Title"}
-                               onChange={this.handlerTitleChange} value={this.props.store.title}/>
+                    <fieldset>
+                        <input className="text-input"
+                            type={'text'} placeholder={"Article Title"}
+                            value={this.props.store.title}
+                               onChange={this.handlerTitleChange} />
                     </fieldset>
 
-                    <fieldset className={"form-group"}>
-                        <input className={"form-control"} type={'text'} placeholder={"What's this article about?"}
-                               onChange={this.handlerDescriptionChange} value={this.props.store.description}/>
+                    <fieldset >
+                        <input className="text-input"
+                            type={'text'} placeholder={"What's this article about?"}
+                            value={this.props.store.description}
+                               onChange={this.handlerDescriptionChange} />
                     </fieldset>
 
-                    <fieldset className={"form-group"}>
-                        <textarea className={"form-control"} rows={8} placeholder={"Write your article (in markdown)"}
-                                  onChange={this.handlerBodyChange} value={this.props.store.body}/>
+                    <fieldset >
+                        <textarea className="text-input"
+                            rows={8} placeholder={"Write your article (in markdown)"}
+                            value={this.props.store.body}
+                                  onChange={this.handlerBodyChange} />
                     </fieldset>
 
-                    <fieldset className={"form-group"}>
-                        <input className={"form-control"} type={'text'} value={this.props.store.tag}
+                    <fieldset >
+                        <input className="text-input"
+                            type={'text'} value={this.props.store.tag}
                                placeholder={"Enter tags"}
                                onKeyDown={this.handlerTagKeyDown} onChange={(e) => {
                             this.props.store.tag = e.target.value;
                         }}/>
-                        <div className={"tag-list"}>
+                        <div >
                             {this.props.store.tagList.map(tag => (
-                                <span key={tag} className={'tag-default tag-pill'}>
+                                <span className="tag" key={tag}>
                                 <i className={"ion-close-round"}
                                    onClick={
                                        () => {
@@ -99,7 +106,8 @@ export class EditorForm extends React.Component<Props> {
                     </fieldset>
 
 
-                    <button className={'btn btn-lg pull-xs-right btn-primary'} type={"button"}
+                    <button className="submit-button"
+                        type={"button"}
                             onClick={this.handlerSubmit}>Publish Article
                     </button>
                 </fieldset>

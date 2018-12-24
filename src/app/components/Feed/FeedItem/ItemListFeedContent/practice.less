@@ -1,7 +1,10 @@
 @import (reference)  '~@app-style/color';
 
 .module-feed-contents {
-  position: relative;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 
   &:hover {
     text-decoration: none;
@@ -27,17 +30,20 @@
 
   ul {
     list-style: none;
+    width: 50%;
     display: inline-block;
     float: right;
     li {
-      margin : 2px;
-      padding: 2px 6px 2px 6px;
+      float: right;
+      padding: 2px;
+      margin: 2px;
       &.tag {
+        display: inline-block;
         font-size: 11px;
         border: 1px solid @color-black-bright;
         color: @color-black-bright;
         border-radius: 10px;
-       }
+      }
     }
   }
 }

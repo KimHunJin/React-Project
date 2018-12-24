@@ -2,7 +2,7 @@ import * as React from 'react'
 import editorStore from "app/stores/ArticleEditorStore";
 import {EditorForm} from "app/components/EditorForm";
 import APIConn from "../../../lib/http/service_util";
-
+import './practice.less';
 
 export class EditorPage extends React.Component {
 
@@ -31,8 +31,8 @@ export class EditorPage extends React.Component {
 
         const store = editorStore;
         return (
-            <div className={"auth-page"}>
-                <div className={"container page"}>
+            <div >
+                <div className="module-editor-size">
                     <EditorForm store={store}/>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {observer} from "mobx-react";
 import {SettingStore} from "app/stores/SettingStore";
-import './style.less';
+import './practice.less';
 
 interface Props {
     store: SettingStore;
@@ -47,29 +47,38 @@ export class SettingForm extends React.Component<Props> {
         }
         return (
             <form onSubmit={this.onSubmit}>
-                <fieldset>
-                    <fieldset className={'form-group'}>
-                        <input type={'text'} className={'form-control'} placeholder={'URL of profile picture'}
-                               value={this.props.store.image} onChange={this.handlerImageChange}/>
+                <fieldset className="module-setting-form">
+                    <fieldset className="module-setting-form">
+                        <input className="input-size"
+                            type={'text'}  placeholder={'URL of profile picture'}
+                               value={this.props.store.image}
+                               onChange={this.handlerImageChange}/>
                     </fieldset>
-                    <fieldset className={'form-group'}>
-                        <input type={'text'} className={'form-control form-control-lg'} placeholder={'Username'}
-                               value={this.props.store.username} onChange={this.handlerNameChange}/>
+                    <fieldset className="module-setting-form">
+                        <input  className="input-size"
+                                type={'text'} placeholder={'Username'}
+                               value={this.props.store.username}
+                               onChange={this.handlerNameChange}/>
                     </fieldset>
-                    <fieldset className={'form-group'}>
-                        <textarea rows={8} className={'form-control form-control-lg'}
+                    <fieldset className="module-setting-form">
+                        <textarea  className="input-size"
+                                   rows={8}
                                   placeholder={'Short bio about you'} value={this.props.store.bio}
                                   onChange={this.handlerBioChange}/>
                     </fieldset>
-                    <fieldset className={'form-group'}>
-                        <input type={'email'} className={'form-control form-control-lg'} placeholder={'Email'}
-                               value={this.props.store.email} onChange={this.handlerEmailChange}/>
+                    <fieldset  className="module-setting-form">
+                        <input  className="input-size"
+                                type={'email'} placeholder={'Email'}
+                               value={this.props.store.email}
+                               onChange={this.handlerEmailChange}/>
                     </fieldset>
-                    <fieldset className={'form-group'}>
-                        <input type={'password'} className={'form-control form-control-lg'} placeholder={'New password'}
-                               value={this.props.store.password} onChange={this.handlerPasswordChange}/>
+                    <fieldset className="module-setting-form">
+                        <input  className="input-size"
+                                type={'password'} placeholder={'New password'}
+                               value={this.props.store.password}
+                        onChange={this.handlerPasswordChange}/>
                     </fieldset>
-                    <button className={'btn btn-lg btn-primary pull-xs-right'} type={'submit'}>Update Settings</button>
+                    <button className="submit-button" type={'submit'}>Update Settings</button>
                 </fieldset>
             </form>
         )

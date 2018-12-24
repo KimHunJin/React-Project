@@ -1,0 +1,51 @@
+@import (reference) '~@app-style/color';
+
+.module-editor {
+  border: none;
+  fieldset {
+    border: none;
+  }
+
+  .text-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid @color-white-dark;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-size: 14px;
+    &::placeholder {
+      color: @color-black-bright;
+    }
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .submit-button {
+    background: @color-theme;
+    color: @color-white;
+    float: right;
+    padding: 12px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid @color-theme;
+    font-size: 20px;
+
+    &:hover {
+      cursor: pointer;
+      background-color: @color-theme-hover;
+      border-color: @color-theme-hover;
+    }
+  }
+  
+  .tag {
+    background: @color-gray;
+    color: @color-white;
+    font-size: 12px;
+    border: 1px solid @color-gray;
+    padding: 2px 6px;
+    -webkit-border-radius: 14px;
+    -moz-border-radius: 14px;
+    border-radius: 14px;
+  }
+}

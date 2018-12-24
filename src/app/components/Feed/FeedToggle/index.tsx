@@ -37,7 +37,7 @@ export class FeedToggle extends React.Component<Props> {
         return (
             <li className={"nav-item"}>
                 {store.currentFeed == FEEDS.TAG ?
-                    <a href={""}><i className="ion-pound"/> {store.feedTag}</a> :
+                    <a href={""} className="action"><i className="ion-pound"/> {store.feedTag}</a> :
                     null
                 }
             </li>
